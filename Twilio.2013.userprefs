@@ -1,0 +1,20 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug - PCL" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SimpleRestClient.Tests/SimpleRestClient.Tests.csproj">
+    <Files>
+      <File FileName="SimpleRestClient.Tests/SimpleRestClient.Tests.csproj" Line="1" Column="1" />
+      <File FileName="Twilio.Api.Pcl.Tests/Twilio.Api.Pcl.Tests.csproj" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/devinrader/Documents/twilio-csharp/src/SimpleRestClient/StringExtensions.cs" line="141" column="33" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
