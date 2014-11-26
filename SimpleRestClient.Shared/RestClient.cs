@@ -89,7 +89,7 @@ namespace Simple
                 // to a transport or framework exception.  HTTP errors should attempt to 
                 // be deserialized 
 
-                if (response.ResponseStatus == ResponseStatus.Completed && response.ErrorException == null && response.RawBytes.Length > 0)
+                if (response.ResponseStatus == ResponseStatus.Completed && response.ErrorException == null && response.RawBytes!= null && response.RawBytes.Length > 0)
                 {
                     JsonDeserializer deserializer = new JsonDeserializer();
                     restresponse.Data = deserializer.Deserialize<T>(response);

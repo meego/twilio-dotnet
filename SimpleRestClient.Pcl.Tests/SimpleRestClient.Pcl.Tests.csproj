@@ -81,10 +81,6 @@
     <Compile Include="..\SimpleRestClient.Tests.Shared\Resources\*.cs">
       <Link>Shared\Resources\%25%28FileName%29</Link>
     </Compile>
-    <Content Include="..\SimpleRestClient.Tests.Shared\Resources\Data\*.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>Shared\Resources\Data\%25%28FileName%29</Link>
-    </Content>
     <Compile Include="..\SimpleRestClient.Tests.Shared\*.cs">
       <Link>Shared\%25%28FileName%29</Link>
     </Compile>
@@ -105,6 +101,50 @@
       <Project>{4654e7e4-3bf0-4fda-98f8-4be16fc3497d}</Project>
       <Name>SimpleRestClient.Pcl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\4sq.txt">
+      <Link>Shared\Resources\Data\4sq.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\datetimes.txt">
+      <Link>Shared\Resources\Data\datetimes.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\GenericWithList.txt">
+      <Link>Shared\Resources\Data\GenericWithList.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\iso8601datetimes.txt">
+      <Link>Shared\Resources\Data\iso8601datetimes.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\jsonarray.txt">
+      <Link>Shared\Resources\Data\jsonarray.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\jsondictionary.txt">
+      <Link>Shared\Resources\Data\jsondictionary.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\jsonenums.txt">
+      <Link>Shared\Resources\Data\jsonenums.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\jsonenumtypes.txt">
+      <Link>Shared\Resources\Data\jsonenumtypes.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\jsonlists.txt">
+      <Link>Shared\Resources\Data\jsonlists.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\objectproperty.txt">
+      <Link>Shared\Resources\Data\objectproperty.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\person.json.txt">
+      <Link>Shared\Resources\Data\person.json.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\sojson.txt">
+      <Link>Shared\Resources\Data\sojson.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\timespans.txt">
+      <Link>Shared\Resources\Data\timespans.txt</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SimpleRestClient.Tests.Shared\Resources\Data\underscore_prefix.txt">
+      <Link>Shared\Resources\Data\underscore_prefix.txt</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

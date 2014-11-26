@@ -20,8 +20,6 @@ namespace SimpleRestClient.Tests
 
         public RestRequestTests()
         {
-            client = new RestClient();
-            client.BaseUrl = BASE_URL;
         }
 
         [Test]
@@ -29,6 +27,8 @@ namespace SimpleRestClient.Tests
         {
             string token = AuthorizationToken;
 
+            client = new RestClient();
+            client.BaseUrl = BASE_URL;
             client.DefaultParameters.Add(new Parameter() { Name = "Authorization", Value = token, Type = ParameterType.HttpHeader });
 
             var request = new RestRequest();
@@ -45,6 +45,9 @@ namespace SimpleRestClient.Tests
         {
             string body = "Foo=12345&Bar=abcde";
             var sourcebytes = Encoding.UTF8.GetBytes(body);
+
+            client = new RestClient();
+            client.BaseUrl = BASE_URL;
 
             var request = new RestRequest();
             request.Method = "POST";

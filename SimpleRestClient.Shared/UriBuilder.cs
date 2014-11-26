@@ -33,6 +33,11 @@ namespace Simple
 
             if (!string.IsNullOrEmpty(baseUrl))
             {
+                if (baseUrl.EndsWith("/"))
+                {
+                    baseUrl = baseUrl.Substring(0, baseUrl.Length - 1);
+                }
+
                 if (string.IsNullOrEmpty(assembled))
                 {
                     assembled = baseUrl;

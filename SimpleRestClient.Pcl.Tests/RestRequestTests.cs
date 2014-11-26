@@ -86,7 +86,7 @@ namespace SimpleRestClient.Tests
         }
 
         [Test]
-        public void When_Request_Method_Is_GET_Then_ContentType_Is_Empty()
+        public void When_Request_Method_Is_GET_Then_Content_Empty()
         {
             var request = new RestRequest();
             request.Method = "GET";
@@ -95,7 +95,7 @@ namespace SimpleRestClient.Tests
 
             var requestmessage = client.ConfigureRequestMessage(request);
 
-            Assert.IsTrue(string.IsNullOrWhiteSpace(requestmessage.Content.Headers.ContentType.MediaType));
+            Assert.IsNull(requestmessage.Content);
         }
 
         private string AuthorizationToken

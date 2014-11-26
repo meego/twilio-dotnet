@@ -84,11 +84,13 @@ namespace Simple
             {
                 restresponse.ErrorException = exc;
                 restresponse.ErrorMessage = exc.Message;
+                restresponse.ResponseStatus = ResponseStatus.Error;
             }
             catch (Exception exc)
             {
                 restresponse.ErrorException = exc;
                 restresponse.ErrorMessage = exc.Message;
+                restresponse.ResponseStatus = ResponseStatus.Error;
 
                 Debug.WriteLine(exc.Message);
             }
