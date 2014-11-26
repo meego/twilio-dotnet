@@ -94,6 +94,7 @@
     <Compile Include="Model\Feedback.cs" />
     <Compile Include="Model\FeedbackSummary.cs" />
     <Compile Include="Model\HangupStyle.cs" />
+    <Compile Include="Model\IceServer.cs" />
     <Compile Include="Model\IncomingPhoneNumber.cs" />
     <Compile Include="Model\IncomingPhoneNumberResult.cs" />
     <Compile Include="Model\IpAccessControlList.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Model\SmsMessageResult.cs" />
     <Compile Include="Model\SmsShortCode.cs" />
     <Compile Include="Model\SmsShortCodeResult.cs" />
+    <Compile Include="Model\Token.cs" />
     <Compile Include="Model\Transcription.cs" />
     <Compile Include="Model\TranscriptionResult.cs" />
     <Compile Include="Model\TwilioBase.cs" />

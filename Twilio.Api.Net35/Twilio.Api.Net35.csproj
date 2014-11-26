@@ -130,10 +130,14 @@
     <Compile Include="Sip.cs" />
     <Compile Include="Sms.Async.cs" />
     <Compile Include="Sms.cs" />
+    <Compile Include="Tokens.cs" />
     <Compile Include="Transcriptions.Async.cs" />
     <Compile Include="Transcriptions.cs" />
     <Compile Include="Usage.Async.cs" />
     <Compile Include="Usage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Tokens.Async.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -81,6 +81,7 @@
     <Compile Include="Core.Await.cs" />
     <Compile Include="FeedbackSummary.Await.cs" />
     <None Include="packages.config" />
+    <Compile Include="Tokens.Await.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accounts.Await.cs" />

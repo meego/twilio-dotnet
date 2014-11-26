@@ -19,22 +19,7 @@ namespace Twilio.Api.Tests
         {
             mockClient = new Mock<TwilioRestClient>(Credentials.AccountSid, Credentials.AuthToken);
             mockClient.CallBase = true;
-        }
-
-        [Test]
-        public async Task Foo()
-        {
-            var twilio = new TwilioRestClient("AC2c10ed3c7af121aaa99895262b48833c", "c16de81db230e53f2dc1d9cac889d028");
-
-            var options = new PhoneNumberOptions
-            {
-                VoiceUrl = "",
-                PhoneNumber = "+15005550006"
-            };
-            var number = await twilio.AddIncomingPhoneNumber(options);
-
-            Console.WriteLine(number.Sid); // Sid is not available
-        }
+        }     
 
         [Test]
         public async Task ShouldGetCurrentAccount()

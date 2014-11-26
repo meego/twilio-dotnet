@@ -99,6 +99,7 @@
     <Compile Include="QueueTests.cs" />
     <Compile Include="RecordingTests.cs" />
     <Compile Include="SmsTests.cs" />
+    <Compile Include="TokenTest.cs" />
     <Compile Include="TranscriptionTests.cs" />
     <Compile Include="UsageTests.cs" />
     <Compile Include="UsageTriggersTests.cs" />
