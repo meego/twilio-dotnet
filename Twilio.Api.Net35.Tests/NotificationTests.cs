@@ -34,6 +34,7 @@ namespace Twilio.Api.Tests
             client.GetNotification(NOTIFICATION_SID);
 
             mockClient.Verify(trc => trc.Execute<Notification>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Notifications/{NotificationSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -59,6 +60,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<Notification>(It.IsAny<RestRequest>(), It.IsAny<Action<Notification>>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Notifications/{NotificationSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -80,6 +82,7 @@ namespace Twilio.Api.Tests
             client.ListNotifications();
 
             mockClient.Verify(trc => trc.Execute<NotificationResult>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Notifications.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -102,6 +105,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<NotificationResult>(It.IsAny<RestRequest>(), It.IsAny<Action<NotificationResult>>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Notifications.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -120,6 +124,7 @@ namespace Twilio.Api.Tests
             client.ListNotifications(0, null, null, null);
 
             mockClient.Verify(trc => trc.Execute<NotificationResult>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Notifications.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -141,6 +146,7 @@ namespace Twilio.Api.Tests
             client.DeleteNotification(NOTIFICATION_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Notifications/{NotificationSid}.json", savedRequest.Resource);
             Assert.AreEqual("DELETE", savedRequest.Method);
@@ -166,6 +172,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync(It.IsAny<RestRequest>(), It.IsAny<Action<RestResponse>>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Notifications/{NotificationSid}.json", savedRequest.Resource);
             Assert.AreEqual("DELETE", savedRequest.Method);

@@ -34,6 +34,7 @@ namespace Twilio.Api.Tests
             client.GetAuthorizedConnectApp(AUTHORIZED_CONNECT_APP_SID);
 
             mockClient.Verify(trc => trc.Execute<AuthorizedConnectApp>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AuthorizedConnectApps/{AuthorizedConnectAppSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -59,6 +60,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<AuthorizedConnectApp>(It.IsAny<RestRequest>(), It.IsAny<Action<AuthorizedConnectApp>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AuthorizedConnectApps/{AuthorizedConnectAppSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -80,6 +82,7 @@ namespace Twilio.Api.Tests
             client.ListAuthorizedConnectApps();
 
             mockClient.Verify(trc => trc.Execute<AuthorizedConnectAppResult>(It.IsAny<RestRequest>()), Times.Once);
+           
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AuthorizedConnectApps.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -102,6 +105,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<AuthorizedConnectAppResult>(It.IsAny<RestRequest>(), It.IsAny<Action<AuthorizedConnectAppResult>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AuthorizedConnectApps.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -120,6 +124,7 @@ namespace Twilio.Api.Tests
             client.ListAuthorizedConnectApps(null, null);
 
             mockClient.Verify(trc => trc.Execute<AuthorizedConnectAppResult>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AuthorizedConnectApps.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);

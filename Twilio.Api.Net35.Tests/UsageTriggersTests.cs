@@ -35,6 +35,7 @@ namespace Twilio.Api.Tests
             client.GetUsageTrigger(USAGE_TRIGGER_SID);
 
             mockClient.Verify(trc => trc.Execute<UsageTrigger>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Usage/Triggers/{UsageTriggerSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -56,6 +57,7 @@ namespace Twilio.Api.Tests
             client.ListUsageTriggers();
 
             mockClient.Verify(trc => trc.Execute<UsageTriggerResult>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Usage/Triggers.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -78,6 +80,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<UsageTriggerResult>(It.IsAny<RestRequest>(), It.IsAny<Action<UsageTriggerResult>>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Usage/Triggers.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -102,6 +105,7 @@ namespace Twilio.Api.Tests
             client.CreateUsageTrigger(options);
 
             mockClient.Verify(trc => trc.Execute<UsageTrigger>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Usage/Triggers.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -130,6 +134,7 @@ namespace Twilio.Api.Tests
             client.UpdateUsageTrigger(USAGE_TRIGGER_SID, friendlyName, null, null);
 
             mockClient.Verify(trc => trc.Execute<UsageTrigger>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Usage/Triggers/{UsageTriggerSid}.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -154,6 +159,7 @@ namespace Twilio.Api.Tests
             client.DeleteUsageTrigger(USAGE_TRIGGER_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Usage/Triggers/{UsageTriggerSid}.json", savedRequest.Resource);
             Assert.AreEqual("DELETE", savedRequest.Method);

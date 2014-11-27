@@ -35,6 +35,7 @@ namespace Twilio.Api.Tests
             client.GetConference(CONFERENCE_SID);
 
             mockClient.Verify(trc => trc.Execute<Conference>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences/{ConferenceSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -61,6 +62,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<Conference>(It.IsAny<RestRequest>(), It.IsAny<Action<Conference>>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences/{ConferenceSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -82,6 +84,7 @@ namespace Twilio.Api.Tests
             client.ListConferences();
 
             mockClient.Verify(trc => trc.Execute<ConferenceResult>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -104,6 +107,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<ConferenceResult>(It.IsAny<RestRequest>(), It.IsAny<Action<ConferenceResult>>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -123,6 +127,7 @@ namespace Twilio.Api.Tests
             client.ListConferences(options);
 
             mockClient.Verify(trc => trc.Execute<ConferenceResult>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -146,6 +151,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<ConferenceResult>(It.IsAny<RestRequest>(), It.IsAny<Action<ConferenceResult>>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);

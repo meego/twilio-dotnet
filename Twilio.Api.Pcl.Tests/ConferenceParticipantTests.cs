@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Moq;
 using Simple;
+using System.Threading.Tasks;
 
 namespace Twilio.Api.Tests
 {
@@ -23,15 +24,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldListConferenceParticipants()
+        public async Task ShouldListConferenceParticipants()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<ParticipantResult>();
+            tcs.SetResult(new ParticipantResult());
+
             mockClient.Setup(trc => trc.Execute<ParticipantResult>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new ParticipantResult());
+                .Returns(tcs.Task);
+            
             var client = mockClient.Object;
-
-            client.ListConferenceParticipants(CONFERENCE_SID, null);
+            await client.ListConferenceParticipants(CONFERENCE_SID, null);
 
             mockClient.Verify(trc => trc.Execute<ParticipantResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -44,15 +49,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldGetConferenceParticipant()
+        public async Task ShouldGetConferenceParticipant()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<Participant>();
+            tcs.SetResult(new Participant());
+
             mockClient.Setup(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Participant());
+                .Returns(tcs.Task);
+            
             var client = mockClient.Object;
-
-            client.GetConferenceParticipant(CONFERENCE_SID, CALL_SID);
+            await client.GetConferenceParticipant(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -68,15 +77,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldMuteConferenceParticipant()
+        public async Task ShouldMuteConferenceParticipant()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<Participant>();
+            tcs.SetResult(new Participant());
+
             mockClient.Setup(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Participant());
+                .Returns(tcs.Task);
+            
             var client = mockClient.Object;
-
-            client.MuteConferenceParticipant(CONFERENCE_SID, CALL_SID);
+            await client.MuteConferenceParticipant(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -95,15 +108,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldUnMuteConferenceParticipant()
+        public async Task ShouldUnMuteConferenceParticipant()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<Participant>();
+            tcs.SetResult(new Participant());
+
             mockClient.Setup(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Participant());
+                .Returns(tcs.Task);
+            
             var client = mockClient.Object;
-
-            client.UnmuteConferenceParticipant(CONFERENCE_SID, CALL_SID);
+            await client.UnmuteConferenceParticipant(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -122,15 +139,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldKickConferenceParticipant()
+        public async Task ShouldKickConferenceParticipant()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<RestResponse>();
+            tcs.SetResult(new RestResponse());
+
             mockClient.Setup(trc => trc.Execute(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new RestResponse());
+                .Returns(tcs.Task);
+            
             var client = mockClient.Object;
-
-            client.KickConferenceParticipant(CONFERENCE_SID, CALL_SID);
+            await client.KickConferenceParticipant(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);

@@ -34,6 +34,7 @@ namespace Twilio.Api.Tests
             client.ListConferenceParticipants(CONFERENCE_SID, null);
 
             mockClient.Verify(trc => trc.Execute<ParticipantResult>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -55,6 +56,7 @@ namespace Twilio.Api.Tests
             client.GetConferenceParticipant(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -79,6 +81,7 @@ namespace Twilio.Api.Tests
             client.MuteConferenceParticipant(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -106,6 +109,7 @@ namespace Twilio.Api.Tests
             client.UnmuteConferenceParticipant(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -133,6 +137,7 @@ namespace Twilio.Api.Tests
             client.KickConferenceParticipant(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.json", savedRequest.Resource);
             Assert.AreEqual("DELETE", savedRequest.Method);

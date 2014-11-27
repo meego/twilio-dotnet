@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Threading;
 using Moq;
 using Simple;
+using System.Threading.Tasks;
 
 namespace Twilio.Api.Tests
 {
@@ -23,12 +24,17 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldAddNewIncomingPhoneNumber()
+        public async Task ShouldAddNewIncomingPhoneNumber()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<IncomingPhoneNumber>();
+            tcs.SetResult(new IncomingPhoneNumber());
+
             mockClient.Setup(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new IncomingPhoneNumber());
+                .Returns(tcs.Task);
+            
             var client = mockClient.Object;
             PhoneNumberOptions options = new PhoneNumberOptions();
             options.PhoneNumber = "+15005550006";
@@ -40,8 +46,7 @@ namespace Twilio.Api.Tests
             options.SmsMethod = "GET";
             options.SmsFallbackUrl = "http://example.com/sms";
             options.SmsFallbackMethod = "GET";
-
-            client.AddIncomingPhoneNumber(options);
+            await client.AddIncomingPhoneNumber(options);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -78,71 +83,17 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldAddNewIncomingPhoneNumberAsynchronously()
+        public async Task ShouldAddNewIncomingPhoneNumberByAreaCode()
         {
             RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.ExecuteAsync<IncomingPhoneNumber>(It.IsAny<RestRequest>(), It.IsAny<Action<IncomingPhoneNumber>>()))
-                .Callback<RestRequest, Action<IncomingPhoneNumber>>((request, action) => savedRequest = request);
-            var client = mockClient.Object;
-            manualResetEvent = new ManualResetEvent(false);
-            PhoneNumberOptions options = new PhoneNumberOptions();
-            options.PhoneNumber = "+15005550006";
-            options.VoiceUrl = "http://example.com/phone";
-            options.VoiceMethod = "GET";
-            options.VoiceFallbackUrl = "http://example.com/phone";
-            options.VoiceFallbackMethod = "GET";
-            options.SmsUrl = "http://example.com/sms";
-            options.SmsMethod = "GET";
-            options.SmsFallbackUrl = "http://example.com/sms";
-            options.SmsFallbackMethod = "GET";
 
-            client.AddIncomingPhoneNumber(options, number =>
-            {
-                manualResetEvent.Set();
-            });
-            manualResetEvent.WaitOne(1);
+            var tcs = new TaskCompletionSource<IncomingPhoneNumber>();
+            tcs.SetResult(new IncomingPhoneNumber());
 
-            mockClient.Verify(trc => trc.ExecuteAsync<IncomingPhoneNumber>(It.IsAny<RestRequest>(), It.IsAny<Action<IncomingPhoneNumber>>()), Times.Once);
-            Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/IncomingPhoneNumbers.json", savedRequest.Resource);
-            Assert.AreEqual("POST", savedRequest.Method);
-            Assert.AreEqual(9, savedRequest.Parameters.Count);
-            var phoneNumberParam = savedRequest.Parameters.Find(x => x.Name == "PhoneNumber");
-            Assert.IsNotNull(phoneNumberParam);
-            Assert.AreEqual(options.PhoneNumber, phoneNumberParam.Value);
-            var voiceUrlParam = savedRequest.Parameters.Find(x => x.Name == "VoiceUrl");
-            Assert.IsNotNull(voiceUrlParam);
-            Assert.AreEqual(options.VoiceUrl, voiceUrlParam.Value);
-            var voiceMethodParam = savedRequest.Parameters.Find(x => x.Name == "VoiceMethod");
-            Assert.IsNotNull(voiceMethodParam);
-            Assert.AreEqual(options.VoiceMethod, voiceMethodParam.Value);
-            var voiceFallbackUrlParam = savedRequest.Parameters.Find(x => x.Name == "VoiceFallbackUrl");
-            Assert.IsNotNull(voiceFallbackUrlParam);
-            Assert.AreEqual(options.VoiceFallbackUrl, voiceFallbackUrlParam.Value);
-            var voiceFallbackMethodParam = savedRequest.Parameters.Find(x => x.Name == "VoiceFallbackMethod");
-            Assert.IsNotNull(voiceFallbackMethodParam);
-            Assert.AreEqual(options.VoiceFallbackMethod, voiceFallbackMethodParam.Value);
-            var smsUrlParam = savedRequest.Parameters.Find(x => x.Name == "SmsUrl");
-            Assert.IsNotNull(smsUrlParam);
-            Assert.AreEqual(options.SmsUrl, smsUrlParam.Value);
-            var smsMethodParam = savedRequest.Parameters.Find(x => x.Name == "SmsMethod");
-            Assert.IsNotNull(smsMethodParam);
-            Assert.AreEqual(options.SmsMethod, smsMethodParam.Value);
-            var smsFallbackUrlParam = savedRequest.Parameters.Find(x => x.Name == "SmsFallbackUrl");
-            Assert.IsNotNull(smsFallbackUrlParam);
-            Assert.AreEqual(options.SmsFallbackUrl, smsFallbackUrlParam.Value);
-            var smsFallbackMethodParam = savedRequest.Parameters.Find(x => x.Name == "SmsFallbackMethod");
-            Assert.IsNotNull(smsFallbackMethodParam);
-            Assert.AreEqual(options.SmsFallbackMethod, smsFallbackMethodParam.Value);
-        }
-
-        [Test]
-        public void ShouldAddNewIncomingPhoneNumberByAreaCode()
-        {
-            RestRequest savedRequest = null;
             mockClient.Setup(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new IncomingPhoneNumber());
+                .Returns(tcs.Task);
+
             var client = mockClient.Object;
             PhoneNumberOptions options = new PhoneNumberOptions();
             options.AreaCode = "500";
@@ -154,8 +105,7 @@ namespace Twilio.Api.Tests
             options.SmsMethod = "GET";
             options.SmsFallbackUrl = "http://example.com/sms";
             options.SmsFallbackMethod = "GET";
-
-            client.AddIncomingPhoneNumber(options);
+            await client.AddIncomingPhoneNumber(options);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -192,15 +142,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldListIncomingPhoneNumbers()
+        public async Task ShouldListIncomingPhoneNumbers()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<IncomingPhoneNumberResult>();
+            tcs.SetResult(new IncomingPhoneNumberResult());
+
             mockClient.Setup(trc => trc.Execute<IncomingPhoneNumberResult>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new IncomingPhoneNumberResult());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.ListIncomingPhoneNumbers();
+            var client = mockClient.Object;
+            await client.ListIncomingPhoneNumbers();
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -210,37 +164,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldListIncomingPhoneNumbersAsynchronously()
+        public async Task ShouldListIncomingPhoneNumbersUsingFilters()
         {
             RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.ExecuteAsync<IncomingPhoneNumberResult>(It.IsAny<RestRequest>(), It.IsAny<Action<IncomingPhoneNumberResult>>()))
-                .Callback<RestRequest, Action<IncomingPhoneNumberResult>>((request, action) => savedRequest = request);
-            var client = mockClient.Object;
-            manualResetEvent = new ManualResetEvent(false);
 
-            client.ListIncomingPhoneNumbers(numbers =>
-            {
-                manualResetEvent.Set();
-            });
-            manualResetEvent.WaitOne(1);
+            var tcs = new TaskCompletionSource<IncomingPhoneNumberResult>();
+            tcs.SetResult(new IncomingPhoneNumberResult());
 
-            mockClient.Verify(trc => trc.ExecuteAsync<IncomingPhoneNumberResult>(It.IsAny<RestRequest>(), It.IsAny<Action<IncomingPhoneNumberResult>>()), Times.Once);
-            Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/IncomingPhoneNumbers.json", savedRequest.Resource);
-            Assert.AreEqual("GET", savedRequest.Method);
-            Assert.AreEqual(0, savedRequest.Parameters.Count);
-        }
-
-        [Test]
-        public void ShouldListIncomingPhoneNumbersUsingFilters()
-        {
-            RestRequest savedRequest = null;
             mockClient.Setup(trc => trc.Execute<IncomingPhoneNumberResult>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new IncomingPhoneNumberResult());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.ListIncomingPhoneNumbers("+15005550006", null, null, null);
+            var client = mockClient.Object;
+            await client.ListIncomingPhoneNumbers("+15005550006", null, null, null);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -253,15 +189,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldGetIncomingPhoneNumber()
+        public async Task ShouldGetIncomingPhoneNumber()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<IncomingPhoneNumber>();
+            tcs.SetResult(new IncomingPhoneNumber());
+
             mockClient.Setup(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new IncomingPhoneNumber());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.GetIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID);
+            var client = mockClient.Object;
+            await client.GetIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -274,41 +214,20 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldGetIncomingPhoneNumberAsynchronously()
+        public async Task ShouldUpdateIncomingPhoneNumber()
         {
             RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.ExecuteAsync<IncomingPhoneNumber>(It.IsAny<RestRequest>(), It.IsAny<Action<IncomingPhoneNumber>>()))
-                .Callback<RestRequest, Action<IncomingPhoneNumber>>((request, action) => savedRequest = request);
-            var client = mockClient.Object;
-            manualResetEvent = new ManualResetEvent(false);
 
-            client.GetIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID, number =>
-            {
-                manualResetEvent.Set();
-            });
-            manualResetEvent.WaitOne(1);
+            var tcs = new TaskCompletionSource<IncomingPhoneNumber>();
+            tcs.SetResult(new IncomingPhoneNumber());
 
-            mockClient.Verify(trc => trc.ExecuteAsync<IncomingPhoneNumber>(It.IsAny<RestRequest>(), It.IsAny<Action<IncomingPhoneNumber>>()), Times.Once);
-            Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.json", savedRequest.Resource);
-            Assert.AreEqual("GET", savedRequest.Method);
-            Assert.AreEqual(1, savedRequest.Parameters.Count);
-            var incomingPhoneNumberSidParam = savedRequest.Parameters.Find(x => x.Name == "IncomingPhoneNumberSid");
-            Assert.IsNotNull(incomingPhoneNumberSidParam);
-            Assert.AreEqual(INCOMING_PHONE_NUMBER_SID, incomingPhoneNumberSidParam.Value);
-        }
-
-        [Test]
-        public void ShouldUpdateIncomingPhoneNumber()
-        {
-            RestRequest savedRequest = null;
             mockClient.Setup(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new IncomingPhoneNumber());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
+            var client = mockClient.Object;
             PhoneNumberOptions options = new PhoneNumberOptions();
-            client.UpdateIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID, options);
+            await client.UpdateIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID, options);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -321,41 +240,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldUpdateIncomingPhoneNumberAsynchronously()
+        public async Task ShouldDeleteIncomingPhoneNumber()
         {
             RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.ExecuteAsync<IncomingPhoneNumber>(It.IsAny<RestRequest>(), It.IsAny<Action<IncomingPhoneNumber>>()))
-                .Callback<RestRequest, Action<IncomingPhoneNumber>>((request, action) => savedRequest = request);
-            var client = mockClient.Object;
-            manualResetEvent = new ManualResetEvent(false);
 
-            PhoneNumberOptions options = new PhoneNumberOptions();
-            client.UpdateIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID, options, number =>
-            {
-                manualResetEvent.Set();
-            });
-            manualResetEvent.WaitOne(1);
+            var tcs = new TaskCompletionSource<RestResponse>();
+            tcs.SetResult(new RestResponse());
 
-            mockClient.Verify(trc => trc.ExecuteAsync<IncomingPhoneNumber>(It.IsAny<RestRequest>(), It.IsAny<Action<IncomingPhoneNumber>>()), Times.Once);
-            Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.json", savedRequest.Resource);
-            Assert.AreEqual("POST", savedRequest.Method);
-            Assert.AreEqual(1, savedRequest.Parameters.Count);
-            var incomingPhoneNumberParam = savedRequest.Parameters.Find(x => x.Name == "IncomingPhoneNumberSid");
-            Assert.IsNotNull(incomingPhoneNumberParam);
-            Assert.AreEqual(INCOMING_PHONE_NUMBER_SID, incomingPhoneNumberParam.Value);
-        }
-
-        [Test]
-        public void ShouldDeleteIncomingPhoneNumber()
-        {
-            RestRequest savedRequest = null;
             mockClient.Setup(trc => trc.Execute(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new RestResponse());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.DeleteIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID);
+            var client = mockClient.Object;
+            await client.DeleteIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -366,31 +263,5 @@ namespace Twilio.Api.Tests
             Assert.IsNotNull(incomingPhoneNumberSidParam);
             Assert.AreEqual(INCOMING_PHONE_NUMBER_SID, incomingPhoneNumberSidParam.Value);
         }
-
-        [Test]
-        public void ShouldDeleteIncomingPhoneNumberAsynchronously()
-        {
-            RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.ExecuteAsync(It.IsAny<RestRequest>(), It.IsAny<Action<RestResponse>>()))
-                .Callback<RestRequest, Action<RestResponse>>((request, action) => savedRequest = request);
-            var client = mockClient.Object;
-            manualResetEvent = new ManualResetEvent(false);
-
-            client.DeleteIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID, number =>
-            {
-                manualResetEvent.Set();
-            });
-            manualResetEvent.WaitOne(1);
-
-            mockClient.Verify(trc => trc.ExecuteAsync(It.IsAny<RestRequest>(), It.IsAny<Action<RestResponse>>()), Times.Once);
-            Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.json", savedRequest.Resource);
-            Assert.AreEqual("DELETE", savedRequest.Method);
-            Assert.AreEqual(1, savedRequest.Parameters.Count);
-            var incomingPhoneNumberSidParam = savedRequest.Parameters.Find(x => x.Name == "IncomingPhoneNumberSid");
-            Assert.IsNotNull(incomingPhoneNumberSidParam);
-            Assert.AreEqual(INCOMING_PHONE_NUMBER_SID, incomingPhoneNumberSidParam.Value);
-        }
-
     }
 }

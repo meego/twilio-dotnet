@@ -35,6 +35,7 @@ namespace Twilio.Api.Tests
             client.ListAvailableLocalPhoneNumbers(ISO_COUNTRY_CODE, options);
 
             mockClient.Verify(trc => trc.Execute<AvailablePhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/Local.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -60,6 +61,7 @@ namespace Twilio.Api.Tests
             client.ListAvailableLocalPhoneNumbers(ISO_COUNTRY_CODE, options);
 
             mockClient.Verify(trc => trc.Execute<AvailablePhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/Local.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -95,6 +97,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<AvailablePhoneNumberResult>(It.IsAny<RestRequest>(), It.IsAny<Action<AvailablePhoneNumberResult>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/Local.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -116,6 +119,7 @@ namespace Twilio.Api.Tests
             client.ListAvailableTollFreePhoneNumbers(ISO_COUNTRY_CODE);
 
             mockClient.Verify(trc => trc.Execute<AvailablePhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -141,6 +145,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<AvailablePhoneNumberResult>(It.IsAny<RestRequest>(), It.IsAny<Action<AvailablePhoneNumberResult>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -162,6 +167,7 @@ namespace Twilio.Api.Tests
             client.ListAvailableTollFreePhoneNumbers(ISO_COUNTRY_CODE, "EA");
 
             mockClient.Verify(trc => trc.Execute<AvailablePhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -190,6 +196,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<AvailablePhoneNumberResult>(It.IsAny<RestRequest>(), It.IsAny<Action<AvailablePhoneNumberResult>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);

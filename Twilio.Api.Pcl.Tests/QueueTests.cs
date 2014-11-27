@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Threading;
 using Moq;
 using Simple;
+using System.Threading.Tasks;
 
 namespace Twilio.Api.Tests
 {
@@ -23,15 +24,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldGetQueue()
+        public async Task ShouldGetQueue()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<Queue>();
+            tcs.SetResult(new Queue());
+
             mockClient.Setup(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Queue());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.GetQueue(QUEUE_SID);
+            var client = mockClient.Object;
+            await client.GetQueue(QUEUE_SID);
 
             mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -44,15 +49,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldListQueues()
+        public async Task ShouldListQueues()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<QueueResult>();
+            tcs.SetResult(new QueueResult());
+            
             mockClient.Setup(trc => trc.Execute<QueueResult>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new QueueResult());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.ListQueues();
+            var client = mockClient.Object;
+            await client.ListQueues();
 
             mockClient.Verify(trc => trc.Execute<QueueResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -60,40 +69,22 @@ namespace Twilio.Api.Tests
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(0, savedRequest.Parameters.Count);
         }
-
+     
         [Test]
-        public void ShouldListQueuesAsynchronously()
+        public async Task ShouldCreateNewQueue()
         {
             RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.ExecuteAsync<QueueResult>(It.IsAny<RestRequest>(), It.IsAny<Action<QueueResult>>()))
-                .Callback<RestRequest, Action<QueueResult>>((request, action) => savedRequest = request);
-            var client = mockClient.Object;
-            manualResetEvent = new ManualResetEvent(false);
 
-            client.ListQueues(queues =>
-            {
-                manualResetEvent.Set();
-            });
-            manualResetEvent.WaitOne(1);
-
-            mockClient.Verify(trc => trc.ExecuteAsync<QueueResult>(It.IsAny<RestRequest>(), It.IsAny<Action<QueueResult>>()), Times.Once);
-            Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Queues.json", savedRequest.Resource);
-            Assert.AreEqual("GET", savedRequest.Method);
-            Assert.AreEqual(0, savedRequest.Parameters.Count);
-        }
-
-        [Test]
-        public void ShouldCreateNewQueue()
-        {
-            RestRequest savedRequest = null;
+            var tcs = new TaskCompletionSource<Queue>();
+            tcs.SetResult(new Queue());
+            
             mockClient.Setup(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Queue());
+                .Returns(tcs.Task);
+
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
-
-            client.CreateQueue(friendlyName);
+            await client.CreateQueue(friendlyName);
 
             mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -106,16 +97,20 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldUpdateQueue()
+        public async Task ShouldUpdateQueue()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<Queue>();
+            tcs.SetResult(new Queue());
+            
             mockClient.Setup(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Queue());
+                .Returns(tcs.Task);
+
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
-
-            client.UpdateQueue(QUEUE_SID, friendlyName, 10);
+            await client.UpdateQueue(QUEUE_SID, friendlyName, 10);
 
             mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -134,15 +129,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldDeleteQueue()
+        public async Task ShouldDeleteQueue()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<RestResponse>();
+            tcs.SetResult(new RestResponse());
+            
             mockClient.Setup(trc => trc.Execute(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new RestResponse());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.DeleteQueue(QUEUE_SID);
+            var client = mockClient.Object;
+            await client.DeleteQueue(QUEUE_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);

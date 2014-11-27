@@ -37,6 +37,7 @@ namespace Twilio.Api.Tests
             client.AddApplication(friendlyName, options);
 
             mockClient.Verify(trc => trc.Execute<Application>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -64,6 +65,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<Application>(It.IsAny<RestRequest>(), It.IsAny<Action<Application>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -85,6 +87,7 @@ namespace Twilio.Api.Tests
             client.GetApplication(APPLICATION_SID);
 
             mockClient.Verify(trc => trc.Execute<Application>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications/{ApplicationSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -110,6 +113,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<Application>(It.IsAny<RestRequest>(), It.IsAny<Action<Application>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications/{ApplicationSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -131,6 +135,7 @@ namespace Twilio.Api.Tests
             client.ListApplications();
 
             mockClient.Verify(trc => trc.Execute<ApplicationResult>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -153,6 +158,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<ApplicationResult>(It.IsAny<RestRequest>(), It.IsAny<Action<ApplicationResult>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -172,6 +178,7 @@ namespace Twilio.Api.Tests
             client.ListApplications(friendlyName, null, null);
 
             mockClient.Verify(trc => trc.Execute<ApplicationResult>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -194,6 +201,7 @@ namespace Twilio.Api.Tests
             client.UpdateApplication(APPLICATION_SID, "", options);
 
             mockClient.Verify(trc => trc.Execute<Application>(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications/{ApplicationSid}.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -220,6 +228,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<Application>(It.IsAny<RestRequest>(), It.IsAny<Action<Application>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications/{ApplicationSid}.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -241,6 +250,7 @@ namespace Twilio.Api.Tests
             client.DeleteApplication(APPLICATION_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications/{ApplicationSid}.json", savedRequest.Resource);
             Assert.AreEqual("DELETE", savedRequest.Method);
@@ -266,6 +276,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync(It.IsAny<RestRequest>(), It.IsAny<Action<RestResponse>>()), Times.Once);
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Applications/{ApplicationSid}.json", savedRequest.Resource);
             Assert.AreEqual("DELETE", savedRequest.Method);

@@ -228,8 +228,8 @@ namespace Twilio
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Usage/Triggers/{UsageTriggerSid}.json";
 
-            //request.Method = Method.DELETE;
-            request.Method = "POST";
+            request.Method = "DELETE"; // Method.DELETE;
+            //request.Method = "POST";
 
             request.AddUrlSegment("UsageTriggerSid", usageTriggerSid);
 

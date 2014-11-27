@@ -34,6 +34,7 @@ namespace Twilio.Api.Tests
             client.GetQueue(QUEUE_SID);
 
             mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Queues/{QueueSid}.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -55,6 +56,7 @@ namespace Twilio.Api.Tests
             client.ListQueues();
 
             mockClient.Verify(trc => trc.Execute<QueueResult>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Queues.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -77,6 +79,7 @@ namespace Twilio.Api.Tests
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<QueueResult>(It.IsAny<RestRequest>(), It.IsAny<Action<QueueResult>>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Queues.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -96,6 +99,7 @@ namespace Twilio.Api.Tests
             client.CreateQueue(friendlyName);
 
             mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Queues.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -118,6 +122,7 @@ namespace Twilio.Api.Tests
             client.UpdateQueue(QUEUE_SID, friendlyName, 10);
 
             mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Queues/{QueueSid}.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -145,6 +150,7 @@ namespace Twilio.Api.Tests
             client.DeleteQueue(QUEUE_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Queues/{QueueSid}.json", savedRequest.Resource);
             Assert.AreEqual("DELETE", savedRequest.Method);

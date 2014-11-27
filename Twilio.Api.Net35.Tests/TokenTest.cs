@@ -32,9 +32,10 @@ namespace Twilio.Api.Tests.Integration
             client.CreateToken();
 
             mockClient.Verify(trc => trc.Execute<Token>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Tokens.json", savedRequest.Resource);
-            Assert.AreEqual(Method.POST, savedRequest.Method);
+            Assert.AreEqual("POST", savedRequest.Method);
             Assert.AreEqual(0, savedRequest.Parameters.Count);
         }
 
@@ -51,9 +52,10 @@ namespace Twilio.Api.Tests.Integration
             client.CreateToken(ttl);
 
             mockClient.Verify(trc => trc.Execute<Token>(It.IsAny<RestRequest>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Tokens.json", savedRequest.Resource);
-            Assert.AreEqual(Method.POST, savedRequest.Method);
+            Assert.AreEqual("POST", savedRequest.Method);
             Assert.AreEqual(1, savedRequest.Parameters.Count);
 
             var ttlParam = savedRequest.Parameters.Find(x => x.Name == "Ttl");
@@ -75,9 +77,10 @@ namespace Twilio.Api.Tests.Integration
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<Token>(It.IsAny<RestRequest>(), It.IsAny<Action<Token>>()), Times.Once);
+
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Tokens.json", savedRequest.Resource);
-            Assert.AreEqual(Method.POST, savedRequest.Method);
+            Assert.AreEqual("POST", savedRequest.Method);
             Assert.AreEqual(0, savedRequest.Parameters.Count);
         }
     }

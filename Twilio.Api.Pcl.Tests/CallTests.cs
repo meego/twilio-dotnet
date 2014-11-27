@@ -4,6 +4,7 @@ using System.Threading;
 using System.Linq;
 using Moq;
 using Simple;
+using System.Threading.Tasks;
 
 namespace Twilio.Api.Tests
 {
@@ -30,15 +31,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldInitiateOutboundCall()
+        public async Task ShouldInitiateOutboundCall()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<Call>();
+            tcs.SetResult(new Call());
+
             mockClient.Setup(trc => trc.Execute<Call>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Call());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.InitiateOutboundCall(FROM, TO, URL);
+            var client = mockClient.Object;
+            await client.InitiateOutboundCall(FROM, TO, URL);
 
             mockClient.Verify(trc => trc.Execute<Call>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -57,46 +62,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldInitiateOutboundCallAsynchronously()
+        public async Task ShouldGetCall()
         {
             RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.ExecuteAsync<Call>(It.IsAny<RestRequest>(), It.IsAny<Action<Call>>()))
-                .Callback<RestRequest, Action<Call>>((request, action) => savedRequest = request);
-            var client = mockClient.Object;
-            manualResetEvent = new ManualResetEvent(false);
 
-            client.InitiateOutboundCall(FROM, TO, URL, call =>
-            {
-                manualResetEvent.Set();
-            });
-            manualResetEvent.WaitOne(1);
-
-            mockClient.Verify(trc => trc.ExecuteAsync<Call>(It.IsAny<RestRequest>(), It.IsAny<Action<Call>>()), Times.Once);
-            Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Calls.json", savedRequest.Resource);
-            Assert.AreEqual("POST", savedRequest.Method);
-            Assert.AreEqual(3, savedRequest.Parameters.Count);
-            var fromParam = savedRequest.Parameters.Find(x => x.Name == "From");
-            Assert.IsNotNull(fromParam);
-            Assert.AreEqual(FROM, fromParam.Value);
-            var toParam = savedRequest.Parameters.Find(x => x.Name == "To");
-            Assert.IsNotNull(toParam);
-            Assert.AreEqual(TO, toParam.Value);
-            var urlParam = savedRequest.Parameters.Find(x => x.Name == "Url");
-            Assert.IsNotNull(urlParam);
-            Assert.AreEqual(URL, urlParam.Value);
-        }
-
-        [Test]
-        public void ShouldGetCall()
-        {
-            RestRequest savedRequest = null;
+            var tcs = new TaskCompletionSource<Call>();
+            tcs.SetResult(new Call());
+            
             mockClient.Setup(trc => trc.Execute<Call>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Call());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.GetCall(CALL_SID);
+            var client = mockClient.Object;
+            await client.GetCall(CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Call>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -109,15 +87,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldListCalls()
+        public async Task ShouldListCalls()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<CallResult>();
+            tcs.SetResult(new CallResult());
+            
             mockClient.Setup(trc => trc.Execute<CallResult>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new CallResult());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.ListCalls();
+            var client = mockClient.Object;
+            await client.ListCalls();
 
             mockClient.Verify(trc => trc.Execute<CallResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -127,40 +109,22 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldListCallsAsynchronously()
+        public async Task ShouldListCallsWithFilters()
         {
             RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.ExecuteAsync<CallResult>(It.IsAny<RestRequest>(), It.IsAny<Action<CallResult>>()))
-                .Callback<RestRequest, Action<CallResult>>((request, action) => savedRequest = request);
-            var client = mockClient.Object;
-            manualResetEvent = new ManualResetEvent(false);
 
-            client.ListCalls(calls =>
-            {
-                manualResetEvent.Set();
-            });
-            manualResetEvent.WaitOne(1);
+            var tcs = new TaskCompletionSource<CallResult>();
+            tcs.SetResult(new CallResult());
 
-            mockClient.Verify(trc => trc.ExecuteAsync<CallResult>(It.IsAny<RestRequest>(), It.IsAny<Action<CallResult>>()), Times.Once);
-            Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Calls.json", savedRequest.Resource);
-            Assert.AreEqual("GET", savedRequest.Method);
-            Assert.AreEqual(0, savedRequest.Parameters.Count);
-        }
-
-        [Test]
-        public void ShouldListCallsWithFilters()
-        {
-            RestRequest savedRequest = null;
             mockClient.Setup(trc => trc.Execute<CallResult>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new CallResult());
+                .Returns(tcs.Task);
+
             var client = mockClient.Object;
             CallListRequest options = new CallListRequest();
             options.From = FROM;
             options.StartTime = new DateTime();
-
-            client.ListCalls(options);
+            await client.ListCalls(options);
 
             mockClient.Verify(trc => trc.Execute<CallResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -176,17 +140,21 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldRedirectCall()
+        public async Task ShouldRedirectCall()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<Call>();
+            tcs.SetResult(new Call());
+
             mockClient.Setup(trc => trc.Execute<Call>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Call());
+                .Returns(tcs.Task);
+
             var client = mockClient.Object;
             var redirectedFriendlyName = Utilities.MakeRandomFriendlyName();
             var redirectUrl = "http://devin.webscript.io/twilioconf?conf=" + redirectedFriendlyName;
-
-            client.RedirectCall(CALL_SID, redirectUrl, "GET");
+            await client.RedirectCall(CALL_SID, redirectUrl, "GET");
 
             mockClient.Verify(trc => trc.Execute<Call>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -205,15 +173,19 @@ namespace Twilio.Api.Tests
         }
 
         [Test]
-        public void ShouldHangupCall()
+        public async Task ShouldHangupCall()
         {
             RestRequest savedRequest = null;
+
+            var tcs = new TaskCompletionSource<Call>();
+            tcs.SetResult(new Call());
+
             mockClient.Setup(trc => trc.Execute<Call>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Call());
-            var client = mockClient.Object;
+                .Returns(tcs.Task);
 
-            client.HangupCall(CALL_SID, HangupStyle.Completed);
+            var client = mockClient.Object;
+            await client.HangupCall(CALL_SID, HangupStyle.Completed);
 
             mockClient.Verify(trc => trc.Execute<Call>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
