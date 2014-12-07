@@ -71,6 +71,7 @@
     <Compile Include="..\Twilio.Api.Shared\Options.cs">
       <Link>%25%28FileName%29</Link>
     </Compile>
+    <Compile Include="Addresses.Await.cs" />
     <Compile Include="Feedback.Await.cs" />
     <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Sip.Await.cs" />

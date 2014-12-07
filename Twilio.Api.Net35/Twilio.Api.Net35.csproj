@@ -90,6 +90,8 @@
     </Compile>
     <Compile Include="Accounts.Async.cs" />
     <Compile Include="Accounts.cs" />
+    <Compile Include="Addresses.Async.cs" />
+    <Compile Include="Addresses.cs" />
     <Compile Include="Applications.Async.cs" />
     <Compile Include="Applications.cs" />
     <Compile Include="AuthorizedConnectApps.Async.cs" />
