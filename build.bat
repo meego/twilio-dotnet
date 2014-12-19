@@ -43,10 +43,14 @@ if not "%errorlevel%"=="0" goto failure
 if not "%errorlevel%"=="0" goto failure
 
 %NUnitPath% SimpleRestClient.Net35.Tests\bin\Release\SimpleRestClient.Net35.Tests.dll /xmlConsole
+if not "%errorlevel%"=="0" goto failure
 %NUnitPath% Twilio.Api.Net35.Tests\bin\Release\Twilio.Api.Net35.Tests.dll /xmlConsole
+if not "%errorlevel%"=="0" goto failure
 
 %NUnitPath% SimpleRestClient.Pcl.Tests\bin\Release\SimpleRestClient.Pcl.Tests.dll /xmlConsole
+if not "%errorlevel%"=="0" goto failure
 %NUnitPath% Twilio.Api.Pcl.Tests\bin\Release\Twilio.Api.Pcl.Tests.dll /xmlConsole
+if not "%errorlevel%"=="0" goto failure
 
 REM Package Folders Setup
 rd download /s /q  REM delete the old stuff
