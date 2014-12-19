@@ -9,7 +9,7 @@ REM if not "%PackageVersion%" == "" (
 REM    set version=-Version %PackageVersion%
 REM )
 
-set NUnitPath="packages\NUnit.Runners.2.6.3\tools\nunit-console.exe"
+set NUnitPath=packages\NUnit.Runners.2.6.3\tools\nunit-console.exe
 
 REM Package restore
 cmd /c %nuget% restore Twilio.2013.sln -NoCache -NonInteractive
@@ -32,21 +32,21 @@ if not "%errorlevel%"=="0" goto failure
 if not "%errorlevel%"=="0" goto failure
 
 REM Run Unit tests
-REM "%GallioEcho%" /v:Verbose SimpleRestClient.Net35.Tests\bin\Release\SimpleRestClient.Tests.dll
-REM if not "%errorlevel%"=="0" goto failure
-REM "%GallioEcho%" /v:Verbose Twilio.Api.Net35.Tests\bin\Release\Twilio.Api.Net35.Tests.dll
-REM if not "%errorlevel%"=="0" goto failure
+"%GallioEcho%" /v:Verbose SimpleRestClient.Net35.Tests\bin\Release\SimpleRestClient.Tests.dll
+if not "%errorlevel%"=="0" goto failure
+"%GallioEcho%" /v:Verbose Twilio.Api.Net35.Tests\bin\Release\Twilio.Api.Net35.Tests.dll
+if not "%errorlevel%"=="0" goto failure
 
-REM "%GallioEcho%" /v:Verbose SimpleRestClient.Pcl.Tests\bin\PCL\SimpleRestClient.Tests.dll
-REM if not "%errorlevel%"=="0" goto failure
-REM "%GallioEcho%" /v:Verbose Twilio.Api.Pcl.Tests\bin\PCL\Twilio.Api.Pcl.Tests.dll
-REM if not "%errorlevel%"=="0" goto failure
+"%GallioEcho%" /v:Verbose SimpleRestClient.Pcl.Tests\bin\PCL\SimpleRestClient.Tests.dll
+if not "%errorlevel%"=="0" goto failure
+"%GallioEcho%" /v:Verbose Twilio.Api.Pcl.Tests\bin\PCL\Twilio.Api.Pcl.Tests.dll
+if not "%errorlevel%"=="0" goto failure
 
-"%NUnitPath%" SimpleRestClient.Net35.Tests\bin\Release\SimpleRestClient.Tests.dll /xmlConsole
-"%NUnitPath%" Twilio.Api.Net35.Tests\bin\Release\Twilio.Api.Net35.Tests.dll /xmlConsole
+%NUnitPath% SimpleRestClient.Net35.Tests\bin\Release\SimpleRestClient.Tests.dll /xmlConsole
+%NUnitPath% Twilio.Api.Net35.Tests\bin\Release\Twilio.Api.Net35.Tests.dll /xmlConsole
 
-"%NUnitPath%" SimpleRestClient.Pcl.Tests\bin\Release\SimpleRestClient.Tests.dll /xmlConsole
-"%NUnitPath%" Twilio.Api.Pcl.Tests\bin\Release\Twilio.Api.Pcl.Tests.dll /xmlConsole
+%NUnitPath% SimpleRestClient.Pcl.Tests\bin\Release\SimpleRestClient.Tests.dll /xmlConsole
+%NUnitPath% Twilio.Api.Pcl.Tests\bin\Release\Twilio.Api.Pcl.Tests.dll /xmlConsole
 
 REM Package Folders Setup
 rd download /s /q  REM delete the old stuff
