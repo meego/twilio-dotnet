@@ -4,15 +4,12 @@
         <id>Twilio</id>
         <version>4.0.1-beta</version>
         <authors>Twilio</authors>
-        <licenseUrl>https://github.com/twilio/twilio-csharp/blob/master/LICENSE.txt</licenseUrl>
-        <projectUrl>http://github.com/twilio/twilio-csharp</projectUrl>
+        <licenseUrl>https://github.com/twilio/twilio-dotnet/blob/master/LICENSE.txt</licenseUrl>
+        <projectUrl>http://github.com/twilio/twilio-dotnet</projectUrl>
         <iconUrl>http://www.twilio.com/packages/company/img/logos_downloadable_round.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Twilio REST API helper library</description>
-        <releaseNotes>* 4.0.1-alpha - Removed RestSharp dependency
-        - Removed SL and WP projects
-        - Added PCL project
-        - Public API should remain compatible with prior versions
+        <releaseNotes>
         </releaseNotes>
         <language>en-US</language>
         <tags>REST SMS voice telephony phone twilio twiml ASPNETWEBPAGES</tags>
