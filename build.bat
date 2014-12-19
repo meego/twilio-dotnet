@@ -1,4 +1,4 @@
-REM @echo Off
+@echo Off
 
 set NUnitPath=packages\NUnit.Runners.2.6.4\tools\nunit-console.exe
 
@@ -24,9 +24,9 @@ if not "%errorlevel%"=="0" goto buildfailure
 
 REM Run Unit tests
 %NUnitPath% SimpleRestClient.Net35.Tests\bin\Release\SimpleRestClient.Net35.Tests.dll /framework=net-3.5
-if "%errorlevel%" LSS "0" goto testsfailure
-if "%errorlevel%" GTR "0" goto nonpassingfailure
-ECHO Errorlevel: "%errorlevel%"
+if %errorlevel% LSS 0 goto testsfailure
+if %errorlevel% GTR 0 goto nonpassingfailure
+ECHO Errorlevel: %errorlevel%
 
 %NUnitPath% Twilio.Api.Net35.Tests\bin\Release\Twilio.Api.Net35.Tests.dll /framework=net-3.5
 if "%errorlevel%" LSS "0" goto testsfailure
