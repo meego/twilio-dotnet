@@ -37,9 +37,9 @@ if not "%errorlevel%"=="0" goto failure
 "%GallioEcho%" /v:Verbose Twilio.Api.Net35.Tests\bin\Release\Twilio.Api.Net35.Tests.dll
 if not "%errorlevel%"=="0" goto failure
 
-"%GallioEcho%" /v:Verbose SimpleRestClient.Pcl.Tests\bin\PCL\SimpleRestClient.Pcl.Tests.dll
+"%GallioEcho%" /v:Verbose SimpleRestClient.Pcl.Tests\bin\Release\SimpleRestClient.Pcl.Tests.dll
 if not "%errorlevel%"=="0" goto failure
-"%GallioEcho%" /v:Verbose Twilio.Api.Pcl.Tests\bin\PCL\Twilio.Api.Pcl.Tests.dll
+"%GallioEcho%" /v:Verbose Twilio.Api.Pcl.Tests\bin\Release\Twilio.Api.Pcl.Tests.dll
 if not "%errorlevel%"=="0" goto failure
 
 %NUnitPath% SimpleRestClient.Net35.Tests\bin\Release\SimpleRestClient.Net35.Tests.dll /xmlConsole
