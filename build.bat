@@ -83,7 +83,7 @@ REM Create Packages
 REM mkdir Build
 
 FOR /F "tokens=* delims=" %%x in (version.txt) DO SET ver=%%x
-cmd /c %nuget% pack "Twilio.nuspec" -Version %ver%.%BuildCounter%-alpha -BasePath download\package\twilio -o download
+cmd /c %nuget% pack "Twilio.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath download\package\twilio -o download
 if not "%errorlevel%"=="0" goto failure
 
 :success
