@@ -23,19 +23,25 @@ if not "%errorlevel%"=="0" goto buildfailure
 if not "%errorlevel%"=="0" goto buildfailure
 
 REM Run Unit tests
-%NUnitPath% SimpleRestClient.Net35.Tests\bin\Release\SimpleRestClient.Net35.Tests.dll /xmlConsole
+%NUnitPath% SimpleRestClient.Net35.Tests\bin\Release\SimpleRestClient.Net35.Tests.dll /framework=net-3.5
 if "%errorlevel%" LSS "0" goto testsfailure
 if "%errorlevel%" GTR "0" goto nonpassingfailure
-%NUnitPath% Twilio.Api.Net35.Tests\bin\Release\Twilio.Api.Net35.Tests.dll /xmlConsole
-if "%errorlevel%" LSS "0" goto testsfailure
-if "%errorlevel%" GTR "0" goto nonpassingfailure
+ECHO Errorlevel: "%errorlevel%"
 
-%NUnitPath% SimpleRestClient.Pcl.Tests\bin\Release\SimpleRestClient.Pcl.Tests.dll /xmlConsole
+%NUnitPath% Twilio.Api.Net35.Tests\bin\Release\Twilio.Api.Net35.Tests.dll /framework=net-3.5
 if "%errorlevel%" LSS "0" goto testsfailure
 if "%errorlevel%" GTR "0" goto nonpassingfailure
-%NUnitPath% Twilio.Api.Pcl.Tests\bin\Release\Twilio.Api.Pcl.Tests.dll /xmlConsole
+ECHO Errorlevel: "%errorlevel%"
+
+%NUnitPath% SimpleRestClient.Pcl.Tests\bin\Release\SimpleRestClient.Pcl.Tests.dll /framework=4.0.30319
 if "%errorlevel%" LSS "0" goto testsfailure
 if "%errorlevel%" GTR "0" goto nonpassingfailure
+ECHO Errorlevel: "%errorlevel%"
+
+%NUnitPath% Twilio.Api.Pcl.Tests\bin\Release\Twilio.Api.Pcl.Tests.dll /framework=4.0.30319
+if "%errorlevel%" LSS "0" goto testsfailure
+if "%errorlevel%" GTR "0" goto nonpassingfailure
+ECHO Errorlevel: "%errorlevel%"
 
 REM Package Folders Setup
 rd download /s /q  REM delete the old stuff
