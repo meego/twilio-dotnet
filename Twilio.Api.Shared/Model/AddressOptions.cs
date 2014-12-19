@@ -2,6 +2,9 @@
 
 namespace Twilio
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AddressOptions
     {
         /// <summary>

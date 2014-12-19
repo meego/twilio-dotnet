@@ -12,9 +12,6 @@ namespace Twilio.Api.Tests
     {
         private const string USAGE_TRIGGER_SID = "UT123";
 
-        //list/get/create/update/delete
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]

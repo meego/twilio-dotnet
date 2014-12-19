@@ -64,6 +64,7 @@ namespace Twilio
         /// Delete the specified media instance. Makes a DELETE request to a 
         /// Media Instance resource.
         /// </summary>
+        /// <param name="messageSid"></param>
         /// <param name="mediaSid">The Sid of the media to delete</param>
         /// <param name="callback"></param>
         public virtual void DeleteMessageMedia(string messageSid, string mediaSid, Action<DeleteStatus> callback)

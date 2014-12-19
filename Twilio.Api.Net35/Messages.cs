@@ -170,6 +170,11 @@ namespace Twilio
             return response.StatusCode == System.Net.HttpStatusCode.NoContent ? DeleteStatus.Success : DeleteStatus.Failed;
         }
 
+        /// <summary>
+        /// Removes the message body for a specific message
+        /// </summary>
+        /// <param name="messageSid"></param>
+        /// <returns></returns>
         public virtual Message RedactMessage(string messageSid)
         {
             var request = new RestRequest(Method.POST);

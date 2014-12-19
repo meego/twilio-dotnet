@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Twilio
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Feedback : TwilioBase
     {
         /// <summary>

@@ -36,6 +36,7 @@ namespace Twilio
         /// information.
         /// </summary>
         /// <param name="messageSid">The Sid of the message to get media resources for</param>
+        /// <param name="options"></param>
         [Obsolete("Use ListMessageMedia methods instead.")]
         public virtual MediaResult ListMedia(string messageSid, MediaListRequest options)
         {
@@ -69,6 +70,7 @@ namespace Twilio
         /// Delete the specified media instance. Makes a DELETE request to a 
         /// Media Instance resource.
         /// </summary>
+        /// <param name="messageSid"></param>
         /// <param name="mediaSid">The Sid of the media to delete</param>
         public virtual DeleteStatus DeleteMessageMedia(string messageSid, string mediaSid)
         {

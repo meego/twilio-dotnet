@@ -12,8 +12,6 @@ namespace Twilio.Api.Tests
     {
         private const string NOTIFICATION_SID = "";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]

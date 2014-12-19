@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Twilio
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Token : TwilioBase
     {
         /// <summary>

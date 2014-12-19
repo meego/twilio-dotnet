@@ -12,8 +12,6 @@ namespace Twilio.Api.Tests
     {
         private const string ISO_COUNTRY_CODE = "US";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]

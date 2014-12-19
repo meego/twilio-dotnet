@@ -2,6 +2,9 @@
 
 namespace Twilio
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AddressListRequest
     {
         /// <summary>
@@ -19,7 +22,14 @@ namespace Twilio
         /// </summary>
         public string IsoCountry { get; set; }
 
+        /// <summary>
+        /// The page to reterive
+        /// </summary>
         public int? Page { get; set; }
+
+        /// <summary>
+        /// The number of records per page
+        /// </summary>
         public int? PageSize { get; set; }
     }
 }

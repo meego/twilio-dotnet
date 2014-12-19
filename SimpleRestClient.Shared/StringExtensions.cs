@@ -123,16 +123,6 @@ namespace Simple
         }
 
         /// <summary>
-        /// Remove underscores from a string
-        /// </summary>
-        /// <param name="input">String to process</param>
-        /// <returns>string</returns>
-        //public static string RemoveUnderscoresAndDashes(this string input)
-        //{
-        //    return input.Replace("_", "").Replace("-", ""); // avoiding regex
-        //}
-
-        /// <summary>
         /// Parses most common JSON date formats
         /// </summary>
         /// <param name="input">JSON value to parse</param>
@@ -238,17 +228,6 @@ namespace Simple
             }
             return dt;
         }
-
-        /// <summary>
-        /// Checks a string to see if it matches a regex
-        /// </summary>
-        /// <param name="input">String to check</param>
-        /// <param name="pattern">Pattern to match</param>
-        /// <returns>bool</returns>
-        //public static bool Matches(this string input, string pattern)
-        //{
-        //    return Regex.IsMatch(input, pattern);
-        //}
 
         /// <summary>
         /// Converts a string to pascal case
@@ -365,17 +344,6 @@ namespace Simple
         {
             return string.Format("_{0}", pascalCasedWord);
         }
-
-        /// <summary>
-        /// Converts an object from one type to another
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="newType"></param>
-        /// <returns></returns>
-        //public static object ChangeType(this object source, Type newType)
-        //{
-        //    return Convert.ChangeType(source, newType);
-        //}
 
         /// <summary>
         /// Converts an object from one type to another

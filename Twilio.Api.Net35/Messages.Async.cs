@@ -180,6 +180,11 @@ namespace Twilio
             ExecuteAsync(request, (response) => { callback(response.StatusCode == System.Net.HttpStatusCode.NoContent ? DeleteStatus.Success : DeleteStatus.Failed); });
         }
 
+        /// <summary>
+        /// Removes the message body for a specific message
+        /// </summary>
+        /// <param name="messageSid"></param>
+        /// <param name="callback"></param>
         public virtual void RedactMessage(string messageSid, Action<Message> callback)
         {
             var request = new RestRequest(Method.POST);

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
+#pragma warning disable 1591
+
 namespace Simple
 {
     public class HttpWebRequestWrapper
@@ -116,3 +118,5 @@ namespace Simple
         }
     }
 }
+
+#pragma warning restore 1591

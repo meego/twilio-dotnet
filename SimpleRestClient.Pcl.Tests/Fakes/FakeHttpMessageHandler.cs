@@ -30,12 +30,14 @@ namespace SimpleRestClient.Tests
             };
         }
 
+#pragma warning disable 1998
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
         {
             if (exception != null)
                 throw exception;
 
-            return response;  
+            return response;
         }
+#pragma warning restore 1998
     }
 }

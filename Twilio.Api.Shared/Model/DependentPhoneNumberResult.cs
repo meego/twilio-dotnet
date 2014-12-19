@@ -8,6 +8,9 @@ namespace Twilio
     /// </summary>
     public class DependentPhoneNumberResult : TwilioListBase
     {
+        /// <summary>
+        /// A list of dependent phone numbers
+        /// </summary>
         public List<DependentPhoneNumber> DependentPhoneNumbers { get; set; }
     }
 }

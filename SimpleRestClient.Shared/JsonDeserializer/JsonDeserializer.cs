@@ -11,6 +11,9 @@ namespace Simple
     /// </summary>
     public class JsonDeserializer
     {
+        /// <summary>
+        /// The Root Element of the document
+        /// </summary>
         public string RootElement { get; set; }
         //public string Namespace { get; set; }
 

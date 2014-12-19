@@ -65,6 +65,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Simple.Reflection;
 
+#pragma warning disable 1591
 
 // ReSharper disable LoopCanBeConvertedToQuery
 // ReSharper disable RedundantExplicitArrayCreation
@@ -2052,3 +2053,5 @@ namespace Simple
 // ReSharper restore LoopCanBeConvertedToQuery
 // ReSharper restore RedundantExplicitArrayCreation
 // ReSharper restore SuggestUseVarKeywordEvident
+
+#pragma warning restore 1591

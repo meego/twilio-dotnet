@@ -11,8 +11,6 @@ namespace Twilio.Api.Tests.Integration
     {
         private const string CALL_SID = "CA123";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]

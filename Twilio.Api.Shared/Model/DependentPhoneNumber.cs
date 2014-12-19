@@ -93,6 +93,9 @@ namespace Twilio
         /// </summary>
         public string AddressRequirements { get; set; }
 
+        /// <summary>
+        /// The Capabilities of this phone number
+        /// </summary>
         public Capabilities Capabilities { get; set; }
 
     }

@@ -14,8 +14,6 @@ namespace Twilio.Api.Tests
     {
         private const string ADDRESS_SID = "AD123";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]

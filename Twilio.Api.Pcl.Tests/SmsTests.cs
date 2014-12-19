@@ -14,8 +14,6 @@ namespace Twilio.Api.Tests
 
         private const string TO = "+13144586142";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]

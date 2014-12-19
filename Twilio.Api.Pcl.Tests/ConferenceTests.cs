@@ -12,8 +12,6 @@ namespace Twilio.Api.Tests
     {
         private const string CONFERENCE_SID = "CF123";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]

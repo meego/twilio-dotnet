@@ -14,8 +14,6 @@ namespace Twilio.Api.Tests
 
         private const string PHONE_NUMBER = "+15005550006";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]

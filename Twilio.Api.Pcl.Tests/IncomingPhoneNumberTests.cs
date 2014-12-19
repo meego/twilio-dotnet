@@ -12,8 +12,6 @@ namespace Twilio.Api.Tests
     {
         private const string INCOMING_PHONE_NUMBER_SID = "PN123";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]

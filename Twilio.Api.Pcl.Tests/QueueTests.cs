@@ -12,8 +12,6 @@ namespace Twilio.Api.Tests
     {
         private const string QUEUE_SID = "QU123";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TwilioRestClient> mockClient;
 
         [SetUp]
