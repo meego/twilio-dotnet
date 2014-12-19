@@ -9,7 +9,7 @@ REM if not "%PackageVersion%" == "" (
 REM    set version=-Version %PackageVersion%
 REM )
 
-set NUnitPath=packages\NUnit.Runners.2.6.3\tools\nunit-console.exe
+set NUnitPath=packages\NUnit.Runners.2.6.4\tools\nunit-console.exe
 
 REM Package restore
 cmd /c %nuget% restore Twilio.2013.sln -NoCache -NonInteractive
