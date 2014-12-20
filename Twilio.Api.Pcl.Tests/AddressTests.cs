@@ -37,7 +37,7 @@ namespace Twilio.Api.Tests
             var client = mockClient.Object;
             var friendlyName = Twilio.Api.Tests.Utilities.MakeRandomFriendlyName();
 
-            await client.AddAddress(friendlyName, "Homer Simpson", "742 Evergreen Terrace", "Springfield", "MO", "65801", "US");
+            await client.AddAddressAsync(friendlyName, "Homer Simpson", "742 Evergreen Terrace", "Springfield", "MO", "65801", "US");
 
             mockClient.Verify(trc => trc.Execute<Address>(It.IsAny<RestRequest>()), Times.Once);
 
@@ -81,7 +81,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.GetAddress(ADDRESS_SID);
+            await client.GetAddressAsync(ADDRESS_SID);
 
             mockClient.Verify(trc => trc.Execute<Address>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -106,7 +106,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.ListAddresses();
+            await client.ListAddressesAsync();
 
             mockClient.Verify(trc => trc.Execute<AddressResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -135,7 +135,7 @@ namespace Twilio.Api.Tests
             options.Page = 1;
             options.PageSize = 10;
 
-            await client.ListAddresses(options);
+            await client.ListAddressesAsync(options);
 
             mockClient.Verify(trc => trc.Execute<AddressResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -180,7 +180,7 @@ namespace Twilio.Api.Tests
             options.Region = "MO";
             options.Street = "742 Evergreen Terrace";
 
-            await client.UpdateAddress(ADDRESS_SID, options);
+            await client.UpdateAddressAsync(ADDRESS_SID, options);
 
             mockClient.Verify(trc => trc.Execute<Address>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -221,9 +221,9 @@ namespace Twilio.Api.Tests
             mockClient.Setup(trc => trc.Execute(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
                 .Returns(tcs.Task);
-
             var client = mockClient.Object;
-            await client.DeleteAddress(ADDRESS_SID);
+
+            await client.DeleteAddressAsync(ADDRESS_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -249,7 +249,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
 
-            await client.ListDependentPhoneNumbers(ADDRESS_SID);
+            await client.ListDependentPhoneNumbersAsync(ADDRESS_SID);
 
             mockClient.Verify(trc => trc.Execute<DependentPhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);

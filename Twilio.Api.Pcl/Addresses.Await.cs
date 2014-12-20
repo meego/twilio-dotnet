@@ -12,7 +12,7 @@ namespace Twilio
         /// Retrieve the details for an address instance. Makes a GET request to an Address Instance resource.
         /// </summary>
         /// <param name="addressSid">The Sid of the address to retrieve</param>
-        public virtual async Task<Address> GetAddress(string addressSid)
+        public virtual async Task<Address> GetAddressAsync(string addressSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Addresses/{AddressSid}.json";
@@ -25,16 +25,16 @@ namespace Twilio
         /// <summary>
         /// List Addresses on the current account.
         /// </summary>
-        public virtual async Task<AddressResult> ListAddresses()
+        public virtual async Task<AddressResult> ListAddressesAsync()
         {
-            return await ListAddresses(new AddressListRequest());
+            return await ListAddressesAsync(new AddressListRequest());
         }
 
         /// <summary>
         /// List Addresses on the current account, with filters.
         /// </summary>
         /// <param name="options">Filters to be applied to the request.</param>
-        public virtual async Task<AddressResult> ListAddresses(AddressListRequest options)
+        public virtual async Task<AddressResult> ListAddressesAsync(AddressListRequest options)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Addresses.json";
@@ -48,7 +48,7 @@ namespace Twilio
         /// List the current account's incoming phone numbers that depend on a specific address.
         /// </summary>
         /// <param name="addressSid">Sid of the address to retrieve dependent phone numbers for.</param>
-        public virtual async Task<DependentPhoneNumberResult> ListDependentPhoneNumbers(string addressSid)
+        public virtual async Task<DependentPhoneNumberResult> ListDependentPhoneNumbersAsync(string addressSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Addresses/{AddressSid}/DependentPhoneNumbers.json";
@@ -69,7 +69,7 @@ namespace Twilio
         /// <param name="region">The state or region</param>
         /// <param name="postalCode">Postal code</param>
         /// <param name="isoCountry">ISO 3166-1 2-letter country code</param>
-        public virtual async Task<Address> AddAddress(string friendlyName, string customerName, string street, string city, string region, string postalCode, string isoCountry)
+        public virtual async Task<Address> AddAddressAsync(string friendlyName, string customerName, string street, string city, string region, string postalCode, string isoCountry)
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/Addresses.json";
@@ -103,7 +103,7 @@ namespace Twilio
         /// <returns>Updated Address object.</returns>
         /// <param name="addressSid">The sid of the Address to update.</param>
         /// <param name="options">Which properties to update. Only properties with values set will be updated.</param>
-        public virtual async Task<Address> UpdateAddress(string addressSid, AddressOptions options)
+        public virtual async Task<Address> UpdateAddressAsync(string addressSid, AddressOptions options)
         {
             Require.Argument("AddressSid", addressSid);
             var request = new RestRequest(Method.POST);
@@ -131,7 +131,7 @@ namespace Twilio
         /// </summary>
         /// <returns>A DeleteStatus object indicating whether the request succeeded.</returns>
         /// <param name="addressSid">The sid of the Address to be deleted.</param>
-        public virtual async Task<DeleteStatus> DeleteAddress(string addressSid)
+        public virtual async Task<DeleteStatus> DeleteAddressAsync(string addressSid)
         {
             var request = new RestRequest(Method.DELETE);
             request.Resource = "Accounts/{AccountSid}/Addresses/{AddressSid}.json";
