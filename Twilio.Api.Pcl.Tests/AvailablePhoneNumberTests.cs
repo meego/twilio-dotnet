@@ -36,7 +36,7 @@ namespace Twilio.Api.Tests
             var client = mockClient.Object;
             AvailablePhoneNumberListRequest options = new AvailablePhoneNumberListRequest();
 
-            await client.ListAvailableLocalPhoneNumbers(ISO_COUNTRY_CODE, options);
+            await client.ListAvailableLocalPhoneNumbersAsync(ISO_COUNTRY_CODE, options);
 
             mockClient.Verify(trc => trc.Execute<AvailablePhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -65,7 +65,7 @@ namespace Twilio.Api.Tests
             options.AreaCode = "314";
             options.Contains = "EA"; //contains must be 2 or more characters, unless using * alone
             options.Distance = 50;
-            await client.ListAvailableLocalPhoneNumbers(ISO_COUNTRY_CODE, options);
+            await client.ListAvailableLocalPhoneNumbersAsync(ISO_COUNTRY_CODE, options);
 
             mockClient.Verify(trc => trc.Execute<AvailablePhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -99,7 +99,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListAvailableTollFreePhoneNumbers(ISO_COUNTRY_CODE);
+            await client.ListAvailableTollFreePhoneNumbersAsync(ISO_COUNTRY_CODE);
 
             mockClient.Verify(trc => trc.Execute<AvailablePhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -124,7 +124,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListAvailableTollFreePhoneNumbers(ISO_COUNTRY_CODE, "EA");
+            await client.ListAvailableTollFreePhoneNumbersAsync(ISO_COUNTRY_CODE, "EA");
 
             mockClient.Verify(trc => trc.Execute<AvailablePhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);

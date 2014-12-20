@@ -11,7 +11,7 @@ namespace Twilio
         /// </summary>
         /// <param name="isoCountryCode">Two-character ISO country code (US or CA)</param>
         /// <param name="options">Search filter options. Only properties with values set will be used.</param>
-        public virtual async Task<AvailablePhoneNumberResult> ListAvailableLocalPhoneNumbers(string isoCountryCode, AvailablePhoneNumberListRequest options)
+        public virtual async Task<AvailablePhoneNumberResult> ListAvailableLocalPhoneNumbersAsync(string isoCountryCode, AvailablePhoneNumberListRequest options)
         {
             Require.Argument("isoCountryCode", isoCountryCode);
 
@@ -28,7 +28,7 @@ namespace Twilio
         /// Search available toll-free phone numbers.  Makes a GET request to the AvailablePhoneNumber List resource.
         /// </summary>
         /// <param name="isoCountryCode">Two-character ISO country code (US or CA)</param>
-        public virtual async Task<AvailablePhoneNumberResult> ListAvailableTollFreePhoneNumbers(string isoCountryCode)
+        public virtual async Task<AvailablePhoneNumberResult> ListAvailableTollFreePhoneNumbersAsync(string isoCountryCode)
         {
             Require.Argument("isoCountryCode", isoCountryCode);
 
@@ -44,7 +44,7 @@ namespace Twilio
         /// </summary>
         /// <param name="isoCountryCode">Two-character ISO country code (US or CA)</param>
         /// <param name="contains">Value to use when filtering search. Accepts numbers or characters.</param>
-        public virtual async Task<AvailablePhoneNumberResult> ListAvailableTollFreePhoneNumbers(string isoCountryCode, string contains)
+        public virtual async Task<AvailablePhoneNumberResult> ListAvailableTollFreePhoneNumbersAsync(string isoCountryCode, string contains)
         {
             Require.Argument("isoCountryCode", isoCountryCode);
             Require.Argument("contains", contains);
@@ -63,7 +63,7 @@ namespace Twilio
         /// </summary>
         /// <param name="isoCountryCode">Two-character ISO country code (US or CA)</param>
         /// <param name="options">Search filter options. Only properties with values set will be used.</param>
-        public virtual async Task<AvailablePhoneNumberResult> ListAvailableMobilePhoneNumbers(string isoCountryCode, AvailablePhoneNumberListRequest options)
+        public virtual async Task<AvailablePhoneNumberResult> ListAvailableMobilePhoneNumbersAsync(string isoCountryCode, AvailablePhoneNumberListRequest options)
         {
             Require.Argument("isoCountryCode", isoCountryCode);
 
