@@ -41,7 +41,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.InitiateOutboundCall(FROM, TO, URL);
+            await client.InitiateOutboundCallAsync(FROM, TO, URL);
 
             mockClient.Verify(trc => trc.Execute<Call>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -72,7 +72,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.GetCall(CALL_SID);
+            await client.GetCallAsync(CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Call>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -97,7 +97,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListCalls();
+            await client.ListCallsAsync();
 
             mockClient.Verify(trc => trc.Execute<CallResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -122,7 +122,7 @@ namespace Twilio.Api.Tests
             CallListRequest options = new CallListRequest();
             options.From = FROM;
             options.StartTime = new DateTime();
-            await client.ListCalls(options);
+            await client.ListCallsAsync(options);
 
             mockClient.Verify(trc => trc.Execute<CallResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -152,7 +152,7 @@ namespace Twilio.Api.Tests
             var client = mockClient.Object;
             var redirectedFriendlyName = Utilities.MakeRandomFriendlyName();
             var redirectUrl = "http://devin.webscript.io/twilioconf?conf=" + redirectedFriendlyName;
-            await client.RedirectCall(CALL_SID, redirectUrl, "GET");
+            await client.RedirectCallAsync(CALL_SID, redirectUrl, "GET");
 
             mockClient.Verify(trc => trc.Execute<Call>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -183,7 +183,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.HangupCall(CALL_SID, HangupStyle.Completed);
+            await client.HangupCallAsync(CALL_SID, HangupStyle.Completed);
 
             mockClient.Verify(trc => trc.Execute<Call>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
