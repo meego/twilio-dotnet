@@ -34,7 +34,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.GetConference(CONFERENCE_SID);
+            await client.GetConferenceAsync(CONFERENCE_SID);
 
             mockClient.Verify(trc => trc.Execute<Conference>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -59,7 +59,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListConferences();
+            await client.ListConferencesAsync();
 
             mockClient.Verify(trc => trc.Execute<ConferenceResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -82,7 +82,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
             ConferenceListRequest options = new ConferenceListRequest();
-            await client.ListConferences(options);
+            await client.ListConferencesAsync(options);
 
             mockClient.Verify(trc => trc.Execute<ConferenceResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);

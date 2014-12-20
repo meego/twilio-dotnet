@@ -36,7 +36,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             
             var client = mockClient.Object;
-            await client.ListConferenceParticipants(CONFERENCE_SID, null);
+            await client.ListConferenceParticipantsAsync(CONFERENCE_SID, null);
 
             mockClient.Verify(trc => trc.Execute<ParticipantResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -61,7 +61,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             
             var client = mockClient.Object;
-            await client.GetConferenceParticipant(CONFERENCE_SID, CALL_SID);
+            await client.GetConferenceParticipantAsync(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -89,7 +89,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             
             var client = mockClient.Object;
-            await client.MuteConferenceParticipant(CONFERENCE_SID, CALL_SID);
+            await client.MuteConferenceParticipantAsync(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -120,7 +120,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             
             var client = mockClient.Object;
-            await client.UnmuteConferenceParticipant(CONFERENCE_SID, CALL_SID);
+            await client.UnmuteConferenceParticipantAsync(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute<Participant>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -151,7 +151,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             
             var client = mockClient.Object;
-            await client.KickConferenceParticipant(CONFERENCE_SID, CALL_SID);
+            await client.KickConferenceParticipantAsync(CONFERENCE_SID, CALL_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
