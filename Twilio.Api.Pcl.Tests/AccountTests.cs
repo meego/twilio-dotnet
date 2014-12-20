@@ -34,7 +34,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             
             var client = mockClient.Object;
-            await client.GetAccount();
+            await client.GetAccountAsync();
 
             mockClient.Verify(trc => trc.Execute<Account>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -56,7 +56,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.GetAccount(ACCOUNT_SID);
+            await client.GetAccountAsync(ACCOUNT_SID);
 
             mockClient.Verify(trc => trc.Execute<Account>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -81,7 +81,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.ListSubAccounts();
+            await client.ListSubAccountsAsync();
 
             mockClient.Verify(trc => trc.Execute<AccountResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -104,7 +104,7 @@ namespace Twilio.Api.Tests
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
 
-            await client.CreateSubAccount(friendlyName);
+            await client.CreateSubAccountAsync(friendlyName);
 
             mockClient.Verify(trc => trc.Execute<Account>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -130,7 +130,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.ChangeSubAccountStatus(ACCOUNT_SID, AccountStatus.Suspended);
+            await client.ChangeSubAccountStatusAsync(ACCOUNT_SID, AccountStatus.Suspended);
 
             mockClient.Verify(trc => trc.Execute<Account>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -159,7 +159,7 @@ namespace Twilio.Api.Tests
             var client = mockClient.Object;
             string name = DateTime.Now.ToLongDateString();
 
-            await client.UpdateAccountName(name);
+            await client.UpdateAccountNameAsync(name);
 
             mockClient.Verify(trc => trc.Execute<Account>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
