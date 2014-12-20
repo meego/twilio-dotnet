@@ -34,7 +34,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.GetAuthorizedConnectApp(AUTHORIZED_CONNECT_APP_SID);
+            await client.GetAuthorizedConnectAppAsync(AUTHORIZED_CONNECT_APP_SID);
 
             mockClient.Verify(trc => trc.Execute<AuthorizedConnectApp>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -59,7 +59,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListAuthorizedConnectApps();
+            await client.ListAuthorizedConnectAppsAsync();
 
             mockClient.Verify(trc => trc.Execute<AuthorizedConnectAppResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -81,7 +81,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListAuthorizedConnectApps(null, null);
+            await client.ListAuthorizedConnectAppsAsync(null, null);
 
             mockClient.Verify(trc => trc.Execute<AuthorizedConnectAppResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
