@@ -37,7 +37,7 @@ namespace Twilio.Api.Tests
             var options = new ApplicationOptions();
             var friendlyName = Utilities.MakeRandomFriendlyName();
 
-            await client.AddApplication(friendlyName, options);
+            await client.AddApplicationAsync(friendlyName, options);
 
             mockClient.Verify(trc => trc.Execute<Application>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -62,7 +62,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.GetApplication(APPLICATION_SID);
+            await client.GetApplicationAsync(APPLICATION_SID);
 
             mockClient.Verify(trc => trc.Execute<Application>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -87,7 +87,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.ListApplications();
+            await client.ListApplicationsAsync();
 
             mockClient.Verify(trc => trc.Execute<ApplicationResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -110,7 +110,7 @@ namespace Twilio.Api.Tests
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
 
-            await client.ListApplications(friendlyName, null, null);
+            await client.ListApplicationsAsync(friendlyName, null, null);
 
             mockClient.Verify(trc => trc.Execute<ApplicationResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -136,7 +136,7 @@ namespace Twilio.Api.Tests
             var client = mockClient.Object;
             ApplicationOptions options = new ApplicationOptions();
 
-            await client.UpdateApplication(APPLICATION_SID, "", options);
+            await client.UpdateApplicationAsync(APPLICATION_SID, "", options);
 
             mockClient.Verify(trc => trc.Execute<Application>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -162,7 +162,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
 
-            await client.DeleteApplication(APPLICATION_SID);
+            await client.DeleteApplicationAsync(APPLICATION_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);

@@ -9,7 +9,7 @@ namespace Twilio
         /// Retrieve the details for an application instance. Makes a GET request to an Application Instance resource.
         /// </summary>
         /// <param name="applicationSid">The Sid of the application to retrieve</param>
-        public virtual async Task<Application> GetApplication(string applicationSid)
+        public virtual async Task<Application> GetApplicationAsync(string applicationSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Applications/{ApplicationSid}.json";
@@ -22,9 +22,9 @@ namespace Twilio
         /// <summary>
         /// List applications on current account
         /// </summary>
-        public virtual async Task<ApplicationResult> ListApplications()
+        public virtual async Task<ApplicationResult> ListApplicationsAsync()
         {
-            return await ListApplications(null, null, null);
+            return await ListApplicationsAsync(null, null, null);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Twilio
         /// <param name="friendlyName">Optional friendly name to match</param>
         /// <param name="pageNumber">Page number to start retrieving results from</param>
         /// <param name="count">How many results to return</param>
-        public virtual async Task<ApplicationResult> ListApplications(string friendlyName, int? pageNumber, int? count)
+        public virtual async Task<ApplicationResult> ListApplicationsAsync(string friendlyName, int? pageNumber, int? count)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Applications.json";
@@ -50,7 +50,7 @@ namespace Twilio
         /// </summary>
         /// <param name="friendlyName">The friendly name to name the application</param>
         /// <param name="options">Optional parameters to use when purchasing number</param>
-        public virtual async Task<Application> AddApplication(string friendlyName, ApplicationOptions options)
+        public virtual async Task<Application> AddApplicationAsync(string friendlyName, ApplicationOptions options)
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/Applications.json";
@@ -84,7 +84,7 @@ namespace Twilio
         /// <param name="applicationSid">The Sid of the application to update</param>
         /// <param name="friendlyName">The friendly name to rename the application to (optional, null to leave as-is)</param>
         /// <param name="options">Which settings to update. Only properties with values set will be updated.</param>
-        public virtual async Task<Application> UpdateApplication(string applicationSid, string friendlyName, ApplicationOptions options)
+        public virtual async Task<Application> UpdateApplicationAsync(string applicationSid, string friendlyName, ApplicationOptions options)
         {
             Require.Argument("ApplicationSid", applicationSid);
 
@@ -115,7 +115,7 @@ namespace Twilio
         /// Delete this application. If this application's sid is assigned to any IncomingPhoneNumber resources as a VoiceApplicationSid or SmsApplicationSid it will be removed.
         /// </summary>
         /// <param name="applicationSid">The Sid of the number to remove</param>
-        public virtual async Task<DeleteStatus> DeleteApplication(string applicationSid)
+        public virtual async Task<DeleteStatus> DeleteApplicationAsync(string applicationSid)
         {
             Require.Argument("ApplicationSid", applicationSid);
             var request = new RestRequest(Method.DELETE);
