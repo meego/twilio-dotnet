@@ -34,7 +34,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;            
-            await client.GetUsageTrigger(USAGE_TRIGGER_SID);
+            await client.GetUsageTriggerAsync(USAGE_TRIGGER_SID);
 
             mockClient.Verify(trc => trc.Execute<UsageTrigger>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -59,7 +59,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListUsageTriggers();
+            await client.ListUsageTriggersAsync();
 
             mockClient.Verify(trc => trc.Execute<UsageTriggerResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -87,7 +87,7 @@ namespace Twilio.Api.Tests
                 TriggerValue = "TriggerValue",
                 UsageCategory = "UsageCategory"
             };
-            await client.CreateUsageTrigger(options);
+            await client.CreateUsageTriggerAsync(options);
 
             mockClient.Verify(trc => trc.Execute<UsageTrigger>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -119,7 +119,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
-            await client.UpdateUsageTrigger(USAGE_TRIGGER_SID, friendlyName, null, null);
+            await client.UpdateUsageTriggerAsync(USAGE_TRIGGER_SID, friendlyName, null, null);
 
             mockClient.Verify(trc => trc.Execute<UsageTrigger>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -147,7 +147,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.DeleteUsageTrigger(USAGE_TRIGGER_SID);
+            await client.DeleteUsageTriggerAsync(USAGE_TRIGGER_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);

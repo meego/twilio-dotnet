@@ -10,9 +10,9 @@ namespace Twilio
         /// Returns a list of all usage resources
         /// </summary>
         /// <returns></returns>
-        public virtual async Task<UsageResult> ListUsage()
+        public virtual async Task<UsageResult> ListUsageAsync()
         {
-            return await ListUsage("");
+            return await ListUsageAsync(String.Empty);
         }
 
         /// <summary>
@@ -20,9 +20,9 @@ namespace Twilio
         /// </summary>
         /// <param name="category">The category used to filter the usage data</param>
         /// <returns></returns>
-        public virtual async Task<UsageResult> ListUsage(string category)
+        public virtual async Task<UsageResult> ListUsageAsync(string category)
         {
-            return await ListUsage(category, "");
+            return await ListUsageAsync(category, String.Empty);
         }
 
         /// <summary>
@@ -31,9 +31,9 @@ namespace Twilio
         /// <param name="category">The category used to filter the usage data</param>
         /// <param name="interval">The time interval used to group the usage data</param>
         /// <returns></returns>
-        public virtual async Task<UsageResult> ListUsage(string category, string interval)
+        public virtual async Task<UsageResult> ListUsageAsync(string category, string interval)
         {
-            return await ListUsage(category, interval, null, null);
+            return await ListUsageAsync(category, interval, null, null);
         }
 
         /// <summary>
@@ -43,9 +43,9 @@ namespace Twilio
         /// <param name="startDate">The start date of the filter range</param>
         /// <param name="endDate">The end date of the filter range</param>
         /// <returns></returns>
-        public virtual async Task<UsageResult> ListUsage(string category, DateTime? startDate, DateTime? endDate)
+        public virtual async Task<UsageResult> ListUsageAsync(string category, DateTime? startDate, DateTime? endDate)
         {
-            return await ListUsage(category, "", startDate, endDate);
+            return await ListUsageAsync(category, String.Empty, startDate, endDate);
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace Twilio
         /// <param name="startDate">The start date of the filter range</param>
         /// <param name="endDate">The end date of the filter range</param>
         /// <returns></returns>
-        public virtual async Task<UsageResult> ListUsage(string category, string interval, DateTime? startDate, DateTime? endDate)
+        public virtual async Task<UsageResult> ListUsageAsync(string category, string interval, DateTime? startDate, DateTime? endDate)
         {
-            return await ListUsage(category, interval, startDate, endDate, null, null);
+            return await ListUsageAsync(category, interval, startDate, endDate, null, null);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Twilio
         /// <param name="pageNumber">(Optional) The page to start retrieving results from</param>
         /// <param name="count">(Optional) The number of results to retrieve</param>
         /// <returns></returns>
-        public virtual async Task<UsageResult> ListUsage(string category, string interval, DateTime? startDate, DateTime? endDate, int? pageNumber, int? count)
+        public virtual async Task<UsageResult> ListUsageAsync(string category, string interval, DateTime? startDate, DateTime? endDate, int? pageNumber, int? count)
         {
             var request = new RestRequest();
             string resourceUrlRoot = "Accounts/{{AccountSid}}/Usage/Records{0}";
@@ -99,7 +99,7 @@ namespace Twilio
         /// Returns a list of usage triggers
         /// </summary>
         /// <returns></returns>
-        public virtual async Task<UsageTriggerResult> ListUsageTriggers()
+        public virtual async Task<UsageTriggerResult> ListUsageTriggersAsync()
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Usage/Triggers.json";
@@ -114,7 +114,7 @@ namespace Twilio
         /// <param name="usageCategory">The usage category this trigger watches</param>
         /// <param name="triggerBy">The value at which the trigger will fire</param>
         /// <returns></returns>
-        public virtual async Task<UsageTriggerResult> ListUsageTriggers(string recurring, string usageCategory, string triggerBy)
+        public virtual async Task<UsageTriggerResult> ListUsageTriggersAsync(string recurring, string usageCategory, string triggerBy)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Usage/Triggers.json";
@@ -131,7 +131,7 @@ namespace Twilio
         /// </summary>
         /// <param name="usageTriggerSid">The Sid of the Usage Trigger to locate</param>
         /// <returns></returns>
-        public virtual async Task<UsageTrigger> GetUsageTrigger(string usageTriggerSid)
+        public virtual async Task<UsageTrigger> GetUsageTriggerAsync(string usageTriggerSid)
         {
             Require.Argument("UsageTriggerSid", usageTriggerSid);
 
@@ -150,14 +150,14 @@ namespace Twilio
         /// <param name="triggerValue">The value to trigger on</param>
         /// <param name="callbackUrl">The URL to call once a trigger value has been met</param>
         /// <returns></returns>
-        public virtual async Task<UsageTrigger> CreateUsageTrigger(string usageCategory, string triggerValue, string callbackUrl)
+        public virtual async Task<UsageTrigger> CreateUsageTriggerAsync(string usageCategory, string triggerValue, string callbackUrl)
         {
             var options = new UsageTriggerOptions();
             options.UsageCategory = usageCategory;
             options.TriggerValue = triggerValue;
             options.CallbackUrl = callbackUrl;
 
-            return await CreateUsageTrigger(options);
+            return await CreateUsageTriggerAsync(options);
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Twilio
         /// </summary>
         /// <param name="options">A UsageTriggerOption object that defines the different trigger options</param>
         /// <returns></returns>
-        public virtual async Task<UsageTrigger> CreateUsageTrigger(UsageTriggerOptions options)
+        public virtual async Task<UsageTrigger> CreateUsageTriggerAsync(UsageTriggerOptions options)
         {
             Require.Argument("UsageCategory", options.UsageCategory);
             Require.Argument("TriggerValue", options.TriggerValue);
@@ -197,7 +197,7 @@ namespace Twilio
         /// <param name="callbackUrl">The URL to call once a trigger value has been met</param>
         /// <param name="callbackMethod">The HTTP method used when requesting the callback URL</param>
         /// <returns></returns>
-        public virtual async Task<UsageTrigger> UpdateUsageTrigger(string usageTriggerSid, string friendlyName, string callbackUrl, string callbackMethod)
+        public virtual async Task<UsageTrigger> UpdateUsageTriggerAsync(string usageTriggerSid, string friendlyName, string callbackUrl, string callbackMethod)
         {
             Require.Argument("UsageTriggerSid", usageTriggerSid);
 
@@ -221,7 +221,7 @@ namespace Twilio
         /// </summary>
         /// <param name="usageTriggerSid">The Sid of the UsageTrigger to delete</param>
         /// <returns></returns>
-        public virtual async Task<DeleteStatus> DeleteUsageTrigger(string usageTriggerSid)
+        public virtual async Task<DeleteStatus> DeleteUsageTriggerAsync(string usageTriggerSid)
         {
             Require.Argument("UsageTriggerSid", usageTriggerSid);
 
