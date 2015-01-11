@@ -37,7 +37,7 @@ namespace Twilio.Api.Tests
             
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
-            await client.AddOutgoingCallerId(PHONE_NUMBER, friendlyName, null, null);
+            await client.AddOutgoingCallerIdAsync(PHONE_NUMBER, friendlyName, null, null);
 
             mockClient.Verify(trc => trc.Execute<ValidationRequestResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -65,7 +65,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListOutgoingCallerIds();
+            await client.ListOutgoingCallerIdsAsync();
 
             mockClient.Verify(trc => trc.Execute<OutgoingCallerIdResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -88,7 +88,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
-            await client.ListOutgoingCallerIds(PHONE_NUMBER, friendlyName, null, null);
+            await client.ListOutgoingCallerIdsAsync(PHONE_NUMBER, friendlyName, null, null);
 
             mockClient.Verify(trc => trc.Execute<OutgoingCallerIdResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -116,7 +116,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.GetOutgoingCallerId(OUTGOING_CALLER_ID_SID);
+            await client.GetOutgoingCallerIdAsync(OUTGOING_CALLER_ID_SID);
 
             mockClient.Verify(trc => trc.Execute<OutgoingCallerId>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -142,7 +142,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
-            await client.UpdateOutgoingCallerIdName(OUTGOING_CALLER_ID_SID, friendlyName);
+            await client.UpdateOutgoingCallerIdNameAsync(OUTGOING_CALLER_ID_SID, friendlyName);
 
             mockClient.Verify(trc => trc.Execute<OutgoingCallerId>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -170,7 +170,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.DeleteOutgoingCallerId(OUTGOING_CALLER_ID_SID);
+            await client.DeleteOutgoingCallerIdAsync(OUTGOING_CALLER_ID_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
