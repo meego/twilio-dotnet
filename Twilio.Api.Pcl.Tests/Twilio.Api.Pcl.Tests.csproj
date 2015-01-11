@@ -125,6 +125,7 @@
     <Compile Include="QueueTests.cs" />
     <Compile Include="RecordingTests.cs" />
     <Compile Include="SmsTests.cs" />
+    <Compile Include="TokenTests.cs" />
     <Compile Include="TranscriptionTests.cs" />
     <Compile Include="UsageTests.cs" />
     <Compile Include="UsageTriggersTests.cs" />

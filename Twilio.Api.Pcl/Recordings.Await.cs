@@ -11,9 +11,9 @@ namespace Twilio
         /// The list includes paging information.
         /// Makes a GET request to the Recordings List resource.
         /// </summary>
-        public virtual async Task<RecordingResult> ListRecordings()
+        public virtual async Task<RecordingResult> ListRecordingsAsync()
         {
-            return await ListRecordings(null, null, null, null);
+            return await ListRecordingsAsync(null, null, null, null);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Twilio
         /// <param name="dateCreated">(Optional) The date the recording was created (GMT)</param>
         /// <param name="pageNumber">The page to start retrieving results from</param>
         /// <param name="count">How many results to retrieve</param>
-        public virtual async Task<RecordingResult> ListRecordings(string callSid, DateTime? dateCreated, int? pageNumber, int? count)
+        public virtual async Task<RecordingResult> ListRecordingsAsync(string callSid, DateTime? dateCreated, int? pageNumber, int? count)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Recordings.json";
@@ -43,7 +43,7 @@ namespace Twilio
         /// Makes a GET request to a Recording Instance resource.
         /// </summary>
         /// <param name="recordingSid">The Sid of the recording to retrieve</param>
-        public virtual async Task<Recording> GetRecording(string recordingSid)
+        public virtual async Task<Recording> GetRecordingAsync(string recordingSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Recordings/{RecordingSid}.json";
@@ -57,7 +57,7 @@ namespace Twilio
         /// Delete the specified recording instance. Makes a DELETE request to a Recording Instance resource.
         /// </summary>
         /// <param name="recordingSid">The Sid of the recording to delete</param>
-        public virtual async Task<DeleteStatus> DeleteRecording(string recordingSid)
+        public virtual async Task<DeleteStatus> DeleteRecordingAsync(string recordingSid)
         {
             var request = new RestRequest(Method.DELETE);
             request.Resource = "Accounts/{AccountSid}/Recordings/{RecordingSid}.json";
@@ -73,7 +73,7 @@ namespace Twilio
         /// Makes a GET request to a Recording Instance resource.
         /// </summary>
         /// <param name="recordingSid">The Sid of the recording to retreive the transcription for</param>
-        public virtual async Task<string> GetRecordingText(string recordingSid)
+        public virtual async Task<string> GetRecordingTextAsync(string recordingSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Recordings/{RecordingSid}.txt";

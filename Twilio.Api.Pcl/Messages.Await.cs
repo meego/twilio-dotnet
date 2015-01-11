@@ -11,7 +11,7 @@ namespace Twilio
         /// Makes a GET request to an Message Instance resource.
         /// </summary>
         /// <param name="messageSid">The Sid of the message to retrieve</param>
-        public virtual async Task<Message> GetMessage(string messageSid)
+        public virtual async Task<Message> GetMessageAsync(string messageSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Messages/{MessageSid}.json";
@@ -25,9 +25,9 @@ namespace Twilio
         /// The list includes paging information.
         /// Makes a GET request to the Message List resource.
         /// </summary>
-        public virtual async Task<MessageResult> ListMessages()
+        public virtual async Task<MessageResult> ListMessagesAsync()
         {
-            return await ListMessages(new MessageListRequest());
+            return await ListMessagesAsync(new MessageListRequest());
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Twilio
         /// Makes a GET request to the Messages List resource.
         /// </summary>
         /// <param name="options">The list filters for the request</param>
-        public virtual async Task<MessageResult> ListMessages(MessageListRequest options) 
+        public virtual async Task<MessageResult> ListMessagesAsync(MessageListRequest options) 
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Messages.json";
@@ -50,9 +50,9 @@ namespace Twilio
         /// <param name="from">The phone number to send the message from. Must be a Twilio-provided or ported local (not toll-free) number. Validated outgoing caller IDs cannot be used.</param>
         /// <param name="to">The phone number to send the message to.</param>
         /// <param name="body">The message to send. Must be 160 characters or less.</param>
-        public virtual async Task<Message> SendMessage(string from, string to, string body)
+        public virtual async Task<Message> SendMessageAsync(string from, string to, string body)
         {
-            return await SendMessage(from, to, body, new string[0], string.Empty);
+            return await SendMessageAsync(from, to, body, new string[0], string.Empty);
         }
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace Twilio
         /// <param name="to">The phone number to send the message to.</param>
         /// <param name="body">The message to send. Must be 160 characters or less.</param>
         /// <param name="statusCallback">A URL that Twilio will POST to when your message is processed. Twilio will POST the MessageSid as well as MessageStatus=sent or MessageStatus=failed</param>
-        public virtual async Task<Message> SendMessage(string from, string to, string body, string statusCallback)
+        public virtual async Task<Message> SendMessageAsync(string from, string to, string body, string statusCallback)
         {
-            return await SendMessage(from, to, body, new string[0], statusCallback);
+            return await SendMessageAsync(from, to, body, new string[0], statusCallback);
         }
 
         /// <summary>
@@ -75,9 +75,9 @@ namespace Twilio
         /// <param name="from">The phone number to send the message from. Must be a Twilio-provided or ported local (not toll-free) number. Validated outgoing caller IDs cannot be used.</param>
         /// <param name="to">The phone number to send the message to.</param>
         /// <param name="mediaUrls">An array of URLs where each member of the array points to a media file to be sent with the message.  You can include a maximum of 10 media URLs</param>
-        public virtual async Task<Message> SendMessage(string from, string to, string[] mediaUrls)
+        public virtual async Task<Message> SendMessageAsync(string from, string to, string[] mediaUrls)
         {
-            return await SendMessage(from, to, String.Empty, mediaUrls, string.Empty);
+            return await SendMessageAsync(from, to, String.Empty, mediaUrls, string.Empty);
         }
         
         /// <summary>
@@ -88,9 +88,9 @@ namespace Twilio
         /// <param name="to">The phone number to send the message to.</param>
         /// <param name="body">The message to send. Must be 160 characters or less.</param>
         /// <param name="mediaUrls">An array of URLs where each member of the array points to a media file to be sent with the message.  You can include a maximum of 10 media URLs</param>
-        public virtual async Task<Message> SendMessage(string from, string to, string body, string[] mediaUrls)
+        public virtual async Task<Message> SendMessageAsync(string from, string to, string body, string[] mediaUrls)
         {
-            return await SendMessage(from, to, body, mediaUrls, string.Empty);
+            return await SendMessageAsync(from, to, body, mediaUrls, string.Empty);
         }
 
         /// <summary>
@@ -102,9 +102,9 @@ namespace Twilio
         /// <param name="body">The message to send. Must be 160 characters or less.</param>
         /// <param name="mediaUrls">An array of URLs where each member of the array points to a media file to be sent with the message.  You can include a maximum of 10 media URLs</param>
         /// <param name="statusCallback">A URL that Twilio will POST to when your message is processed. Twilio will POST the MessageSid as well as MessageStatus=sent or MessageStatus=failed</param>
-        public virtual async Task<Message> SendMessage(string from, string to, string body, string[] mediaUrls, string statusCallback)
+        public virtual async Task<Message> SendMessageAsync(string from, string to, string body, string[] mediaUrls, string statusCallback)
         {
-            return await SendMessage(from, to, body, mediaUrls, statusCallback, string.Empty);
+            return await SendMessageAsync(from, to, body, mediaUrls, statusCallback, string.Empty);
         }
 
         /// <summary>
@@ -117,9 +117,9 @@ namespace Twilio
         /// <param name="mediaUrls">An array of URLs where each member of the array points to a media file to be sent with the message.  You can include a maximum of 10 media URLs</param>
         /// <param name="statusCallback">A URL that Twilio will POST to when your message is processed. Twilio will POST the MessageSid as well as MessageStatus=sent or MessageStatus=failed</param>
         /// <param name="applicationSid"></param>
-        public virtual async Task<Message> SendMessage(string from, string to, string body, string[] mediaUrls, string statusCallback, string applicationSid)
+        public virtual async Task<Message> SendMessageAsync(string from, string to, string body, string[] mediaUrls, string statusCallback, string applicationSid)
         {
-            return await SendMessage(from, to, body, mediaUrls, statusCallback, applicationSid, false);
+            return await SendMessageAsync(from, to, body, mediaUrls, statusCallback, applicationSid, false);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Twilio
         /// <param name="statusCallback">A URL that Twilio will POST to when your message is processed. Twilio will POST the MessageSid as well as MessageStatus=sent or MessageStatus=failed</param>
         /// <param name="applicationSid"></param>
         /// <param name="mmsOnly">Doesn't fallback to SMS if set to true</param>
-        public virtual async Task<Message> SendMessage(string from, string to, string body, string[] mediaUrls, string statusCallback, string applicationSid, bool? mmsOnly)
+        public virtual async Task<Message> SendMessageAsync(string from, string to, string body, string[] mediaUrls, string statusCallback, string applicationSid, bool? mmsOnly)
         {
             Require.Argument("from", from);
             Require.Argument("to", to);
@@ -161,7 +161,7 @@ namespace Twilio
         /// Deletes a single Message instance
         /// </summary>
         /// <param name="messageSid">The Sid of the Message to delete</param>
-        public virtual async Task<DeleteStatus> DeleteMessage(string messageSid)
+        public virtual async Task<DeleteStatus> DeleteMessageAsync(string messageSid)
         {
             var request = new RestRequest(Method.DELETE);
             request.Resource = "Accounts/{AccountSid}/Messages/{MessageSid}.json";
@@ -171,7 +171,7 @@ namespace Twilio
             return response.StatusCode == System.Net.HttpStatusCode.NoContent ? DeleteStatus.Success : DeleteStatus.Failed;
         }
 
-        public virtual async Task<Message> RedactMessage(string messageSid)
+        public virtual async Task<Message> RedactMessageAsync(string messageSid)
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/Messages/{MessageSid}.json";

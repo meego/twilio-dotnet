@@ -12,7 +12,7 @@ namespace Twilio
         /// </summary>
         /// <param name="mediaSid">The Sid of the media resource</param>
         /// <returns></returns>
-        public virtual async Task<Media> GetMessageMedia(string messageSid, string mediaSid)
+        public virtual async Task<Media> GetMessageMediaAsync(string messageSid, string mediaSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Messages/{MessageSid}/Media/{MediaSid}.json";
@@ -25,9 +25,9 @@ namespace Twilio
         /// Retrieve a list of Media objects with no list filters
         /// </summary>
         [Obsolete("Use ListMessageMedia methods instead.")]
-        public virtual async Task<MediaResult> ListMedia(string messageSid)
+        public virtual async Task<MediaResult> ListMediaAsync(string messageSid)
         {
-            return await ListMedia(messageSid, new MediaListRequest());
+            return await ListMediaAsync(messageSid, new MediaListRequest());
         }
 
         /// <summary>
@@ -35,17 +35,17 @@ namespace Twilio
         /// information.
         /// </summary>
         [Obsolete("Use ListMessageMedia methods instead.")]
-        public virtual async Task<MediaResult> ListMedia(string messageSid, MediaListRequest options)
+        public virtual async Task<MediaResult> ListMediaAsync(string messageSid, MediaListRequest options)
         {
-            return await ListMessageMedia(messageSid, options);
+            return await ListMessageMediaAsync(messageSid, options);
         }
 
         /// <summary>
         /// List all media for a particular message
         /// </summary>
-        public virtual async Task<MediaResult> ListMessageMedia(string messageSid)
+        public virtual async Task<MediaResult> ListMessageMediaAsync(string messageSid)
         {
-            return await ListMessageMedia(messageSid, new MediaListRequest());
+            return await ListMessageMediaAsync(messageSid, new MediaListRequest());
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Twilio
         /// </summary>
         /// <param name="messageSid">The message sid to filter on</param>
         /// <param name="options"></param>
-        public virtual async Task<MediaResult> ListMessageMedia(string messageSid, MediaListRequest options)
+        public virtual async Task<MediaResult> ListMessageMediaAsync(string messageSid, MediaListRequest options)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Messages/{MessageSid}/Media.json";
@@ -67,7 +67,7 @@ namespace Twilio
         /// Media Instance resource.
         /// </summary>
         /// <param name="mediaSid">The Sid of the media to delete</param>
-        public virtual async Task<DeleteStatus> DeleteMessageMedia(string messageSid, string mediaSid)
+        public virtual async Task<DeleteStatus> DeleteMessageMediaAsync(string messageSid, string mediaSid)
         {
             var request = new RestRequest(Method.DELETE);
             request.Resource = "Accounts/{AccountSid}/Messages/{MessageSid}/Media/{MediaSid}.json";
