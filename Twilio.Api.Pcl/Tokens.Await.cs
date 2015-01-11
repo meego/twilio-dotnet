@@ -10,7 +10,7 @@ namespace Twilio
         /// Create a new token
         /// </summary>
         /// <param name="ttl">The friendly name to name the application</param>
-        public virtual async Task<Token> CreateToken(int ttl)
+        public virtual async Task<Token> CreateTokenAsync(int ttl)
         {
             var request = new RestRequest(Method.POST);
             //Require.Argument("Ttl", ttl);
@@ -23,7 +23,7 @@ namespace Twilio
         /// <summary>
         /// Create a new token
         /// </summary>
-        public virtual async Task<Token> CreateToken()
+        public virtual async Task<Token> CreateTokenAsync()
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/Tokens.json";
