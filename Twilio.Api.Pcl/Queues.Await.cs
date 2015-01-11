@@ -10,7 +10,7 @@ namespace Twilio
         /// Return a list of all Queue resources
         /// </summary>
         /// <returns></returns>
-        public virtual async Task<QueueResult> ListQueues()
+        public virtual async Task<QueueResult> ListQueuesAsync()
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Queues.json";
@@ -23,7 +23,7 @@ namespace Twilio
         /// </summary>
         /// <param name="friendlyName">The name of the Queue</param>
         /// <returns></returns>
-        public virtual async Task<Queue> CreateQueue(string friendlyName)
+        public virtual async Task<Queue> CreateQueueAsync(string friendlyName)
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/Queues.json";
@@ -39,7 +39,7 @@ namespace Twilio
         /// <param name="friendlyName">The name of the Queue</param>
         /// <param name="maxSize">The maximum number of calls allowed in the queue</param>
         /// <returns></returns>
-        public virtual async Task<Queue> CreateQueue(string friendlyName, int maxSize)
+        public virtual async Task<Queue> CreateQueueAsync(string friendlyName, int maxSize)
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/Queues.json";
@@ -55,7 +55,7 @@ namespace Twilio
         /// </summary>
         /// <param name="queueSid">The Sid of the Queue to locate</param>
         /// <returns></returns>
-        public virtual async Task<Queue> GetQueue(string queueSid)
+        public virtual async Task<Queue> GetQueueAsync(string queueSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Queues/{QueueSid}.json";
@@ -72,7 +72,7 @@ namespace Twilio
         /// <param name="friendlyName">The name of the Queue</param>
         /// <param name="maxSize">The maximum number of calls allowed in the queue</param>
         /// <returns></returns>
-        public virtual async Task<Queue> UpdateQueue(string queueSid, string friendlyName, int maxSize)
+        public virtual async Task<Queue> UpdateQueueAsync(string queueSid, string friendlyName, int maxSize)
         {
             Require.Argument("QueueSid", queueSid);
 
@@ -91,7 +91,7 @@ namespace Twilio
         /// </summary>
         /// <param name="queueSid">The Sid of the Queue to delete</param>
         /// <returns></returns>
-        public virtual async Task<DeleteStatus> DeleteQueue(string queueSid)
+        public virtual async Task<DeleteStatus> DeleteQueueAsync(string queueSid)
         {
             Require.Argument("QueueSid", queueSid);
             var request = new RestRequest(Method.DELETE);
@@ -108,7 +108,7 @@ namespace Twilio
         /// </summary>
         /// <param name="queueSid">The Sid of the Queue to locate</param>
         /// <returns></returns>
-        public virtual async Task<QueueMemberResult> ListQueueMembers(string queueSid)
+        public virtual async Task<QueueMemberResult> ListQueueMembersAsync(string queueSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Queues/{QueueSid}/Members.json";
@@ -123,7 +123,7 @@ namespace Twilio
         /// </summary>
         /// <param name="queueSid">The Sid of the Queue to locate</param>
         /// <returns></returns>
-        public virtual async Task<QueueMember> GetFirstQueueMember(string queueSid)
+        public virtual async Task<QueueMember> GetFirstQueueMemberAsync(string queueSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Queues/{QueueSid}/Members/Front.json";
@@ -140,7 +140,7 @@ namespace Twilio
         /// <param name="queueSid">The Sid of the Queue to search</param>
         /// <param name="callSid">The Sid of the Call to locate</param>
         /// <returns></returns>
-        public virtual async Task<QueueMember> GetQueueMember(string queueSid, string callSid)
+        public virtual async Task<QueueMember> GetQueueMemberAsync(string queueSid, string callSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Queues/{QueueSid}/Members/{CallSid}.json";
@@ -157,9 +157,9 @@ namespace Twilio
         /// <param name="queueSid">The Sid of the Queue to locate</param>
         /// <param name="url">A Url containing TwiML intructions to execute when the call is dequeued</param>
         /// <returns></returns>
-        public virtual async Task<DequeueStatus> DequeueFirstQueueMember(string queueSid, string url)
+        public virtual async Task<DequeueStatus> DequeueFirstQueueMemberAsync(string queueSid, string url)
         {
-            return await DequeueFirstQueueMember(queueSid, url, string.Empty);
+            return await DequeueFirstQueueMemberAsync(queueSid, url, string.Empty);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace Twilio
         /// <param name="url">A Url containing TwiML intructions to execute when the call is dequeued</param>
         /// <param name="method">The method to use to request the Url</param>
         /// <returns></returns>
-        public virtual async Task<DequeueStatus> DequeueFirstQueueMember(string queueSid, string url, string method)
+        public virtual async Task<DequeueStatus> DequeueFirstQueueMemberAsync(string queueSid, string url, string method)
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/Queues/{QueueSid}/Members/Front.json";
@@ -189,9 +189,9 @@ namespace Twilio
         /// <param name="callSid">The Sid of the Caller to dequeue</param>
         /// <param name="url">A Url containing TwiML intructions to execute when the call is dequeued</param>
         /// <returns></returns>
-        public virtual async Task<DequeueStatus> DequeueQueueMember(string queueSid, string callSid, string url)
+        public virtual async Task<DequeueStatus> DequeueQueueMemberAsync(string queueSid, string callSid, string url)
         {
-            return await DequeueQueueMember(queueSid, callSid, url, string.Empty);
+            return await DequeueQueueMemberAsync(queueSid, callSid, url, string.Empty);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace Twilio
         /// <param name="url">A Url containing TwiML intructions to execute when the call is dequeued</param>
         /// <param name="method">The method to use to request the Url</param>
         /// <returns></returns>
-        public virtual async Task<DequeueStatus> DequeueQueueMember(string queueSid, string callSid, string url, string method)
+        public virtual async Task<DequeueStatus> DequeueQueueMemberAsync(string queueSid, string callSid, string url, string method)
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/Queues/{QueueSid}/Members/{CallSid}.json";

@@ -34,7 +34,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.GetQueue(QUEUE_SID);
+            await client.GetQueueAsync(QUEUE_SID);
 
             mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -59,7 +59,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListQueues();
+            await client.ListQueuesAsync();
 
             mockClient.Verify(trc => trc.Execute<QueueResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -82,7 +82,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
-            await client.CreateQueue(friendlyName);
+            await client.CreateQueueAsync(friendlyName);
 
             mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -108,7 +108,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
             var friendlyName = Utilities.MakeRandomFriendlyName();
-            await client.UpdateQueue(QUEUE_SID, friendlyName, 10);
+            await client.UpdateQueueAsync(QUEUE_SID, friendlyName, 10);
 
             mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -139,7 +139,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.DeleteQueue(QUEUE_SID);
+            await client.DeleteQueueAsync(QUEUE_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
