@@ -10,7 +10,7 @@ namespace Twilio
         /// Retrieve the details for an incoming phone number
         /// </summary>
         /// <param name="incomingPhoneNumberSid">The Sid of the number to retrieve</param>
-        public virtual async Task<IncomingPhoneNumber> GetIncomingPhoneNumber(string incomingPhoneNumberSid)
+        public virtual async Task<IncomingPhoneNumber> GetIncomingPhoneNumberAsync(string incomingPhoneNumberSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.json";
@@ -23,9 +23,9 @@ namespace Twilio
         /// <summary>
         /// List all incoming phone numbers on current account
         /// </summary>
-        public virtual async Task<IncomingPhoneNumberResult> ListIncomingPhoneNumbers()
+        public virtual async Task<IncomingPhoneNumberResult> ListIncomingPhoneNumbersAsync()
         {
-            return await ListIncomingPhoneNumbers(null, null, null, null);
+            return await ListIncomingPhoneNumbersAsync(null, null, null, null);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Twilio
         /// <param name="friendlyName">Optional friendly name to match</param>
         /// <param name="pageNumber">Page number to start retrieving results from</param>
         /// <param name="count">How many results to return</param>
-        public virtual async Task<IncomingPhoneNumberResult> ListIncomingPhoneNumbers(string phoneNumber, string friendlyName, int? pageNumber, int? count)
+        public virtual async Task<IncomingPhoneNumberResult> ListIncomingPhoneNumbersAsync(string phoneNumber, string friendlyName, int? pageNumber, int? count)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/IncomingPhoneNumbers.json";
@@ -52,9 +52,9 @@ namespace Twilio
         /// <summary>
         /// List all incoming local phone numbers on current account
         /// </summary>
-        public virtual async Task<IncomingPhoneNumberResult> ListIncomingLocalPhoneNumbers()
+        public virtual async Task<IncomingPhoneNumberResult> ListIncomingLocalPhoneNumbersAsync()
         {
-            return await ListIncomingMobilePhoneNumbers(null, null, null, null);
+            return await ListIncomingMobilePhoneNumbersAsync(null, null, null, null);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Twilio
         /// <param name="friendlyName">Optional friendly name to match</param>
         /// <param name="pageNumber">Page number to start retrieving results from</param>
         /// <param name="count">How many results to return</param>
-        public virtual async Task<IncomingPhoneNumberResult> ListIncomingLocalPhoneNumbers(string phoneNumber, string friendlyName, int? pageNumber, int? count)
+        public virtual async Task<IncomingPhoneNumberResult> ListIncomingLocalPhoneNumbersAsync(string phoneNumber, string friendlyName, int? pageNumber, int? count)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/IncomingPhoneNumbers/Local.json";
@@ -81,9 +81,9 @@ namespace Twilio
         /// <summary>
         /// List all incoming toll free phone numbers on current account
         /// </summary>
-        public virtual async Task<IncomingPhoneNumberResult> ListIncomingTollFreePhoneNumbers()
+        public virtual async Task<IncomingPhoneNumberResult> ListIncomingTollFreePhoneNumbersAsync()
         {
-            return await ListIncomingMobilePhoneNumbers(null, null, null, null);
+            return await ListIncomingMobilePhoneNumbersAsync(null, null, null, null);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Twilio
         /// <param name="friendlyName">Optional friendly name to match</param>
         /// <param name="pageNumber">Page number to start retrieving results from</param>
         /// <param name="count">How many results to return</param>
-        public virtual async Task<IncomingPhoneNumberResult> ListIncomingTollFreePhoneNumbers(string phoneNumber, string friendlyName, int? pageNumber, int? count)
+        public virtual async Task<IncomingPhoneNumberResult> ListIncomingTollFreePhoneNumbersAsync(string phoneNumber, string friendlyName, int? pageNumber, int? count)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/IncomingPhoneNumbers/TollFree.json";
@@ -110,9 +110,9 @@ namespace Twilio
         /// <summary>
         /// List all incoming mobile phone numbers on current account
         /// </summary>
-        public virtual async Task<IncomingPhoneNumberResult> ListIncomingMobilePhoneNumbers()
+        public virtual async Task<IncomingPhoneNumberResult> ListIncomingMobilePhoneNumbersAsync()
         {
-            return await ListIncomingMobilePhoneNumbers(null, null, null, null);
+            return await ListIncomingMobilePhoneNumbersAsync(null, null, null, null);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace Twilio
         /// <param name="friendlyName">Optional friendly name to match</param>
         /// <param name="pageNumber">Page number to start retrieving results from</param>
         /// <param name="count">How many results to return</param>
-        public virtual async Task<IncomingPhoneNumberResult> ListIncomingMobilePhoneNumbers(string phoneNumber, string friendlyName, int? pageNumber, int? count)
+        public virtual async Task<IncomingPhoneNumberResult> ListIncomingMobilePhoneNumbersAsync(string phoneNumber, string friendlyName, int? pageNumber, int? count)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/IncomingPhoneNumbers/Mobile.json";
@@ -140,7 +140,7 @@ namespace Twilio
         /// Purchase/provision a phone number
         /// </summary>
         /// <param name="options">Optional parameters to use when purchasing number</param>
-        public virtual async Task<IncomingPhoneNumber> AddIncomingPhoneNumber(PhoneNumberOptions options)
+        public virtual async Task<IncomingPhoneNumber> AddIncomingPhoneNumberAsync(PhoneNumberOptions options)
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/IncomingPhoneNumbers.json";
@@ -164,7 +164,7 @@ namespace Twilio
         /// Purchase/provision a local phone number
         /// </summary>
         /// <param name="options">Optional parameters to use when purchasing number</param>
-        public virtual async Task<IncomingPhoneNumber> AddIncomingLocalPhoneNumber(PhoneNumberOptions options)
+        public virtual async Task<IncomingPhoneNumber> AddIncomingLocalPhoneNumberAsync(PhoneNumberOptions options)
         {
             Require.Argument("PhoneNumber", options.PhoneNumber);
 
@@ -184,7 +184,7 @@ namespace Twilio
         /// Purchase/provision a toll free phone number
         /// </summary>
         /// <param name="options">Optional parameters to use when purchasing number</param>
-        public virtual async Task<IncomingPhoneNumber> AddIncomingTollFreePhoneNumber(PhoneNumberOptions options)
+        public virtual async Task<IncomingPhoneNumber> AddIncomingTollFreePhoneNumberAsync(PhoneNumberOptions options)
         {
             Require.Argument("PhoneNumber", options.PhoneNumber);
 
@@ -205,7 +205,7 @@ namespace Twilio
         /// </summary>
         /// <param name="incomingPhoneNumberSid">The Sid of the phone number to update</param>
         /// <param name="options">Which settings to update. Only properties with values set will be updated.</param>
-        public virtual async Task<IncomingPhoneNumber> UpdateIncomingPhoneNumber(string incomingPhoneNumberSid, PhoneNumberOptions options)
+        public virtual async Task<IncomingPhoneNumber> UpdateIncomingPhoneNumberAsync(string incomingPhoneNumberSid, PhoneNumberOptions options)
         {
             Require.Argument("IncomingPhoneNumberSid", incomingPhoneNumberSid);
 
@@ -225,7 +225,7 @@ namespace Twilio
         /// <param name="incomingPhoneNumberSid">The Sid of the phone number to move</param>
         /// <param name="sourceAccountSid">The AccountSid of the current owning account to move the phone number from</param>
         /// <param name="targetAccountSid">The AccountSid of the account to move the phone number to</param>
-        public virtual async Task<IncomingPhoneNumber> TransferIncomingPhoneNumber(string incomingPhoneNumberSid, string sourceAccountSid, string targetAccountSid)
+        public virtual async Task<IncomingPhoneNumber> TransferIncomingPhoneNumberAsync(string incomingPhoneNumberSid, string sourceAccountSid, string targetAccountSid)
         {
             var request = new RestRequest(Method.POST);
             request.Resource = "Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.json";
@@ -241,7 +241,7 @@ namespace Twilio
         /// Remove (deprovision) a phone number from the current account
         /// </summary>
         /// <param name="incomingPhoneNumberSid">The Sid of the number to remove</param>
-        public virtual async Task<DeleteStatus> DeleteIncomingPhoneNumber(string incomingPhoneNumberSid)
+        public virtual async Task<DeleteStatus> DeleteIncomingPhoneNumberAsync(string incomingPhoneNumberSid)
         {
             Require.Argument("IncomingPhoneNumberSid", incomingPhoneNumberSid);
             var request = new RestRequest(Method.DELETE);

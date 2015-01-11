@@ -44,7 +44,7 @@ namespace Twilio.Api.Tests
             options.SmsMethod = "GET";
             options.SmsFallbackUrl = "http://example.com/sms";
             options.SmsFallbackMethod = "GET";
-            await client.AddIncomingPhoneNumber(options);
+            await client.AddIncomingPhoneNumberAsync(options);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -103,7 +103,7 @@ namespace Twilio.Api.Tests
             options.SmsMethod = "GET";
             options.SmsFallbackUrl = "http://example.com/sms";
             options.SmsFallbackMethod = "GET";
-            await client.AddIncomingPhoneNumber(options);
+            await client.AddIncomingPhoneNumberAsync(options);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -152,7 +152,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListIncomingPhoneNumbers();
+            await client.ListIncomingPhoneNumbersAsync();
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -174,7 +174,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListIncomingPhoneNumbers("+15005550006", null, null, null);
+            await client.ListIncomingPhoneNumbersAsync("+15005550006", null, null, null);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumberResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -199,7 +199,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.GetIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID);
+            await client.GetIncomingPhoneNumberAsync(INCOMING_PHONE_NUMBER_SID);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -225,7 +225,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
             PhoneNumberOptions options = new PhoneNumberOptions();
-            await client.UpdateIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID, options);
+            await client.UpdateIncomingPhoneNumberAsync(INCOMING_PHONE_NUMBER_SID, options);
 
             mockClient.Verify(trc => trc.Execute<IncomingPhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -250,7 +250,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.DeleteIncomingPhoneNumber(INCOMING_PHONE_NUMBER_SID);
+            await client.DeleteIncomingPhoneNumberAsync(INCOMING_PHONE_NUMBER_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
