@@ -34,7 +34,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.GetNotification(NOTIFICATION_SID);
+            await client.GetNotificationAsync(NOTIFICATION_SID);
 
             mockClient.Verify(trc => trc.Execute<Notification>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -59,7 +59,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListNotifications();
+            await client.ListNotificationsAsync();
 
             mockClient.Verify(trc => trc.Execute<NotificationResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -81,7 +81,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListNotifications(0, null, null, null);
+            await client.ListNotificationsAsync(0, null, null, null);
 
             mockClient.Verify(trc => trc.Execute<NotificationResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -106,7 +106,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.DeleteNotification(NOTIFICATION_SID);
+            await client.DeleteNotificationAsync(NOTIFICATION_SID);
 
             mockClient.Verify(trc => trc.Execute(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
