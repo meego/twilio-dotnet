@@ -10,9 +10,9 @@ namespace Twilio
         /// Returns a set of Transcriptions that includes paging information.
         /// Makes a GET request to the Transcriptions List resource.
         /// </summary>
-        public virtual async Task<TranscriptionResult> ListTranscriptions()
+        public virtual async Task<TranscriptionResult> ListTranscriptionsAsync()
         {
-            return await ListTranscriptions(null, null);
+            return await ListTranscriptionsAsync(null, null);
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Twilio
         /// </summary>
         /// <param name="pageNumber">The page to start retrieving results from</param>
         /// <param name="count">The number of results to retrieve</param>
-        public virtual async Task<TranscriptionResult> ListTranscriptions(int? pageNumber, int? count)
+        public virtual async Task<TranscriptionResult> ListTranscriptionsAsync(int? pageNumber, int? count)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Transcriptions.json";
@@ -38,7 +38,7 @@ namespace Twilio
         /// <param name="recordingSid">The Sid of the recording to retrieve transcriptions for</param>
         /// <param name="pageNumber">The page to start retrieving results from</param>
         /// <param name="count">The number of results to retrieve</param>
-        public virtual async Task<TranscriptionResult> ListTranscriptions(string recordingSid, int? pageNumber, int? count)
+        public virtual async Task<TranscriptionResult> ListTranscriptionsAsync(string recordingSid, int? pageNumber, int? count)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions.json";
@@ -55,7 +55,7 @@ namespace Twilio
         /// Makes a GET request to a Transcription Instance resource.
         /// </summary>
         /// <param name="transcriptionSid">The Sid of the transcription to retrieve</param>
-        public virtual async Task<Transcription> GetTranscription(string transcriptionSid)
+        public virtual async Task<Transcription> GetTranscriptionAsync(string transcriptionSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.json";
@@ -69,7 +69,7 @@ namespace Twilio
         /// Makes a GET request to a Transcription Instance resource.
         /// </summary>
         /// <param name="transcriptionSid">The Sid of the transcription to retrieve</param>
-        public virtual async Task<string> GetTranscriptionText(string transcriptionSid)
+        public virtual async Task<string> GetTranscriptionTextAsync(string transcriptionSid)
         {
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.txt.json";
@@ -82,7 +82,7 @@ namespace Twilio
         /// <summary>
         /// Delete the specified transcription instance. Makes a DELETE request to a Transcription Instance resource.
         /// </summary>
-        public virtual async Task<DeleteStatus> DeleteTranscription(string transcriptionSid)
+        public virtual async Task<DeleteStatus> DeleteTranscriptionAsync(string transcriptionSid)
         {
             var request = new RestRequest(Method.DELETE);
             request.Resource = "Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.json";
