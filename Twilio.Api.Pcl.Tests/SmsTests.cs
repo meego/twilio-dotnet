@@ -37,7 +37,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
             var body = ".NET Unit Test Message";
-            await client.SendSmsMessage(FROM, TO, body);
+            await client.SendSmsMessageAsync(FROM, TO, body);
 
             mockClient.Verify(trc => trc.Execute<SMSMessage>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -70,7 +70,7 @@ namespace Twilio.Api.Tests
 
             var client = mockClient.Object;
             var body = "رسالة اختبار وحدة.NET";
-            await client.SendSmsMessage(FROM, TO, body);
+            await client.SendSmsMessageAsync(FROM, TO, body);
 
             mockClient.Verify(trc => trc.Execute<SMSMessage>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -101,7 +101,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListSmsMessages();
+            await client.ListSmsMessagesAsync();
 
             mockClient.Verify(trc => trc.Execute<SmsMessageResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
@@ -123,7 +123,7 @@ namespace Twilio.Api.Tests
                 .Returns(tcs.Task);
 
             var client = mockClient.Object;
-            await client.ListSmsMessages(TO, FROM, null, null, null);
+            await client.ListSmsMessagesAsync(TO, FROM, null, null, null);
 
             mockClient.Verify(trc => trc.Execute<SmsMessageResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
