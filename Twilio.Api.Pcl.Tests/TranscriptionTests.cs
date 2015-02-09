@@ -86,16 +86,16 @@ namespace Twilio.Api.Tests
 
             mockClient.Verify(trc => trc.Execute<TranscriptionResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Transcriptions.json", savedRequest.Resource);
+            Assert.AreEqual("Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions.json", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(3, savedRequest.Parameters.Count);
             var recordingSidParam = savedRequest.Parameters.Find(x => x.Name == "RecordingSid");
             Assert.IsNotNull(recordingSidParam);
             Assert.AreEqual(recordingSid, recordingSidParam.Value);
-            var pageNumberParam = savedRequest.Parameters.Find(x => x.Name == "PageNumber");
+            var pageNumberParam = savedRequest.Parameters.Find(x => x.Name == "Page");
             Assert.IsNotNull(pageNumberParam);
             Assert.AreEqual(0, pageNumberParam.Value);
-            var countParam = savedRequest.Parameters.Find(x => x.Name == "Count");
+            var countParam = savedRequest.Parameters.Find(x => x.Name == "PageSize");
             Assert.IsNotNull(countParam);
             Assert.AreEqual(10, countParam.Value);
         }
