@@ -86,15 +86,19 @@ namespace Twilio.Api.Tests
             
             await client.UpdateConnectAppAsync(CONNECTAPP_SID, friendlyName, authorizeUrl, deauthorizeUrl, "GET", "", "", "", "");
 
-            mockClient.Verify(trc => trc.Execute<Call>(It.IsAny<RestRequest>()), Times.Once);
+            mockClient.Verify(trc => trc.Execute<ConnectApp>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Calls/{CallSid}.json", savedRequest.Resource);
+            Assert.AreEqual("Accounts/{AccountSid}/ConnectApps/{ConnectAppSid}.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
-            Assert.AreEqual(3, savedRequest.Parameters.Count);
+            Assert.AreEqual(5, savedRequest.Parameters.Count);
 
             var connectAppSidParam = savedRequest.Parameters.Find(x => x.Name == "ConnectAppSid");
             Assert.IsNotNull(connectAppSidParam);
             Assert.AreEqual(CONNECTAPP_SID, connectAppSidParam.Value);
+
+            var friendlyNameParam = savedRequest.Parameters.Find(x => x.Name == "FriendlyName");
+            Assert.IsNotNull(friendlyNameParam);
+            Assert.AreEqual(friendlyName, friendlyNameParam.Value);
 
             var authUrlParam = savedRequest.Parameters.Find(x => x.Name == "AuthorizeRedirectUrl");
             Assert.IsNotNull(authUrlParam);
@@ -102,7 +106,7 @@ namespace Twilio.Api.Tests
 
             var deauthUrlParam = savedRequest.Parameters.Find(x => x.Name == "DeauthorizeCallbackUrl");
             Assert.IsNotNull(deauthUrlParam);
-            Assert.AreEqual(authorizeUrl, deauthUrlParam.Value);
+            Assert.AreEqual(deauthorizeUrl, deauthUrlParam.Value);
 
             var methodParam = savedRequest.Parameters.Find(x => x.Name == "DeauthorizeCallbackMethod");
             Assert.IsNotNull(methodParam);
