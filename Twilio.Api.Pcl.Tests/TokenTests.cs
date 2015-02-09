@@ -36,7 +36,7 @@ namespace Twilio.Api.Tests
             var client = mockClient.Object;
             await client.CreateTokenAsync();
 
-            mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
+            mockClient.Verify(trc => trc.Execute<Token>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Tokens.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
@@ -58,7 +58,7 @@ namespace Twilio.Api.Tests
             var ttl = 30;
             await client.CreateTokenAsync(ttl);
 
-            mockClient.Verify(trc => trc.Execute<Queue>(It.IsAny<RestRequest>()), Times.Once);
+            mockClient.Verify(trc => trc.Execute<Token>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Tokens.json", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
