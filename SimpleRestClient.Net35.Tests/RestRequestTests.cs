@@ -16,7 +16,7 @@ namespace SimpleRestClient.Tests
     public class RestRequestTests
     {
         RestClient client;
-        string BASE_URL = "http://twilio.com";
+        string BASE_URL = "http://example.com";
 
         public RestRequestTests()
         {

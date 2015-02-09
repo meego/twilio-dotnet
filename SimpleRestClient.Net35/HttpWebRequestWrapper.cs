@@ -110,6 +110,7 @@ namespace Simple
 
                 webrequest.ContentLength = bytes.Length;
 
+                //TODO: Fails without network connection / DNS resolution fails
                 var requestStream = webrequest.GetRequestStream();
                 requestStream.Write(bytes, 0, bytes.Length);
             }
