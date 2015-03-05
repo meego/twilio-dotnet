@@ -125,10 +125,11 @@
     <Time Format="yyyyMMdd">
       <Output TaskParameter="FormattedTime" PropertyName="TBuildDate" />
     </Time>
-    <Version BuildType="Automatic" RevisionType="BuildIncrement" VersionFile="Properties\version.taskrouter.txt">
+    <Version BuildType="Automatic" RevisionType="Automatic" VersionFile="Properties\version.taskrouter.txt">
       <Output TaskParameter="Major" PropertyName="VMajor" />
       <Output TaskParameter="Minor" PropertyName="VMinor" />
       <Output TaskParameter="Build" PropertyName="VBuild" />
+      <Output TaskParameter="Revision" PropertyName="VRevision" />
     </Version>
     <AssemblyInfo CodeLanguage="CS" OutputFile="Properties\VersionInfo.cs" AssemblyVersion="$(VMajor).$(VMinor).$(VBuild).$(VRevision)" AssemblyFileVersion="$(VMajor).$(VMinor).$(VBuild).$(VRevision)" AssemblyInformationalVersion="$(VMajor).$(VMinor).$(TBuildDate).$(VRevision)" />
   </Target>
