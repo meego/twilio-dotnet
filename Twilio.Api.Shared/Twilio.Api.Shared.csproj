@@ -110,12 +110,14 @@
     <Compile Include="Model\IpAddress.cs" />
     <Compile Include="Model\IpAddressResult.cs" />
     <Compile Include="Model\Issue.cs" />
+    <Compile Include="Model\ListMetadata.cs" />
     <Compile Include="Model\Media.cs" />
     <Compile Include="Model\MediaListRequest.cs" />
     <Compile Include="Model\MediaResult.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\MessageListRequest.cs" />
     <Compile Include="Model\MessageResult.cs" />
+    <Compile Include="Model\MetadataListBase.cs" />
     <Compile Include="Model\Notification.cs" />
     <Compile Include="Model\NotificationResult.cs" />
     <Compile Include="Model\OutgoingCallerId.cs" />

@@ -46,6 +46,9 @@
     <Compile Include="Capability\TaskRouterCapability.cs" />
     <Compile Include="Model\Activity.cs" />
     <Compile Include="Model\ActivityResult.cs" />
+    <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\EventListResult.cs" />
+    <Compile Include="Model\EventResult.cs" />
     <Compile Include="Model\Reservation.cs" />
     <Compile Include="Model\ReservationResult.cs" />
     <Compile Include="Model\StatisticsRequest.cs" />

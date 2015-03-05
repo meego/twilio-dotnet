@@ -6,7 +6,7 @@ namespace Twilio.TaskRouter
     /// <summary>
     /// Twilio API call result with paging information.
     /// </summary>
-    public class WorkerResult : TwilioListBase
+    public class WorkerResult : MetadataListBase
     {
         /// <summary>
         /// Gets or sets the workers.
