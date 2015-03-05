@@ -7,8 +7,8 @@
     <ProjectGuid>{2B799386-C484-4F3F-A35D-E2E2752ECAB1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Twilio.Api.TaskRouter.Net35</RootNamespace>
-    <AssemblyName>Twilio.Api.TaskRouter.Net35</AssemblyName>
+    <RootNamespace>Twilio.TaskRouter</RootNamespace>
+    <AssemblyName>Twilio.Api.TaskRouter</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

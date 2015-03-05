@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("API wrapper for the Twilio REST API")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Twilio")]
-[assembly: AssemblyProduct("Twilio.Api.Pcl")]
+[assembly: AssemblyProduct("Twilio.Api")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: NeutralResourcesLanguage("en")]
 
