@@ -101,11 +101,11 @@ REM Create Packages
 REM mkdir Build
 
 FOR /F "tokens=* delims=" %%x in (version.txt) DO SET ver=%%x
-cmd /c %nuget% pack "Twilio.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio -o download
+cmd /c %nuget% pack "Twilio.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio -o p
 if not "%errorlevel%"=="0" goto packagefailure
 
 FOR /F "tokens=* delims=" %%x in (version.taskrouter.txt) DO SET ver=%%x
-cmd /c %nuget% pack "Twilio.TaskRouter.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio.taskrouter -o download
+cmd /c %nuget% pack "Twilio.TaskRouter.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio.taskrouter -o p
 if not "%errorlevel%"=="0" goto packagefailure
 
 
