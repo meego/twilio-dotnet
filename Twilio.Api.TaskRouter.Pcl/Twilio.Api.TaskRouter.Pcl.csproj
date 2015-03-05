@@ -49,19 +49,19 @@
       <Link>Capability\%25%28FileName%29</Link>
     </Compile>
     <Compile Include="Activities.cs" />
-    <Compile Include="Core.cs" />
-    <Compile Include="Events.cs" />
+    <Compile Include="Core.Await.cs" />
+    <Compile Include="Events.Await.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reservations.cs" />
-    <Compile Include="TaskQueues.cs" />
-    <Compile Include="TaskQueuesStatistics.cs" />
-    <Compile Include="Tasks.cs" />
-    <Compile Include="Workers.cs" />
-    <Compile Include="WorkersStatistics.cs" />
-    <Compile Include="Workflows.cs" />
-    <Compile Include="WorkflowsStatistics.cs" />
-    <Compile Include="Workspaces.cs" />
-    <Compile Include="WorkspacesStatistics.cs" />
+    <Compile Include="Reservations.Await.cs" />
+    <Compile Include="TaskQueues.Await.cs" />
+    <Compile Include="TaskQueuesStatistics.Await.cs" />
+    <Compile Include="Tasks.Await.cs" />
+    <Compile Include="Workers.Await.cs" />
+    <Compile Include="WorkersStatistics.Await.cs" />
+    <Compile Include="Workflows.Await.cs" />
+    <Compile Include="WorkflowsStatistics.Await.cs" />
+    <Compile Include="Workspaces.Await.cs" />
+    <Compile Include="WorkspacesStatistics.Await.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -69,13 +69,19 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="JWT.Portable">
-      <HintPath>..\..\jwt\JWT.Portable\bin\Debug\JWT.Portable.dll</HintPath>
+      <HintPath>..\packages\JWT.Portable.1.0.1-beta\lib\portable-net403+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\JWT.Portable.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks.Extensions">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLCrypto">
+      <HintPath>..\packages\PCLCrypto.0.5.2.14286\lib\portable-net40+sl50+win+wpa81+wp80\PCLCrypto.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLCrypto.Abstractions">
+      <HintPath>..\packages\PCLCrypto.0.5.2.14286\lib\portable-net40+sl50+win+wpa81+wp80\PCLCrypto.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System.IO">
       <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\portable-net40+sl5+win8+wp8+wpa81\System.IO.dll</HintPath>
@@ -85,6 +91,9 @@
     </Reference>
     <Reference Include="System.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\portable-net40+sl5+win8+wp8+wpa81\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Validation">
+      <HintPath>..\packages\Validation.2.0.5.14286\lib\portable-windows8+net40+sl5+wp8+wpa81+wp81+MonoAndroid+MonoTouch\Validation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

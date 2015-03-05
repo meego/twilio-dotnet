@@ -15,6 +15,7 @@
         <tags>REST SMS voice telephony phone twilio twiml ASPNETWEBPAGES</tags>
         <dependencies>
             <dependency id="Twilio" version="4.0.1-beta" />
+            <dependency id="JWT.Portable" version="1.0.0-beta" />
         </dependencies>
     </metadata>
 </package>

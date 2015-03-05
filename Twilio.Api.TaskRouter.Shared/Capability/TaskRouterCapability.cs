@@ -8,8 +8,7 @@ namespace Twilio.TaskRouter
 {
     public class TaskRouterCapability
     {
-        //const string taskRouterUrlBase = "https://taskrouter.twilio.com";
-        const string taskRouterUrlBase = "https://wds.twilio.com";
+        const string taskRouterUrlBase = "https://taskrouter.twilio.com";
         const string taskRouterVersion = "v1";
         const string taskRouterEventsUrlBase = "https://event-bridge.twilio.com/v1/wschannels";
 

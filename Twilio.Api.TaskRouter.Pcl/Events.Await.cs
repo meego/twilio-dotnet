@@ -13,7 +13,7 @@ namespace Twilio.TaskRouter
         /// </summary>
         /// <param name="workspaceSid">Workspace sid.</param>
         /// <param name="eventSid">Event sid.</param>
-        public virtual async Task<Event> GetEvent(string workspaceSid, string eventSid)
+        public virtual async Task<Event> GetEventAsync(string workspaceSid, string eventSid)
         {
             //Require.Argument("WorkspaceSid", workspaceSid);
             //Require.Argument("EventSid", eventSid);
@@ -31,9 +31,9 @@ namespace Twilio.TaskRouter
         /// Lists the events.
         /// </summary>
         /// <param name="workspaceSid">Workspace sid.</param>
-        public virtual async Task<EventResult> ListEvents(string workspaceSid)
+        public virtual async Task<EventResult> ListEventsAsync(string workspaceSid)
         {
-            return await ListEvents(workspaceSid, new EventListRequest());
+            return await ListEventsAsync(workspaceSid, new EventListRequest());
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Twilio.TaskRouter
         /// </summary>
         /// <param name="workspaceSid">Workspace sid.</param>
         /// <param name="options">Options.</param>
-        public virtual async Task<EventResult> ListEvents(string workspaceSid, EventListRequest options)
+        public virtual async Task<EventResult> ListEventsAsync(string workspaceSid, EventListRequest options)
         {
             Require.Argument("WorkspaceSid", workspaceSid);
 
