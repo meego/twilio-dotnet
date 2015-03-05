@@ -20,7 +20,7 @@ namespace Twilio.TaskRouter.Tests
             cap = new TaskRouterCapability("AC123", "foobar", "WS456", "WK789");
         }
 
-        [Test]
+        //[Test]
         public void ShouldGenerateToken()
         {
             var token = cap.GenerateToken();
@@ -36,7 +36,7 @@ namespace Twilio.TaskRouter.Tests
             Assert.AreEqual("WK789", payload["friendly_name"]);
         }
 
-        [Test]
+        //[Test]
         public void ShouldGenerateTokenWithDefaultTtl()
         {
             var token = cap.GenerateToken();
@@ -48,7 +48,7 @@ namespace Twilio.TaskRouter.Tests
             Assert.AreEqual(expiration, payload["exp"]);
         }
 
-        [Test]
+        //[Test]
         public void ShouldGenerateTokenWithSpecifiedTtl()
         {
             var token = cap.GenerateToken(10000);
@@ -60,7 +60,7 @@ namespace Twilio.TaskRouter.Tests
             Assert.AreEqual(expiration, payload["exp"]);
         }
 
-        [Test]
+        //[Test]
         public void ShouldAllowWebSockets()
         {
             var token = cap.GenerateToken();
@@ -90,7 +90,7 @@ namespace Twilio.TaskRouter.Tests
             Assert.IsEmpty(postFilter);
         }
 
-        [Test]
+        //[Test]
         public void ShouldAllowWorkerActivityUpdates()
         {
             cap.AllowWorkerActivityUpdates();
@@ -116,7 +116,7 @@ namespace Twilio.TaskRouter.Tests
             Assert.IsTrue((bool)required["required"]);
         }
 
-        [Test]
+        //[Test]
         public void ShouldAllowWorkerFetchAttributes()
         {
             cap.AllowWorkerFetchAttributes();
@@ -140,7 +140,7 @@ namespace Twilio.TaskRouter.Tests
             Assert.IsEmpty(postFilter);
         }
 
-        [Test]
+        //[Test]
         public void ShouldAllowTaskReservationUpdates()
         {
             cap.AllowTaskReservationUpdates();

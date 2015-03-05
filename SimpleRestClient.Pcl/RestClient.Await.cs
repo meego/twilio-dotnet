@@ -23,19 +23,20 @@ namespace Simple
         /// <summary>
         /// Singleton instance of HTTP Client.  This allows for reusing the client across multiple requests.
         /// </summary>
-        //private HttpClient Instance { 
-        //    get 
-        //    {
-        //        if (_instance == null)
-        //        {
-        //            if (this.MessageHandler != null)
-        //                _instance = new HttpClient(this.MessageHandler);
-        //            else
-        //                _instance = new HttpClient();
-        //        }
-        //        return _instance;
-        //    }
-        //}
+        private HttpClient Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    if (this.MessageHandler != null)
+                        _instance = new HttpClient(this.MessageHandler);
+                    else
+                        _instance = new HttpClient();
+                }
+                return _instance;
+            }
+        }
 
         public async Task<RestResponse<T>> ExecuteAsync<T>(RestRequest restrequest)
         {
@@ -55,26 +56,26 @@ namespace Simple
             var handler = new HttpClientHandler();
             if (this.Proxy != null) { handler.Proxy = this.Proxy; }
 
-            HttpClient client = new HttpClient(handler);
-            client.Timeout = new TimeSpan(0, 0, this.Timeout);
-
-            if (!string.IsNullOrWhiteSpace(this.UserAgent))
-            {
-                client.DefaultRequestHeaders.Add("User-Agent", this.UserAgent);
-            }
-
-            client.DefaultRequestHeaders.Add("Accept", "application/json");
-            client.DefaultRequestHeaders.Add("Accept-Charset", "utf-8");
-
-            //this.Instance.Timeout = new TimeSpan(0, 0, this.Timeout);
+            //HttpClient client = new HttpClient(handler);
+            //client.Timeout = new TimeSpan(0, 0, this.Timeout);
 
             //if (!string.IsNullOrWhiteSpace(this.UserAgent))
             //{
-            //    this.Instance.DefaultRequestHeaders.Add("User-Agent", this.UserAgent);
+            //    client.DefaultRequestHeaders.Add("User-Agent", this.UserAgent);
             //}
 
-            //this.Instance.DefaultRequestHeaders.Add("Accept", "application/json");
-            //this.Instance.DefaultRequestHeaders.Add("Accept-Charset", "utf-8");
+            //client.DefaultRequestHeaders.Add("Accept", "application/json");
+            //client.DefaultRequestHeaders.Add("Accept-Charset", "utf-8");
+
+            this.Instance.Timeout = new TimeSpan(0, 0, this.Timeout);
+
+            if (!string.IsNullOrWhiteSpace(this.UserAgent))
+            {
+                this.Instance.DefaultRequestHeaders.Add("User-Agent", this.UserAgent);
+            }
+
+            this.Instance.DefaultRequestHeaders.Add("Accept", "application/json");
+            this.Instance.DefaultRequestHeaders.Add("Accept-Charset", "utf-8");
 
             var request = ConfigureRequestMessage(restrequest);
 
@@ -82,8 +83,8 @@ namespace Simple
 
             try
             {
-                //var response = await this.Instance.SendAsync(request, cancellationToken);
-                var response = await client.SendAsync(request, cancellationToken);
+                var response = await this.Instance.SendAsync(request, cancellationToken);
+                //var response = await client.SendAsync(request, cancellationToken);
 
                 restresponse.StatusCode = response.StatusCode;
                 restresponse.StatusDescription = response.ReasonPhrase;

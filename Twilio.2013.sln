@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Twilio.Api.Pcl.Tests.runsettings = Twilio.Api.Pcl.Tests.runsettings
 		Twilio.nuspec = Twilio.nuspec
 		Twilio.TaskRouter.nuspec = Twilio.TaskRouter.nuspec
+		version.portable.txt = version.portable.txt
 		version.txt = version.txt
 	EndProjectSection
 EndProject
