@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JWT">
+      <HintPath>..\packages\JWT.1.3.2\lib\3.5\JWT.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,6 +44,9 @@
   <ItemGroup>
     <Compile Include="..\Twilio.Api.TaskRouter.Shared\Model\*.cs">
       <Link>Model\%25%28FileName%29</Link>
+    </Compile>
+    <Compile Include="..\Twilio.Api.TaskRouter.Shared\Capability\*.cs">
+      <Link>Capability\%25%28FileName%29</Link>
     </Compile>
     <Compile Include="Activities.Async.cs" />
     <Compile Include="Activities.cs" />
@@ -73,12 +79,36 @@
       <Name>Twilio.Api.Net35</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(SolutionDir)\.build</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VRevision>0000</VRevision>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+       Other similar extension points exist, see Microsoft.Common.targets.-->
   <Target Name="BeforeBuild">
+    <CallTarget Condition="'$(Configuration)|$(Platform)' == 'FX35|AnyCPU'" Targets="CreateAndApplyVersion" />
   </Target>
-  <Target Name="AfterBuild">
+  <Target Name="CreateAndApplyVersion">
+    <Message Text="Incrementing Assembly Version" Importance="high" />
+    <Copy SourceFiles="..\version.txt" DestinationFolder="Properties" />
+    <Time Format="yyyyMMdd">
+      <Output TaskParameter="FormattedTime" PropertyName="TBuildDate" />
+    </Time>
+    <Version BuildType="Automatic" RevisionType="BuildIncrement" VersionFile="Properties\version.taskrouter.txt">
+      <Output TaskParameter="Major" PropertyName="VMajor" />
+      <Output TaskParameter="Minor" PropertyName="VMinor" />
+      <Output TaskParameter="Build" PropertyName="VBuild" />
+    </Version>
+    <AssemblyInfo CodeLanguage="CS" OutputFile="Properties\VersionInfo.cs" AssemblyVersion="$(VMajor).$(VMinor).$(VBuild).$(VRevision)" AssemblyFileVersion="$(VMajor).$(VMinor).$(VBuild).$(VRevision)" AssemblyInformationalVersion="$(VMajor).$(VMinor).$(TBuildDate).$(VRevision)" />
+  </Target>
+  <!--<Target Name="AfterBuild">
   </Target>
   -->
 </Project>

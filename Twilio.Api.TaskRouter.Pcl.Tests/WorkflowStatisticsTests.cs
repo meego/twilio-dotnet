@@ -19,8 +19,6 @@ namespace Twilio.TaskRouter.Tests
 
         private const string WORKSPACE_SID = "WS123";
 
-        ManualResetEvent manualResetEvent = null;
-
         private Mock<TaskRouterClient> mockClient;
 
         [SetUp]

@@ -69,7 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="JWT.Portable">
-      <HintPath>..\packages\JWT.Portable.1.0.1-beta\lib\portable-net403+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\JWT.Portable.dll</HintPath>
+      <HintPath>..\packages\JWT.Portable.1.0.2-beta\lib\portable-net403+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\JWT.Portable.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net40+sl4+win8+wp71+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
@@ -84,19 +84,44 @@
       <HintPath>..\packages\PCLCrypto.0.5.2.14286\lib\portable-net40+sl50+win+wpa81+wp80\PCLCrypto.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System.IO">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\portable-net40+sl5+win8+wp8+wpa81\System.IO.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\portable-net40+sl5+win8+wp8+wpa81\System.IO.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\portable-net40+sl5+win8+wp8+wpa81\System.Runtime.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\portable-net40+sl5+win8+wp8+wpa81\System.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\portable-net40+sl5+win8+wp8+wpa81\System.Threading.Tasks.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\portable-net40+sl5+win8+wp8+wpa81\System.Threading.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="Validation">
-      <HintPath>..\packages\Validation.2.0.5.14286\lib\portable-windows8+net40+sl5+wp8+wpa81+wp81+MonoAndroid+MonoTouch\Validation.dll</HintPath>
+      <HintPath>..\packages\Validation.2.0.6.15003\lib\portable-net40+sl50+win+wpa81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\Validation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(SolutionDir)\.build</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VRevision>0000</VRevision>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.-->
+  <Target Name="BeforeBuild">
+    <CallTarget Condition="'$(Configuration)|$(Platform)' == 'PCL|AnyCPU'" Targets="CreateAndApplyVersion" />
+  </Target>
+  <Target Name="CreateAndApplyVersion">
+    <Message Text="Incrementing Assembly Version" Importance="high" />
+    <Copy SourceFiles="..\version.txt" DestinationFolder="Properties" />
+    <Time Format="yyyyMMdd">
+      <Output TaskParameter="FormattedTime" PropertyName="TBuildDate" />
+    </Time>
+    <Version BuildType="Automatic" RevisionType="BuildIncrement" VersionFile="Properties\version.taskrouter.txt">
+      <Output TaskParameter="Major" PropertyName="VMajor" />
+      <Output TaskParameter="Minor" PropertyName="VMinor" />
+      <Output TaskParameter="Build" PropertyName="VBuild" />
+    </Version>
+    <AssemblyInfo CodeLanguage="CS" OutputFile="Properties\VersionInfo.cs" AssemblyVersion="$(VMajor).$(VMinor).$(VBuild).$(VRevision)" AssemblyFileVersion="$(VMajor).$(VMinor).$(VBuild).$(VRevision)" AssemblyInformationalVersion="$(VMajor).$(VMinor).$(TBuildDate).$(VRevision)" />
+  </Target>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -104,11 +129,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
+  <!--<Target Name="AfterBuild">
   </Target>
   -->
 </Project>

@@ -104,7 +104,7 @@ FOR /F "tokens=* delims=" %%x in (version.txt) DO SET ver=%%x
 cmd /c %nuget% pack "Twilio.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio -o download
 if not "%errorlevel%"=="0" goto packagefailure
 
-FOR /F "tokens=* delims=" %%x in (version.portable.txt) DO SET ver=%%x
+FOR /F "tokens=* delims=" %%x in (version.taskrouter.txt) DO SET ver=%%x
 cmd /c %nuget% pack "Twilio.TaskRouter.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio.taskrouter -o download
 if not "%errorlevel%"=="0" goto packagefailure
 
