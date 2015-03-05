@@ -16,7 +16,7 @@
         <dependencies>
           <group targetFramework="portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1">
             <dependency id="Twilio" version="3.8.0-beta" />
-            <dependency id="JWT.Portable" version="1.0.0-beta" />
+            <dependency id="JWT.Portable" version="1.0.2-beta" />
           </group>
           <group targetFramework=".NETFramework4.0">
             <dependency id="Twilio" version="3.8.0-beta" />
