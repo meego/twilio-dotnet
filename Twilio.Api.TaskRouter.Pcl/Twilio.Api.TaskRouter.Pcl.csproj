@@ -52,6 +52,7 @@
     <Compile Include="Core.Await.cs" />
     <Compile Include="Events.Await.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\VersionInfo.cs" />
     <Compile Include="Reservations.Await.cs" />
     <Compile Include="TaskQueues.Await.cs" />
     <Compile Include="TaskQueuesStatistics.Await.cs" />
@@ -116,11 +117,11 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.-->
   <Target Name="BeforeBuild">
-    <CallTarget Condition="'$(Configuration)|$(Platform)' == 'PCL|AnyCPU'" Targets="CreateAndApplyVersion" />
+    <CallTarget Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'" Targets="CreateAndApplyVersion" />
   </Target>
   <Target Name="CreateAndApplyVersion">
     <Message Text="Incrementing Assembly Version" Importance="high" />
-    <Copy SourceFiles="..\version.txt" DestinationFolder="Properties" />
+    <Copy SourceFiles="..\version.taskrouter.txt" DestinationFolder="Properties" />
     <Time Format="yyyyMMdd">
       <Output TaskParameter="FormattedTime" PropertyName="TBuildDate" />
     </Time>

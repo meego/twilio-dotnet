@@ -140,7 +140,7 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.-->
   <Target Name="BeforeBuild">
-    <CallTarget Condition="'$(Configuration)|$(Platform)' == 'PCL|AnyCPU'" Targets="CreateAndApplyVersion" />
+    <CallTarget Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'" Targets="CreateAndApplyVersion" />
   </Target>
   <Target Name="CreateAndApplyVersion">
     <Message Text="Incrementing Assembly Version" Importance="high" />
