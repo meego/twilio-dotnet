@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Twilio.TaskRouter</id>
+        <version>1.0.0-beta</version>
+        <authors>Twilio</authors>
+        <licenseUrl>https://github.com/twilio/twilio-dotnet/blob/master/LICENSE.txt</licenseUrl>
+        <projectUrl>http://github.com/twilio/twilio-dotnet</projectUrl>
+        <iconUrl>http://www.twilio.com/packages/company/img/logos_downloadable_round.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Twilio TaskRouter API helper library</description>
+        <releaseNotes>
+        </releaseNotes>
+        <language>en-US</language>
+        <tags>REST SMS voice telephony phone twilio twiml ASPNETWEBPAGES</tags>
+        <dependencies>
+            <dependency id="Twilio" version="4.0.1-beta" />
+        </dependencies>
+    </metadata>
+</package>
