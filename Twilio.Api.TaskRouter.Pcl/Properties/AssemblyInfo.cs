@@ -9,11 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Twilio.Api.TaskRouter.Pcl")]
 [assembly: AssemblyDescription("API wrapper for the Twilio TaskRouter REST API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Twilio")]
 [assembly: AssemblyProduct("Twilio.Api.TaskRouter")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
 
 
