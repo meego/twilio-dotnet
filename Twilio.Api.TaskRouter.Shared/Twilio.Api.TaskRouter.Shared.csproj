@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JWT.Portable">
-      <HintPath>..\..\jwt\JWT.Portable\bin\Debug\JWT.Portable.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -73,12 +70,6 @@
     <Compile Include="Model\WorkspaceResult.cs" />
     <Compile Include="Model\WorkspaceStatistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Twilio.Api.Shared\Twilio.Api.Shared.csproj">
-      <Project>{f9c37d61-2764-42ef-95bf-f17a938e3012}</Project>
-      <Name>Twilio.Api.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -29,13 +29,7 @@ namespace Twilio
         /// <param name="isoCountryCode">Two-character ISO country code (US or CA)</param>
         public virtual AvailablePhoneNumberResult ListAvailableTollFreePhoneNumbers(string isoCountryCode)
         {
-            Require.Argument("isoCountryCode", isoCountryCode);
-
-            var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.json";
-            request.AddUrlSegment("IsoCountryCode", isoCountryCode);
-
-            return Execute<AvailablePhoneNumberResult>(request);
+            return ListAvailableTollFreePhoneNumbers(isoCountryCode, String.Empty);
         }
 
         /// <summary>
@@ -45,17 +39,28 @@ namespace Twilio
         /// <param name="contains">Value to use when filtering search. Accepts numbers or characters.</param>
         public virtual AvailablePhoneNumberResult ListAvailableTollFreePhoneNumbers(string isoCountryCode, string contains)
         {
+            var options = new AvailablePhoneNumberListRequest() { Contains = contains };
+            return ListAvailableTollFreePhoneNumbers(isoCountryCode, options); 
+        }
+
+        /// <summary>
+        /// Search available toll-free phone numbers.  Makes a GET request to the AvailablePhoneNumber List resource.
+        /// </summary>
+        /// <param name="isoCountryCode">Two-character ISO country code (US or CA)</param>
+        /// <param name="options"></param>
+        public virtual AvailablePhoneNumberResult ListAvailableTollFreePhoneNumbers(string isoCountryCode, AvailablePhoneNumberListRequest options)
+        {
             Require.Argument("isoCountryCode", isoCountryCode);
-            Require.Argument("contains", contains);
 
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.json";
             request.AddUrlSegment("IsoCountryCode", isoCountryCode);
 
-            request.AddParameter("Contains", contains);
+            AddNumberSearchParameters(options, request);
 
             return Execute<AvailablePhoneNumberResult>(request);
         }
+
 
         /// <summary>
         /// Search available mobile phone numbers.  Makes a GET request to the AvailablePhoneNumber List resource.

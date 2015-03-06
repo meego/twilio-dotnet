@@ -32,11 +32,7 @@ namespace Twilio
         {
             Require.Argument("isoCountryCode", isoCountryCode);
 
-            var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.json";
-            request.AddUrlSegment("IsoCountryCode", isoCountryCode);
-
-            return await Execute<AvailablePhoneNumberResult>(request);
+            return await ListAvailableTollFreePhoneNumbersAsync(isoCountryCode, String.Empty);
         }
 
         /// <summary>
@@ -46,17 +42,28 @@ namespace Twilio
         /// <param name="contains">Value to use when filtering search. Accepts numbers or characters.</param>
         public virtual async Task<AvailablePhoneNumberResult> ListAvailableTollFreePhoneNumbersAsync(string isoCountryCode, string contains)
         {
+            var options = new AvailablePhoneNumberListRequest() { Contains = contains };
+            return await ListAvailableTollFreePhoneNumbersAsync(isoCountryCode, options);
+        }
+
+        /// <summary>
+        /// Search available toll-free phone numbers.  Makes a GET request to the AvailablePhoneNumber List resource.
+        /// </summary>
+        /// <param name="isoCountryCode">Two-character ISO country code (US or CA)</param>
+        /// <param name="contains">Value to use when filtering search. Accepts numbers or characters.</param>
+        public virtual async Task<AvailablePhoneNumberResult> ListAvailableTollFreePhoneNumbersAsync(string isoCountryCode, AvailablePhoneNumberListRequest options)
+        {
             Require.Argument("isoCountryCode", isoCountryCode);
-            Require.Argument("contains", contains);
 
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.json";
             request.AddUrlSegment("IsoCountryCode", isoCountryCode);
 
-            request.AddParameter("Contains", contains);
+            AddNumberSearchParameters(options, request);
 
             return await Execute<AvailablePhoneNumberResult>(request);
         }
+
 
         /// <summary>
         /// Search available mobile phone numbers.  Makes a GET request to the AvailablePhoneNumber List resource.
