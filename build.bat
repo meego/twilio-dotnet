@@ -26,7 +26,7 @@ if not "%errorlevel%"=="0" goto buildfailure
 if not "%errorlevel%"=="0" goto buildfailure
 
 REM ****** Twilio.Api.TaskRouter *********
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild Twilio.Api.TaskRouter.Net35\Twilio.Api.TaskRouter.Net35.csproj /p:Configuration=Release /p:VRevision=%BuildCounter% /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:true /p:BuildInParallel=true /p:RestorePackages=true /t:Rebuild
+%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild Twilio.Api.TaskRouter.Net35\Twilio.Api.TaskRouter.Net35.csproj /p:Configuration=Release /p:VRevision=%BuildCounter% /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Detailed /nr:true /p:BuildInParallel=true /p:RestorePackages=true /t:Rebuild
 %WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild Twilio.Api.TaskRouter.Net35.Tests\Twilio.Api.TaskRouter.Net35.Tests.csproj /p:Configuration=Release /p:VRevision=%BuildCounter% /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:true /p:BuildInParallel=true /p:RestorePackages=true /t:Rebuild
 if not "%errorlevel%"=="0" goto buildfailure
 
