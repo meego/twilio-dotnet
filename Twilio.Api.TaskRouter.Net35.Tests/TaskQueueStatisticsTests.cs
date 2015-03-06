@@ -47,7 +47,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.Execute<TaskQueueStatistics>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}/Statistics.json", savedRequest.Resource);
+            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}/Statistics", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(3, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");
@@ -80,7 +80,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.ExecuteAsync<TaskQueueStatistics>(It.IsAny<RestRequest>(), It.IsAny<Action<TaskQueueStatistics>>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}/Statistics.json", savedRequest.Resource);
+            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}/Statistics", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(3, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");
@@ -107,7 +107,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.Execute<TaskQueueStatisticsResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/Statistics.json", savedRequest.Resource);
+            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/Statistics", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(1, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");
@@ -131,7 +131,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.ExecuteAsync<TaskQueueStatisticsResult>(It.IsAny<RestRequest>(), It.IsAny<Action<TaskQueueStatisticsResult>>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/Statistics.json", savedRequest.Resource);
+            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/Statistics", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(1, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");
@@ -157,7 +157,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.Execute<TaskQueueStatisticsResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/Statistics.json", savedRequest.Resource);
+            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/Statistics", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(3, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");
@@ -191,7 +191,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.ExecuteAsync<TaskQueueStatisticsResult>(It.IsAny<RestRequest>(), It.IsAny<Action<TaskQueueStatisticsResult>>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/Statistics.json", savedRequest.Resource);
+            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/Statistics", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(3, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");

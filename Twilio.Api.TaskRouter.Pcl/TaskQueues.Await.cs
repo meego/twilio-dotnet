@@ -23,7 +23,7 @@ namespace Twilio.TaskRouter
             Require.Argument("ReservationActivitySid", reservationActivitySid);
 
             var request = new RestRequest(Method.POST);
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddParameter("FriendlyName", friendlyName);
@@ -44,7 +44,7 @@ namespace Twilio.TaskRouter
             Require.Argument("TaskQueueSid", taskQueueSid);
 
             var request = new RestRequest(Method.DELETE);
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("TaskQueueSid", taskQueueSid);
@@ -64,7 +64,7 @@ namespace Twilio.TaskRouter
             Require.Argument("TaskQueueSid", taskQueueSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("TaskQueueSid", taskQueueSid);
@@ -95,7 +95,7 @@ namespace Twilio.TaskRouter
             Require.Argument("WorkspaceSid", workspaceSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
 
@@ -128,7 +128,7 @@ namespace Twilio.TaskRouter
             Require.Argument("TaskQueueSid", taskQueueSid);
 
             var request = new RestRequest(Method.POST);
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/TaskQueues/{TaskQueueSid}";
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("TaskQueueSid", taskQueueSid);
 

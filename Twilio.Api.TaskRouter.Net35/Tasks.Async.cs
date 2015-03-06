@@ -21,7 +21,7 @@ namespace Twilio.TaskRouter
             Require.Argument("WorkflowSid", workflowSid);
 
             var request = new RestRequest(Method.POST);
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddParameter("Attributes", attributes);
@@ -42,7 +42,7 @@ namespace Twilio.TaskRouter
             Require.Argument("TaskSid", taskSid);
 
             var request = new RestRequest(Method.DELETE);
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("TaskSid", taskSid);
@@ -62,7 +62,7 @@ namespace Twilio.TaskRouter
             Require.Argument("TaskSid", taskSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("TaskSid", taskSid);
@@ -91,7 +91,7 @@ namespace Twilio.TaskRouter
             Require.Argument("WorkspaceSid", workspaceSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
 
@@ -115,7 +115,7 @@ namespace Twilio.TaskRouter
             Require.Argument("TaskSid", taskSid);
 
             var request = new RestRequest(Method.POST);
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}";
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("TaskSid", taskSid);
 

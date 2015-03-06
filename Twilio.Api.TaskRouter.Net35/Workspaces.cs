@@ -18,7 +18,7 @@ namespace Twilio.TaskRouter
             Require.Argument("FriendlyName", friendlyName);
 
             var request = new RestRequest(Method.POST);
-            request.Resource = "Accounts/{AccountSid}/Workspaces.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces";
 
             request.AddParameter("FriendlyName", friendlyName);
 
@@ -39,7 +39,7 @@ namespace Twilio.TaskRouter
             Require.Argument("WorkspaceSid", workspaceSid);
 
             var request = new RestRequest(Method.DELETE);
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
 
@@ -56,7 +56,7 @@ namespace Twilio.TaskRouter
             Require.Argument("WorkspaceSid", workspaceSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
 
@@ -81,7 +81,7 @@ namespace Twilio.TaskRouter
         public virtual WorkspaceResult ListWorkspaces(string friendlyName, string afterSid, string beforeSid, int? count)
         {
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces";
 
             if (friendlyName.HasValue())
                 request.AddParameter("FriendlyName", friendlyName);
@@ -109,7 +109,7 @@ namespace Twilio.TaskRouter
             Require.Argument("WorkspaceSid", workspaceSid);
 
             var request = new RestRequest(Method.POST);
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}";
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
 
             if (friendlyName.HasValue())

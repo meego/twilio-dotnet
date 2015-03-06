@@ -21,7 +21,7 @@ namespace Twilio.TaskRouter
             //Require.Argument("ReservationSid", reservationSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations/{ReservationSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations/{ReservationSid}";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("TaskSid", taskSid);
@@ -56,7 +56,7 @@ namespace Twilio.TaskRouter
             //Require.Argument("TaskSid", taskSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("TaskSid", taskSid);
@@ -91,7 +91,7 @@ namespace Twilio.TaskRouter
             //Require.Argument("ReservationStatus", reservationStatus);
 
             var request = new RestRequest(Method.POST);
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations/{ReservationSid}.json";
+            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations/{ReservationSid}";
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("TaskSid", taskSid);
             request.AddUrlSegment("ReservationSid", reservationSid);
