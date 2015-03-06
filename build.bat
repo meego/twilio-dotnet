@@ -1,4 +1,4 @@
-@echo Off
+REM @echo Off
 
 set NUnitPath=packages\NUnit.Runners.2.6.4\tools\nunit-console.exe
 
@@ -26,9 +26,9 @@ if not "%errorlevel%"=="0" goto buildfailure
 if not "%errorlevel%"=="0" goto buildfailure
 
 REM ****** Twilio.Api.TaskRouter *********
-REM %WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild Twilio.Api.TaskRouter.Net35\Twilio.Api.TaskRouter.Net35.csproj /p:Configuration=Release /p:VRevision=%BuildCounter% /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Detailed /nr:true /p:BuildInParallel=true /p:RestorePackages=true /t:Rebuild
-REM %WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild Twilio.Api.TaskRouter.Net35.Tests\Twilio.Api.TaskRouter.Net35.Tests.csproj /p:Configuration=Release /p:VRevision=%BuildCounter% /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:true /p:BuildInParallel=true /p:RestorePackages=true /t:Rebuild
-REM if not "%errorlevel%"=="0" goto buildfailure
+%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild Twilio.Api.TaskRouter.Net35\Twilio.Api.TaskRouter.Net35.csproj /p:Configuration=Release /p:VRevision=%BuildCounter% /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Detailed /nr:true /p:BuildInParallel=true /p:RestorePackages=true /t:Rebuild
+%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild Twilio.Api.TaskRouter.Net35.Tests\Twilio.Api.TaskRouter.Net35.Tests.csproj /p:Configuration=Release /p:VRevision=%BuildCounter% /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:true /p:BuildInParallel=true /p:RestorePackages=true /t:Rebuild
+if not "%errorlevel%"=="0" goto buildfailure
 
 %WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild Twilio.Api.TaskRouter.Pcl\Twilio.Api.TaskRouter.Pcl.csproj /p:Configuration=Release /p:VRevision=%BuildCounter% /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:true /p:BuildInParallel=true /p:RestorePackages=true /t:Rebuild
 %WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild Twilio.Api.TaskRouter.Pcl.Tests\Twilio.Api.TaskRouter.Pcl.Tests.csproj /p:Configuration=Release /p:VRevision=%BuildCounter% /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:true /p:BuildInParallel=true /p:RestorePackages=true /t:Rebuild
@@ -67,15 +67,10 @@ if %errorlevel% LSS 0 goto testsfailure
 if %errorlevel% GTR 0 goto nonpassingfailure
 ECHO Errorlevel: %errorlevel%
 
-
 REM Package Folders Setup
 rd p /s /q  REM delete the old stuff
 
 setlocal enableextensions
-
-REM if not exist p mkdir p
-REM if not exist p\twilio mkdir p\twilio
-REM if not exist p\twilio\lib mkdir p\twilio\lib
 
 if not exist p\twilio\lib\net35 mkdir "p\twilio\lib\net35"
 if not exist p\twilio\lib\net40 mkdir "p\twilio\lib\net40"
@@ -98,7 +93,6 @@ copy Twilio.Api.TaskRouter.Pcl\bin\Release\Twilio.Api.* "p\twilio.taskrouter\lib
 copy Twilio.Api.TaskRouter.Pcl\bin\Release\Twilio.Api.* "p\twilio.taskrouter\lib\portable-net403+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\"
 
 REM Create Packages
-REM mkdir Build
 
 FOR /F "tokens=* delims=" %%x in (version.txt) DO SET ver=%%x
 cmd /c %nuget% pack "Twilio.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio -o p

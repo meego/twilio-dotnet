@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -89,7 +90,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <VRevision>0000</VRevision>
-  </PropertyGroup>
+  </PropertyGroup>  
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.-->
@@ -98,7 +99,8 @@
   </Target>
   <Target Name="CreateAndApplyVersion">
     <Message Text="Incrementing Assembly Version" Importance="high" />
-    <Copy SourceFiles="..\version.taskrouter.txt" DestinationFolder="Properties" />
+    <Message Text="$(MSBuildCommunityTasksPath)" />
+    <Copy SourceFiles="..\version.taskrouter.txt" DestinationFolder="Properties" />    
     <Time Format="yyyyMMdd">
       <Output TaskParameter="FormattedTime" PropertyName="TBuildDate" />
     </Time>
