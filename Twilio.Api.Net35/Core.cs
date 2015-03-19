@@ -47,10 +47,13 @@ namespace Twilio
         /// <param name="accountSid">The AccountSid to authenticate with</param>
         /// <param name="authToken">The AuthToken to authenticate with</param>
         /// <param name="accountResourceSid"></param>
-        public TwilioRestClient(string accountSid, string authToken, string accountResourceSid)
+        /// 
+        public TwilioRestClient(string accountSid, string authToken, string accountResourceSid) : this(accountSid, authToken, accountResourceSid, "2010-04-01", "https://api.twilio.com/") { }
+
+        public TwilioRestClient(string accountSid, string authToken, string accountResourceSid, string apiVersion, string baseUrl)
         {
-            ApiVersion = "2010-04-01";
-            BaseUrl = "https://api.twilio.com/";
+            ApiVersion = apiVersion;
+            BaseUrl = baseUrl;
             AccountSid = accountSid;
             AuthToken = authToken;
             AccountResourceSid = accountResourceSid;

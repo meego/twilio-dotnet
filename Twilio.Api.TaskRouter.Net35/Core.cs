@@ -20,7 +20,7 @@ namespace Twilio.TaskRouter
         /// </summary>
         /// <param name="accountSid">The AccountSid to authenticate with</param>
         /// <param name="authToken">The AuthToken to authenticate with</param>
-        public TaskRouterClient(string accountSid, string authToken) : base(accountSid, authToken, accountSid) { }
+        public TaskRouterClient(string accountSid, string authToken) : this(accountSid, authToken, accountSid) { }
 
         /// <summary>
         /// Initializes a new client with the specified credentials.
@@ -28,7 +28,7 @@ namespace Twilio.TaskRouter
         /// <param name="accountSid">The AccountSid to authenticate with</param>
         /// <param name="authToken">The AuthToken to authenticate with</param>
         /// <param name="accountResourceSid"></param>
-        //public TaskRouterClient(string accountSid, string authToken, string accountResourceSid) : base(accountSid, authToken, accountResourceSid, "v1", "https://taskrouter.twilio.com/") { }
+        public TaskRouterClient(string accountSid, string authToken, string accountResourceSid) : base(accountSid, authToken, accountResourceSid, "v1", "https://taskrouter.twilio.com/") { }
 
         private void AddStatisticsDateOptions(StatisticsRequest options, RestRequest request)
         {
