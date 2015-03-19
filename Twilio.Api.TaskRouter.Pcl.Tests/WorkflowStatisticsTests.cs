@@ -47,7 +47,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.Execute<WorkflowStatistics>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Workflows/{WorkflowSid}/Statistics", savedRequest.Resource);
+            Assert.AreEqual("Workspaces/{WorkspaceSid}/Workflows/{WorkflowSid}/Statistics", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(3, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");

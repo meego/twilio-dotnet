@@ -30,7 +30,7 @@ namespace Twilio.TaskRouter
             Require.Argument("WorkflowSid", workflowSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Workflows/{WorkflowSid}/Statistics";
+            request.Resource = "Workspaces/{WorkspaceSid}/Workflows/{WorkflowSid}/Statistics";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("WorkflowSid", workflowSid);

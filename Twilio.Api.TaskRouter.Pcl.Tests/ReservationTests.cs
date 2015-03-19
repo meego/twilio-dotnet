@@ -47,7 +47,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.Execute<Reservation>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations/{ReservationSid}", savedRequest.Resource);
+            Assert.AreEqual("Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations/{ReservationSid}", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(3, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");
@@ -79,7 +79,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.Execute<ReservationResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations", savedRequest.Resource);
+            Assert.AreEqual("Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(2, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");
@@ -108,7 +108,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.Execute<ReservationResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations", savedRequest.Resource);
+            Assert.AreEqual("Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
             Assert.AreEqual(7, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");
@@ -151,7 +151,7 @@ namespace Twilio.TaskRouter.Tests
 
             mockClient.Verify(trc => trc.Execute<Reservation>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual("Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations/{ReservationSid}", savedRequest.Resource);
+            Assert.AreEqual("Workspaces/{WorkspaceSid}/Tasks/{TaskSid}/Reservations/{ReservationSid}", savedRequest.Resource);
             Assert.AreEqual("POST", savedRequest.Method);
             Assert.AreEqual(5, savedRequest.Parameters.Count);
             var workspaceSidParam = savedRequest.Parameters.Find(x => x.Name == "WorkspaceSid");

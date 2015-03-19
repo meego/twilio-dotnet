@@ -19,7 +19,7 @@ namespace Twilio.TaskRouter
             //Require.Argument("EventSid", eventSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Events/{EventSid}";
+            request.Resource = "Workspaces/{WorkspaceSid}/Events/{EventSid}";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
             request.AddUrlSegment("EventSid", eventSid);
@@ -46,7 +46,7 @@ namespace Twilio.TaskRouter
             Require.Argument("WorkspaceSid", workspaceSid);
 
             var request = new RestRequest();
-            request.Resource = "Accounts/{AccountSid}/Workspaces/{WorkspaceSid}/Events";
+            request.Resource = "Workspaces/{WorkspaceSid}/Events";
 
             request.AddUrlSegment("WorkspaceSid", workspaceSid);
 
