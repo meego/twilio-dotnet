@@ -88,9 +88,9 @@ copy Twilio.Api.Pcl\bin\Release\Twilio.Api.* "p\twilio\lib\net40\"
 copy Twilio.Api.Pcl\bin\Release\Twilio.Api.* "p\twilio\lib\portable-net403+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\"
 
 REM copy LICENSE.txt download
-copy Twilio.Api.TaskRouter.Net35\bin\Release\Twilio.Api.* "p\twilio.taskrouter\lib\net35\"
-copy Twilio.Api.TaskRouter.Pcl\bin\Release\Twilio.Api.* "p\twilio.taskrouter\lib\net40\"
-copy Twilio.Api.TaskRouter.Pcl\bin\Release\Twilio.Api.* "p\twilio.taskrouter\lib\portable-net403+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\"
+copy Twilio.Api.TaskRouter.Net35\bin\Release\Twilio.Api.TaskRouter.* "p\twilio.taskrouter\lib\net35\"
+copy Twilio.Api.TaskRouter.Pcl\bin\Release\Twilio.Api.TaskRouter.* "p\twilio.taskrouter\lib\net40\"
+copy Twilio.Api.TaskRouter.Pcl\bin\Release\Twilio.Api.TaskRouter.* "p\twilio.taskrouter\lib\portable-net403+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\"
 
 REM Create Packages
 
