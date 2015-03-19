@@ -90,7 +90,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <VRevision>0000</VRevision>
-  </PropertyGroup>  
+  </PropertyGroup>
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.-->
@@ -100,7 +100,7 @@
   <Target Name="CreateAndApplyVersion">
     <Message Text="Incrementing Assembly Version" Importance="high" />
     <Message Text="$(MSBuildCommunityTasksPath)" />
-    <Copy SourceFiles="..\version.taskrouter.txt" DestinationFolder="Properties" />    
+    <Copy SourceFiles="..\version.taskrouter.txt" DestinationFolder="Properties" />
     <Time Format="yyyyMMdd">
       <Output TaskParameter="FormattedTime" PropertyName="TBuildDate" />
     </Time>
