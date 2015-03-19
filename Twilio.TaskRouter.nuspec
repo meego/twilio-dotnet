@@ -22,6 +22,12 @@
             <dependency id="Twilio" version="3.8.40-beta" />
             <dependency id="JWT.Portable" version="1.0.2-beta" />
           </group>
+          
+          <!-- for things that are not portable and do not support portable dependencies -->
+          <group>
+            <dependency id="Twilio" version="3.8.40-beta" />
+            <dependency id="JWT" version="1.3.2" />
+          </group>
         </dependencies>
     </metadata>
 </package>
