@@ -24,7 +24,7 @@ namespace Twilio.TaskRouter
         /// </summary>
         public string FriendlyName { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="Twilio.Wds.Activity"/> is available.
+        /// Gets or sets a value indicating whether this <see cref="Twilio.TaskRouter.Activity"/> is available.
         /// </summary>
         public bool Available { get; set; }
         /// <summary>
