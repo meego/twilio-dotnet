@@ -20,7 +20,7 @@ namespace Twilio.TaskRouter
         /// </summary>
         /// <param name="accountSid">The AccountSid to authenticate with</param>
         /// <param name="authToken">The AuthToken to authenticate with</param>
-        public TaskRouterClient(string accountSid, string authToken) : base(accountSid, authToken, accountSid) { }
+        public TaskRouterClient(string accountSid, string authToken) : this(accountSid, authToken, accountSid) { }
 
         /// <summary>
         /// Initializes a new client with the specified credentials.

@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="ActivityTests.cs" />
     <Compile Include="CapabilityTests.cs" />
+    <Compile Include="CoreTests.cs" />
     <Compile Include="Model\TaskQueueStatisticsTests.cs" />
     <Compile Include="Model\WorkerStatisticsTests.cs" />
     <Compile Include="Model\WorkflowStatisticsTests.cs" />
