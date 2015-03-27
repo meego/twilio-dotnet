@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\LICENSE.txt = ..\LICENSE.txt
 		SimpleRestClient.runsettings = SimpleRestClient.runsettings
 		Twilio.Api.Pcl.Tests.runsettings = Twilio.Api.Pcl.Tests.runsettings
+		Twilio.Lookups.nuspec = Twilio.Lookups.nuspec
 		Twilio.nuspec = Twilio.nuspec
 		Twilio.TaskRouter.nuspec = Twilio.TaskRouter.nuspec
 		version.lookups.txt = version.lookups.txt

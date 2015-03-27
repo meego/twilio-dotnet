@@ -23,7 +23,7 @@ namespace Twilio.Lookups
         /// <param name="accountSid">The AccountSid to authenticate with</param>
         /// <param name="authToken">The AuthToken to authenticate with</param>
         /// <param name="accountResourceSid"></param>
-        public TwilioLookupsClient(string accountSid, string authToken, string accountResourceSid) : base(accountSid, authToken, accountResourceSid, "v1", "https://taskrouter.twilio.com/") { }
+        public TwilioLookupsClient(string accountSid, string authToken, string accountResourceSid) : base(accountSid, authToken, accountResourceSid, "v1", "https://lookups.twilio.com/") { }
 
     }
 }

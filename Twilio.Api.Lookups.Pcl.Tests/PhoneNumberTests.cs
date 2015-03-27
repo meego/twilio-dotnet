@@ -14,6 +14,8 @@ namespace Twilio.Api.Lookups.Pcl.Tests
     [TestFixture]
     public class PhoneNumberTests
     {
+        private const string ACCOUNT_SID = "AC123";
+
         private const string PHONE_NUMBER = "+1234567890";
         private const string COUNTRY_CODE = "US";
         
@@ -31,17 +33,17 @@ namespace Twilio.Api.Lookups.Pcl.Tests
         {
             RestRequest savedRequest = null;
 
-            var tcs = new TaskCompletionSource<PhoneNumber>();
-            tcs.SetResult(new PhoneNumber());
+            var tcs = new TaskCompletionSource<Number>();
+            tcs.SetResult(new Number());
 
-            mockClient.Setup(trc => trc.Execute<PhoneNumber>(It.IsAny<RestRequest>()))
+            mockClient.Setup(trc => trc.Execute<Number>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.GetPhoneNumber(PHONE_NUMBER);
+            await client.GetPhoneNumberAsync(PHONE_NUMBER);
 
-            mockClient.Verify(trc => trc.Execute<PhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
+            mockClient.Verify(trc => trc.Execute<Number>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("PhoneNumbers/{PhoneNumber}", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
@@ -57,17 +59,17 @@ namespace Twilio.Api.Lookups.Pcl.Tests
         {
             RestRequest savedRequest = null;
 
-            var tcs = new TaskCompletionSource<PhoneNumber>();
-            tcs.SetResult(new PhoneNumber());
+            var tcs = new TaskCompletionSource<Number>();
+            tcs.SetResult(new Number());
 
-            mockClient.Setup(trc => trc.Execute<PhoneNumber>(It.IsAny<RestRequest>()))
+            mockClient.Setup(trc => trc.Execute<Number>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.GetPhoneNumber(PHONE_NUMBER, COUNTRY_CODE);
+            await client.GetPhoneNumberAsync(PHONE_NUMBER, COUNTRY_CODE);
 
-            mockClient.Verify(trc => trc.Execute<PhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
+            mockClient.Verify(trc => trc.Execute<Number>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
 
             Assert.AreEqual(2, savedRequest.Parameters.Count);
@@ -81,17 +83,17 @@ namespace Twilio.Api.Lookups.Pcl.Tests
         {
             RestRequest savedRequest = null;
 
-            var tcs = new TaskCompletionSource<PhoneNumber>();
-            tcs.SetResult(new PhoneNumber());
+            var tcs = new TaskCompletionSource<Number>();
+            tcs.SetResult(new Number());
 
-            mockClient.Setup(trc => trc.Execute<PhoneNumber>(It.IsAny<RestRequest>()))
+            mockClient.Setup(trc => trc.Execute<Number>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
                 .Returns(tcs.Task);
             var client = mockClient.Object;
 
-            await client.GetPhoneNumber(PHONE_NUMBER, COUNTRY_CODE, true);
+            await client.GetPhoneNumberAsync(PHONE_NUMBER, COUNTRY_CODE, true);
 
-            mockClient.Verify(trc => trc.Execute<PhoneNumber>(It.IsAny<RestRequest>()), Times.Once);
+            mockClient.Verify(trc => trc.Execute<Number>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
 
             Assert.AreEqual(3, savedRequest.Parameters.Count);

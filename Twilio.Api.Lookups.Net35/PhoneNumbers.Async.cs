@@ -8,17 +8,17 @@ namespace Twilio.Lookups
 {
     public partial class TwilioLookupsClient
     {
-        public virtual void GetPhoneNumber(string phoneNumber, Action<PhoneNumber> callback)
+        public virtual void GetPhoneNumber(string phoneNumber, Action<Number> callback)
         {
             GetPhoneNumber(phoneNumber, String.Empty, callback);
         }
 
-        public virtual void GetPhoneNumber(string phoneNumber, string countryCode, Action<PhoneNumber> callback)
+        public virtual void GetPhoneNumber(string phoneNumber, string countryCode, Action<Number> callback)
         {
             GetPhoneNumber(phoneNumber, countryCode, false, callback);
         }
 
-        public virtual void GetPhoneNumber(string phoneNumber, string countryCode, bool includeCarrierInfo, Action<PhoneNumber> callback)
+        public virtual void GetPhoneNumber(string phoneNumber, string countryCode, bool includeCarrierInfo, Action<Number> callback)
         {
             var request = new RestRequest();
             request.Resource = "PhoneNumbers/{PhoneNumber}";
@@ -31,7 +31,7 @@ namespace Twilio.Lookups
             if (includeCarrierInfo)
                 request.AddParameter("type", "carrier");
 
-            ExecuteAsync<PhoneNumber>(request, (response) => { callback(response); });
+            ExecuteAsync<Number>(request, (response) => { callback(response); });
         }
 
     }
