@@ -28,11 +28,11 @@ namespace Twilio.Lookups
 
             if (countryCode.HasValue())
             {
-                request.AddParameter("country_code", countryCode);
+                request.AddParameter("CountryCode", countryCode);
             }
             if (includeCarrierInfo)
             {
-                request.AddParameter("type", "carrier");
+                request.AddParameter("Type", "carrier");
             }
 
             return await Execute<Number>(request);

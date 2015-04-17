@@ -29,6 +29,13 @@ namespace Twilio.Api.Lookups.Pcl.Tests
         }
 
         [Test]
+        public async Task Foo()
+        {
+            TwilioLookupsClient lookups = new TwilioLookupsClient("AC3137d76457814a5eabf7de62f346d39a", "01e8896765b4c7798e0f9d888948a9b2");
+            var number = await lookups.GetPhoneNumberAsync("+13144586142");
+        }
+
+        [Test]
         public async Task ShouldGetPhoneNumber()
         {
             RestRequest savedRequest = null;

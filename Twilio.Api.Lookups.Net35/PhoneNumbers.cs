@@ -26,10 +26,10 @@ namespace Twilio.Lookups
             request.AddUrlSegment("PhoneNumber", phoneNumber);
 
             if (countryCode.HasValue())
-                request.AddParameter("country_code", countryCode);
+                request.AddParameter("CountryCode", countryCode);
 
             if (includeCarrierInfo)
-                request.AddParameter("type", "carrier");
+                request.AddParameter("Type", "carrier");
 
             return Execute<Number>(request);
         }

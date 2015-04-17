@@ -145,9 +145,12 @@ namespace Twilio
 
             if (body.HasValue()) request.AddParameter("Body", body);
 
-            for (int i = 0; i < mediaUrls.Length; i++)
+            if (mediaUrls != null)
             {
-                request.AddParameter("MediaUrl", mediaUrls[i]);
+                for (int i = 0; i < mediaUrls.Length; i++)
+                {
+                    request.AddParameter("MediaUrl", mediaUrls[i]);
+                }
             }
 
             if (statusCallback.HasValue()) request.AddParameter("StatusCallback", statusCallback);
