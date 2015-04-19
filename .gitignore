@@ -3,8 +3,8 @@
 
 #Project Specific
 **/VersionInfo.cs
-**/version.txt
-**/version.*.txt
+**/Properties/version.txt
+**/Properties/version.*.txt
 /p
 
 
