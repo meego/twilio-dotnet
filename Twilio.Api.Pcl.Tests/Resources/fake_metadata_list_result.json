@@ -1,0 +1,26 @@
+﻿{
+    "meta": {
+        "page": 2,
+        "page_size": 50,
+        "first_page_url": "https://example.com/v1/Stuffs?PageSize=50&Page=0",
+        "previous_page_url": "https://example.com/v1/Stuffs?PageSize=50&Page=1",
+        "url": "https://example.com/v1/Stuffs?PageSize=50&Page=2",
+        "next_page_url": null,
+        "key": "stuffs"
+    },
+    "stuffs": [
+
+        {
+            "name": "WS8826d96eec7bc9612539a22c081f9989"
+        },
+        {
+            "name": "WS438113d4c1c4ef57f0dec78c90b067fd"
+        },
+        {
+            "sid": "WS4b2c2b04509b63996dc5f6d7d7b8d882"
+        },
+        {
+            "sid": "WSb9774f8496cbfb336d2ece094fd15c79"
+        }
+    ]
+}
