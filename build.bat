@@ -3,9 +3,10 @@ REM @echo Off
 set NUnitPath=packages\NUnit.Runners.2.6.4\tools\nunit-console.exe
 
 if [%BuildCounter%] == [] (SET BuildCounter=0)
+if [%nuget%] == [] (SET nuget="..\Nuget.exe")
 
 REM Package restore
-cmd /c %nuget% restore Twilio.2013.sln -NoCache -NonInteractive
+%nuget% restore Twilio.2013.sln -NoCache -NonInteractive
 
 REM Build Source from Projects
 
@@ -125,15 +126,15 @@ copy Twilio.Api.Lookups.Pcl\bin\Release\Twilio.Api.Lookups.* "p\twilio.lookups\l
 REM Create Packages
 
 FOR /F "tokens=* delims=" %%x in (version.txt) DO SET ver=%%x
-cmd /c %nuget% pack "Twilio.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio -o p
+%nuget% pack "Twilio.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio -o p
 if not "%errorlevel%"=="0" goto packagefailure
 
 FOR /F "tokens=* delims=" %%x in (version.taskrouter.txt) DO SET ver=%%x
-cmd /c %nuget% pack "Twilio.TaskRouter.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio.taskrouter -o p
+%nuget% pack "Twilio.TaskRouter.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio.taskrouter -o p
 if not "%errorlevel%"=="0" goto packagefailure
 
 FOR /F "tokens=* delims=" %%x in (version.lookups.txt) DO SET ver=%%x
-cmd /c %nuget% pack "Twilio.Lookups.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio.lookups -o p
+%nuget% pack "Twilio.Lookups.nuspec" -Version %ver%.%BuildCounter%-beta -BasePath p\twilio.lookups -o p
 if not "%errorlevel%"=="0" goto packagefailure
 
 :success
