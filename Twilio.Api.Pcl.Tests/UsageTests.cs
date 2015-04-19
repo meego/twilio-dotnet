@@ -36,7 +36,7 @@ namespace Twilio.Api.Tests
             mockClient.Verify(trc => trc.Execute<UsageResult>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("Accounts/{AccountSid}/Usage/Records.json", savedRequest.Resource);
-            Assert.AreEqual(Method.GET, savedRequest.Method);
+            Assert.AreEqual("GET", savedRequest.Method);
             //Assert.AreEqual(3, savedRequest.Parameters.Count);
             //var fromParam = savedRequest.Parameters.Find(x => x.Name == "From");
             //Assert.IsNotNull(fromParam);
