@@ -100,10 +100,10 @@
     <Compile Include="ActivityTests.cs" />
     <Compile Include="CapabilityTests.cs" />
     <Compile Include="CoreTests.cs" />
-    <Compile Include="Model\TaskQueueStatisticsTests.cs" />
-    <Compile Include="Model\WorkerStatisticsTests.cs" />
-    <Compile Include="Model\WorkflowStatisticsTests.cs" />
-    <Compile Include="Model\WorkspaceStatisticsTests.cs" />
+    <Compile Include="ModelTests\TaskQueueStatisticsTests.cs" />
+    <Compile Include="ModelTests\WorkerStatisticsTests.cs" />
+    <Compile Include="ModelTests\WorkflowStatisticsTests.cs" />
+    <Compile Include="ModelTests\WorkspaceStatisticsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservationTests.cs" />
     <Compile Include="TaskQueueStatisticsTests.cs" />

@@ -23,7 +23,6 @@ namespace Twilio.TaskRouter.Tests.Integration.Model
         [Test]
         public void testDeserializeResponse()
         {
-            //var doc = File.ReadAllText(Path.Combine("Resources", "workspace_statistics.json"));
             var doc = Twilio.Api.Tests.Utilities.UnPack(BASE_NAME + "workspace_statistics.json");
             var json = new JsonDeserializer();
             var output = json.Deserialize<WorkspaceStatistics>(new RestResponse { Content = doc });
