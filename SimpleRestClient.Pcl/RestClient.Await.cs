@@ -18,7 +18,8 @@ namespace Simple
     public partial class RestClient
     {
 
-        HttpClient _instance;
+        private HttpClient _instance;
+        private static readonly object padlock = new object();
         
         /// <summary>
         /// Singleton instance of HTTP Client.  This allows for reusing the client across multiple requests.
@@ -27,14 +28,31 @@ namespace Simple
         {
             get
             {
-                if (_instance == null)
+                lock (padlock)
                 {
-                    if (this.MessageHandler != null)
-                        _instance = new HttpClient(this.MessageHandler);
-                    else
-                        _instance = new HttpClient();
+                    if (_instance == null)
+                    {
+                        if (this.MessageHandler != null)
+                            _instance = new HttpClient(this.MessageHandler);
+                        else
+                            _instance = new HttpClient();
+
+                        // possible timing issues with this code, but since I pretty much can
+                        // guarentee that the properties will be set before ExecuteAsync is 
+                        // called, I'm ok with it.
+                        this._instance.Timeout = new TimeSpan(0, 0, this.Timeout);
+
+                        if (!string.IsNullOrWhiteSpace(this.UserAgent))
+                        {
+                            this._instance.DefaultRequestHeaders.Add("User-Agent", this.UserAgent);
+                        }
+
+                        this._instance.DefaultRequestHeaders.Add("Accept", "application/json");
+                        this._instance.DefaultRequestHeaders.Add("Accept-Charset", "utf-8");
+
+                    }
+                    return _instance;
                 }
-                return _instance;
             }
         }
 
@@ -51,31 +69,9 @@ namespace Simple
         }
 
         public async Task<RestResponse> ExecuteAsync(RestRequest restrequest, CancellationToken cancellationToken)
-        {
-            
+        {            
             var handler = new HttpClientHandler();
             if (this.Proxy != null) { handler.Proxy = this.Proxy; }
-
-            //HttpClient client = new HttpClient(handler);
-            //client.Timeout = new TimeSpan(0, 0, this.Timeout);
-
-            //if (!string.IsNullOrWhiteSpace(this.UserAgent))
-            //{
-            //    client.DefaultRequestHeaders.Add("User-Agent", this.UserAgent);
-            //}
-
-            //client.DefaultRequestHeaders.Add("Accept", "application/json");
-            //client.DefaultRequestHeaders.Add("Accept-Charset", "utf-8");
-
-            this.Instance.Timeout = new TimeSpan(0, 0, this.Timeout);
-
-            if (!string.IsNullOrWhiteSpace(this.UserAgent))
-            {
-                this.Instance.DefaultRequestHeaders.Add("User-Agent", this.UserAgent);
-            }
-
-            this.Instance.DefaultRequestHeaders.Add("Accept", "application/json");
-            this.Instance.DefaultRequestHeaders.Add("Accept-Charset", "utf-8");
 
             var request = ConfigureRequestMessage(restrequest);
 
@@ -84,7 +80,6 @@ namespace Simple
             try
             {
                 var response = await this.Instance.SendAsync(request, cancellationToken);
-                //var response = await client.SendAsync(request, cancellationToken);
 
                 restresponse.StatusCode = response.StatusCode;
                 restresponse.StatusDescription = response.ReasonPhrase;

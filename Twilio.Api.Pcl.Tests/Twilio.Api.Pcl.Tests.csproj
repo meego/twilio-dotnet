@@ -141,11 +141,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IncomingPhoneNumberTests.cs" />
+    <Compile Include="MetadataListTests.cs" />
     <Compile Include="NotificationTests.cs" />
     <Compile Include="OutgoingCallerIdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueTests.cs" />
     <Compile Include="RecordingTests.cs" />
+    <Compile Include="Resources\FakeMetaDataListResult.cs" />
     <Compile Include="SmsTests.cs" />
     <Compile Include="TokenTests.cs" />
     <Compile Include="TranscriptionTests.cs" />
@@ -158,6 +160,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\fake_metadata_list_result.json" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
