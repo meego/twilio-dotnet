@@ -14,7 +14,7 @@ namespace Twilio.Api.TaskRouter.Net35.Tests
         [Test]
         public void ShouldSetProperBaseUrl()
         {
-            var client = new TwilioLookupsClient("XXXXXX", "XXXXXXX");
+            var client = new LookupsClient("XXXXXX", "XXXXXXX");
 
             Assert.AreEqual("https://lookups.twilio.com/", client.BaseUrl);
         }
@@ -22,7 +22,7 @@ namespace Twilio.Api.TaskRouter.Net35.Tests
         [Test]
         public void ShouldSetProperApiVersion()
         {
-            var client = new TwilioLookupsClient("XXXXXX", "XXXXXXX");
+            var client = new LookupsClient("XXXXXX", "XXXXXXX");
 
             Assert.AreEqual("v1", client.ApiVersion);
 

@@ -77,6 +77,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\phone_number.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Twilio.Api.Lookups.Pcl\Twilio.Api.Lookups.Pcl.csproj">

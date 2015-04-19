@@ -6,16 +6,16 @@ using System.Text;
 
 namespace Twilio.Lookups
 {
-    public partial class TwilioLookupsClient
+    public partial class LookupsClient
     {
         public virtual Number GetPhoneNumber(string phoneNumber)
         {
-            return GetPhoneNumber(phoneNumber, String.Empty);
+            return GetPhoneNumber(phoneNumber, false);
         }
 
-        public virtual Number GetPhoneNumber(string phoneNumber, string countryCode)
+        public virtual Number GetPhoneNumber(string phoneNumber, bool includeCarrierInfo)
         {
-            return GetPhoneNumber(phoneNumber, countryCode, false);
+            return GetPhoneNumber(phoneNumber, String.Empty, includeCarrierInfo);
         }
 
         public virtual Number GetPhoneNumber(string phoneNumber, string countryCode, bool includeCarrierInfo)

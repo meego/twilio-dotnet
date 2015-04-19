@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Twilio.Lookups
 {
-    public partial class TwilioLookupsClient
+    public partial class LookupsClient
     {
         public virtual async Task<Number> GetPhoneNumberAsync(string phoneNumber)
         {
-            return await GetPhoneNumberAsync(phoneNumber, String.Empty);
+            return await GetPhoneNumberAsync(phoneNumber, false);
         }
 
-        public virtual async Task<Number> GetPhoneNumberAsync(string phoneNumber, string countryCode)
+        public virtual async Task<Number> GetPhoneNumberAsync(string phoneNumber, bool includeCarrierInfo)
         {
-            return await GetPhoneNumberAsync(phoneNumber, countryCode, false);
+            return await GetPhoneNumberAsync(phoneNumber, String.Empty, includeCarrierInfo);
         }
 
         public virtual async Task<Number> GetPhoneNumberAsync(string phoneNumber, string countryCode, bool includeCarrierInfo)

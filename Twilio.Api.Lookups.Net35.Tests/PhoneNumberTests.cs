@@ -1,34 +1,39 @@
-﻿using Moq;
-using NUnit.Framework;
-using Simple;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Moq;
+using NUnit.Framework;
 using System.Threading;
-using System.Threading.Tasks;
-using Twilio.Api.Tests;
 using Twilio.Lookups;
+using System.IO;
+using Simple;
+using Twilio.Api.Tests;
+using System.Reflection;
 
-namespace Twilio.Api.Lookups.Net35.Tests
+namespace Twilio.Lookups.Tests
 {
     [TestFixture]
     public class PhoneNumberTests
     {
-        private const string ACCOUNT_SID = "AC123";
-
-        private const string PHONE_NUMBER = "+1234567890";
-        private const string COUNTRY_CODE = "US";
+        private string NUMBER = "+14158675309";
+        private string NUMBER_LOCALIZED = "(415) 867-5309";
 
         ManualResetEvent manualResetEvent = null;
 
-        private Mock<TwilioLookupsClient> mockClient;
+        private Mock<LookupsClient> mockClient;
+
+        private string BASE_NAME = String.Empty;
+        private Assembly asm;
 
         [SetUp]
         public void Setup()
         {
-            mockClient = new Mock<TwilioLookupsClient>(Credentials.AccountSid, Credentials.AuthToken);
+            mockClient = new Mock<LookupsClient>(Credentials.AccountSid, Credentials.AuthToken);
             mockClient.CallBase = true;
+
+            asm = Assembly.GetExecutingAssembly();
+            BASE_NAME = asm.GetName().Name + ".Resources.";
         }
 
         [Test]
@@ -40,138 +45,166 @@ namespace Twilio.Api.Lookups.Net35.Tests
                 .Returns(new Number());
             var client = mockClient.Object;
 
-            client.GetPhoneNumber(PHONE_NUMBER);
+            client.GetPhoneNumber(NUMBER);
 
             mockClient.Verify(trc => trc.Execute<Number>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("PhoneNumbers/{PhoneNumber}", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
-
             Assert.AreEqual(1, savedRequest.Parameters.Count);
-            var phoneNumberParam = savedRequest.Parameters.Find(x => x.Name == "PhoneNumber");
-            Assert.IsNotNull(phoneNumberParam);
-            Assert.AreEqual(PHONE_NUMBER, phoneNumberParam.Value);
+            var numberParam = savedRequest.Parameters.Find(x => x.Name == "PhoneNumber");
+            Assert.AreEqual(NUMBER, numberParam.Value);
         }
 
         [Test]
         public void ShouldGetPhoneNumberAsynchronously()
         {
+
             RestRequest savedRequest = null;
             mockClient.Setup(trc => trc.ExecuteAsync<Number>(It.IsAny<RestRequest>(), It.IsAny<Action<Number>>()))
-                .Callback<RestRequest, Action<Number>>((request, action) => savedRequest = request);
+                .Callback<RestRequest, Action< Number>>((request, action) => savedRequest = request);
             var client = mockClient.Object;
-
             manualResetEvent = new ManualResetEvent(false);
-            client.GetPhoneNumber(PHONE_NUMBER, number =>
+
+            client.GetPhoneNumber(NUMBER, r =>
             {
                 manualResetEvent.Set();
             });
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<Number>(It.IsAny<RestRequest>(), It.IsAny<Action<Number>>()), Times.Once);
-
+            
             Assert.IsNotNull(savedRequest);
             Assert.AreEqual("PhoneNumbers/{PhoneNumber}", savedRequest.Resource);
             Assert.AreEqual("GET", savedRequest.Method);
-
             Assert.AreEqual(1, savedRequest.Parameters.Count);
-            var phoneNumberParam = savedRequest.Parameters.Find(x => x.Name == "PhoneNumber");
-            Assert.IsNotNull(phoneNumberParam);
-            Assert.AreEqual(PHONE_NUMBER, phoneNumberParam.Value);
+            var numberParam = savedRequest.Parameters.Find(x => x.Name == "PhoneNumber");
+            Assert.AreEqual(NUMBER, numberParam.Value);
         }
 
-        [Test]
-        public void ShouldGetPhoneNumberFromCountry()
-        {
-                
-            RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.Execute<Number>(It.IsAny<RestRequest>()))
-                .Callback<RestRequest>((request) => savedRequest = request)
-                .Returns(new Number());
-            var client = mockClient.Object;
-
-            client.GetPhoneNumber(PHONE_NUMBER, COUNTRY_CODE);
-
-            mockClient.Verify(trc => trc.Execute<Number>(It.IsAny<RestRequest>()), Times.Once);
-
-            Assert.IsNotNull(savedRequest);
-
-            Assert.AreEqual(2, savedRequest.Parameters.Count);
-            var countryCodeParam = savedRequest.Parameters.Find(x => x.Name == "country_code");
-            Assert.IsNotNull(countryCodeParam);
-            Assert.AreEqual(COUNTRY_CODE, countryCodeParam.Value);
-        }
-
-        [Test]
-        public void ShouldGetPhoneNumberFromCountryAsynchronously()
-        {
-
-            RestRequest savedRequest = null;
-            mockClient.Setup(trc => trc.ExecuteAsync<Number>(It.IsAny<RestRequest>(), It.IsAny<Action<Number>>()))
-                .Callback<RestRequest, Action<Number>>((request, action) => savedRequest = request);
-            var client = mockClient.Object;
-
-            manualResetEvent = new ManualResetEvent(false);
-            client.GetPhoneNumber(PHONE_NUMBER, COUNTRY_CODE, number =>
-            {
-                manualResetEvent.Set();
-            });
-            manualResetEvent.WaitOne(1);
-
-            mockClient.Verify(trc => trc.ExecuteAsync<Number>(It.IsAny<RestRequest>(), It.IsAny<Action<Number>>()), Times.Once);
-
-            Assert.IsNotNull(savedRequest);
-
-            Assert.AreEqual(2, savedRequest.Parameters.Count);
-            var countryCodeParam = savedRequest.Parameters.Find(x => x.Name == "country_code");
-            Assert.IsNotNull(countryCodeParam);
-            Assert.AreEqual(COUNTRY_CODE, countryCodeParam.Value);
-        }
-        
         [Test]
         public void ShouldGetPhoneNumberWithCarrierInfo()
         {
-
             RestRequest savedRequest = null;
             mockClient.Setup(trc => trc.Execute<Number>(It.IsAny<RestRequest>()))
                 .Callback<RestRequest>((request) => savedRequest = request)
                 .Returns(new Number());
             var client = mockClient.Object;
 
-            client.GetPhoneNumber(PHONE_NUMBER, COUNTRY_CODE, true);
+            client.GetPhoneNumber(NUMBER, true);
 
             mockClient.Verify(trc => trc.Execute<Number>(It.IsAny<RestRequest>()), Times.Once);
             Assert.IsNotNull(savedRequest);
-
-            Assert.AreEqual(3, savedRequest.Parameters.Count);
-            var typeParam = savedRequest.Parameters.Find(x => x.Name == "type");
-            Assert.IsNotNull(typeParam);
+            Assert.AreEqual("PhoneNumbers/{PhoneNumber}", savedRequest.Resource);
+            Assert.AreEqual("GET", savedRequest.Method);
+            Assert.AreEqual(2, savedRequest.Parameters.Count);
+            var numberParam = savedRequest.Parameters.Find(x => x.Name == "PhoneNumber");
+            Assert.AreEqual(NUMBER, numberParam.Value);
+            var typeParam = savedRequest.Parameters.Find(x => x.Name == "Type");
             Assert.AreEqual("carrier", typeParam.Value);
         }
 
         [Test]
         public void ShouldGetPhoneNumberWithCarrierInfoAsynchronously()
         {
-
             RestRequest savedRequest = null;
             mockClient.Setup(trc => trc.ExecuteAsync<Number>(It.IsAny<RestRequest>(), It.IsAny<Action<Number>>()))
                 .Callback<RestRequest, Action<Number>>((request, action) => savedRequest = request);
             var client = mockClient.Object;
-
             manualResetEvent = new ManualResetEvent(false);
-            client.GetPhoneNumber(PHONE_NUMBER, COUNTRY_CODE, true, number =>
+
+            client.GetPhoneNumber(NUMBER, true, r =>
             {
                 manualResetEvent.Set();
             });
             manualResetEvent.WaitOne(1);
 
             mockClient.Verify(trc => trc.ExecuteAsync<Number>(It.IsAny<RestRequest>(), It.IsAny<Action<Number>>()), Times.Once);
-
+            
             Assert.IsNotNull(savedRequest);
-            Assert.AreEqual(3, savedRequest.Parameters.Count);
-            var typeParam = savedRequest.Parameters.Find(x => x.Name == "type");
-            Assert.IsNotNull(typeParam);
+            Assert.AreEqual("PhoneNumbers/{PhoneNumber}", savedRequest.Resource);
+            Assert.AreEqual("GET", savedRequest.Method);
+            Assert.AreEqual(2, savedRequest.Parameters.Count);
+            var numberParam = savedRequest.Parameters.Find(x => x.Name == "PhoneNumber");
+            Assert.AreEqual(NUMBER, numberParam.Value);
+            var typeParam = savedRequest.Parameters.Find(x => x.Name == "Type");
             Assert.AreEqual("carrier", typeParam.Value);
+        }
+
+
+        [Test]
+        public void ShouldGetPhoneNumberWithCountryCode()
+        {
+            RestRequest savedRequest = null;
+            mockClient.Setup(trc => trc.Execute<Number>(It.IsAny<RestRequest>()))
+                .Callback<RestRequest>((request) => savedRequest = request)
+                .Returns(new Number());
+            var client = mockClient.Object;
+
+            client.GetPhoneNumber(NUMBER_LOCALIZED, "US", true);
+
+            mockClient.Verify(trc => trc.Execute<Number>(It.IsAny<RestRequest>()), Times.Once);
+            Assert.IsNotNull(savedRequest);
+            Assert.AreEqual("PhoneNumbers/{PhoneNumber}", savedRequest.Resource);
+            Assert.AreEqual("GET", savedRequest.Method);
+            Assert.AreEqual(3, savedRequest.Parameters.Count);
+            var numberParam = savedRequest.Parameters.Find(x => x.Name == "PhoneNumber");
+            Assert.AreEqual(NUMBER_LOCALIZED, numberParam.Value);
+            var typeParam = savedRequest.Parameters.Find(x => x.Name == "Type");
+            Assert.AreEqual("carrier", typeParam.Value);
+            var countryCodeParam = savedRequest.Parameters.Find(x => x.Name == "CountryCode");
+            Assert.AreEqual("US", countryCodeParam.Value);
+        }
+
+        [Test]
+        public void ShouldGetPhoneNumberWithCountryCodeAsynchronously()
+        {
+            RestRequest savedRequest = null;
+            mockClient.Setup(trc => trc.ExecuteAsync<Number>(It.IsAny<RestRequest>(), It.IsAny<Action<Number>>()))
+                .Callback<RestRequest, Action<Number>>((request, action) => savedRequest = request);
+            var client = mockClient.Object;
+            manualResetEvent = new ManualResetEvent(false);
+
+            client.GetPhoneNumber(NUMBER_LOCALIZED, "US", true, r =>
+            {
+                manualResetEvent.Set();
+            });
+            manualResetEvent.WaitOne(1);
+
+            mockClient.Verify(trc => trc.ExecuteAsync<Number>(It.IsAny<RestRequest>(), It.IsAny<Action<Number>>()), Times.Once);
+            
+            Assert.IsNotNull(savedRequest);
+            Assert.AreEqual("PhoneNumbers/{PhoneNumber}", savedRequest.Resource);
+            Assert.AreEqual("GET", savedRequest.Method);
+            Assert.AreEqual(3, savedRequest.Parameters.Count);
+            var numberParam = savedRequest.Parameters.Find(x => x.Name == "PhoneNumber");
+            Assert.AreEqual(NUMBER_LOCALIZED, numberParam.Value);
+            var typeParam = savedRequest.Parameters.Find(x => x.Name == "Type");
+            Assert.AreEqual("carrier", typeParam.Value);
+            var countryCodeParam = savedRequest.Parameters.Find(x => x.Name == "CountryCode");
+            Assert.AreEqual("US", countryCodeParam.Value);
+        }
+
+        [Test]
+        public void testDeserializeResponse()
+        {
+            //var doc = File.ReadAllText(Path.Combine("Resources", "phone_number.json"));
+            var doc = Twilio.Api.Tests.Utilities.UnPack(BASE_NAME + "phone_number.json");
+
+            var json = new JsonDeserializer();
+            var output = json.Deserialize<Number>(new RestResponse { Content = doc });
+
+            Assert.NotNull(output);
+            Assert.AreEqual("+15108675309", output.PhoneNumber);
+            Assert.AreEqual("(510) 867-5309", output.NationalFormat);
+            Assert.AreEqual("US", output.CountryCode);
+
+            Assert.NotNull(output.Carrier);
+            Assert.AreEqual("310", output.Carrier.MobileCountryCode);
+            Assert.AreEqual("456", output.Carrier.MobileNetworkCode);
+            Assert.AreEqual("mobile", output.Carrier.Type);
+            Assert.AreEqual("verizon", output.Carrier.Name);
+            Assert.IsNull(output.Carrier.ErrorCode);
         }
     }
 }
