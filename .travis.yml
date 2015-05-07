@@ -1,8 +1,16 @@
 language: csharp
-solution: Twilio.2013.sln
 install:
   - nuget restore Twilio.2013.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release Twilio.2013.sln
+  - xbuild /p:Configuration=Release ./SimpleRestClient.Net35/SimpleRestClient.Net35.csproj
+  - xbuild /p:Configuration=Release ./SimpleRestClient.Pcl/SimpleRestClient.Pcl.csproj
+
+  - xbuild /p:Configuration=Release ./Twilio.Api.Net35/Twilio.Api.Net35.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Net35.Tests/Twilio.Api.Net35.csproj
+
+  - xbuild /p:Configuration=Release ./Twilio.Api.Pcl/Twilio.Api.Pcl.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Pcl.Tests/Twilio.Api.Pcl.csproj
+
   - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Net35.Tests/bin/Release/Twilio.Api.Net35.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Pcl.Tests/bin/Release/Twilio.Api.Pcl.Tests.dll
