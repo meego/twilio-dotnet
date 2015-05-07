@@ -120,17 +120,20 @@
     <Compile Include="Tokens.Async.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <MSBuildCommunityTasksPath>$(SolutionDir).build</MSBuildCommunityTasksPath>
-  </PropertyGroup>
+  <!--<PropertyGroup>
+    <MSBuildCommunityTasksPath>$(SolutionDir)\.build</MSBuildCommunityTasksPath>
+  </PropertyGroup>-->
   <PropertyGroup>
     <VRevision>0000</VRevision>
   </PropertyGroup>
-  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
+  <!--<Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />-->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.-->
   <Target Name="BeforeBuild">
-    <CallTarget Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'" Targets="CreateAndApplyVersion" />
+    <Message Text="$(SolutionDir)" Importance="high" />
+    <Message Text="$(SolutionDir).build" Importance="high" />
+    <Message Text="$(SolutionDir)\.build" Importance="high" />
+    <!--<CallTarget Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'" Targets="CreateAndApplyVersion" />-->
   </Target>
   <Target Name="CreateAndApplyVersion">
     <Message Text="Incrementing Assembly Version" Importance="high" />
