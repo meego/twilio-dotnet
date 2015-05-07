@@ -87,7 +87,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
-    <MSBuildCommunityTasksPath>$(SolutionDir)\.build</MSBuildCommunityTasksPath>
+    <MSBuildCommunityTasksPath>$(SolutionDir).build</MSBuildCommunityTasksPath>
   </PropertyGroup>
   <PropertyGroup>
     <VRevision>0000</VRevision>
