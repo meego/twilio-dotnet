@@ -5,32 +5,41 @@ install:
   - nuget restore Twilio.2013.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release ./SimpleRestClient.Net35/SimpleRestClient.Net35.csproj
-  - xbuild /p:Configuration=Release ./SimpleRestClient.Pcl/SimpleRestClient.Pcl.csproj
+  - xbuild /p:Configuration=Release ./SimpleRestClient/SimpleRestClient.Net35/SimpleRestClient.Net35.csproj
+  - xbuild /p:Configuration=Release ./SimpleRestClient/SimpleRestClient.Pcl/SimpleRestClient.Pcl.csproj /framework=4.0.30319
 
 #### Twilio.Api 
-  - xbuild /p:Configuration=Release ./Twilio.Api.Net35/Twilio.Api.Net35.csproj
-  - xbuild /p:Configuration=Release ./Twilio.Api.Net35.Tests/Twilio.Api.Net35.Tests.csproj
-  - xbuild /p:Configuration=Release ./Twilio.Api.Pcl/Twilio.Api.Pcl.csproj
-  - xbuild /p:Configuration=Release ./Twilio.Api.Pcl.Tests/Twilio.Api.Pcl.Tests.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api/Twilio.Api.Net35/Twilio.Api.Net35.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api/Twilio.Api.Net35.Tests/Twilio.Api.Net35.Tests.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api/Twilio.Api.Pcl/Twilio.Api.Pcl.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api/Twilio.Api.Pcl.Tests/Twilio.Api.Pcl.Tests.csproj
 
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Net35.Tests/bin/Release/Twilio.Api.Net35.Tests.dll
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Pcl.Tests/bin/Release/Twilio.Api.Pcl.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api/Twilio.Api.Net35.Tests/bin/Release/Twilio.Api.Net35.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api/Twilio.Api.Pcl.Tests/bin/Release/Twilio.Api.Pcl.Tests.dll /framework=4.0.30319
 
-#### Base Twilio..Api.TaskRouter
-  - xbuild /p:Configuration=Release ./Twilio.Api.TaskRouter.Net35/Twilio.Api.TaskRouter.Net35.csproj
-  - xbuild /p:Configuration=Release ./Twilio.Api.TaskRouter.Net35.Tests/Twilio.Api.TaskRouter.Net35.Tests.csproj
-  - xbuild /p:Configuration=Release ./Twilio.Api.TaskRouter.Pcl/Twilio.Api.TaskRouter.Pcl.csproj
-  - xbuild /p:Configuration=Release ./Twilio.Api.TaskRouter.Pcl.Tests/Twilio.Api.TaskRouter.Pcl.Tests.csproj
+#### Base Twilio.Api.TaskRouter
+  - xbuild /p:Configuration=Release ./Twilio.Api.TaskRouter/Twilio.Api.TaskRouter.Net35/Twilio.Api.TaskRouter.Net35.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.TaskRouter/Twilio.Api.TaskRouter.Net35.Tests/Twilio.Api.TaskRouter.Net35.Tests.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.TaskRouter/Twilio.Api.TaskRouter.Pcl/Twilio.Api.TaskRouter.Pcl.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.TaskRouter/Twilio.Api.TaskRouter.Pcl.Tests/Twilio.Api.TaskRouter.Pcl.Tests.csproj
 
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.TaskRouter.Net35.Tests/bin/Release/Twilio.Api.TaskRouter.Net35.Tests.dll
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.TaskRouter.Pcl.Tests/bin/Release/Twilio.Api.TaskRouter.Pcl.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.TaskRouter/Twilio.Api.TaskRouter.Net35.Tests/bin/Release/Twilio.Api.TaskRouter.Net35.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.TaskRouter/Twilio.Api.TaskRouter.Pcl.Tests/bin/Release/Twilio.Api.TaskRouter.Pcl.Tests.dll /framework=4.0.30319
 
-#### Base Twilio..Api.Lookups
-  - xbuild /p:Configuration=Release ./Twilio.Api.Lookups.Net35/Twilio.Api.Lookups.Net35.csproj
-  - xbuild /p:Configuration=Release ./Twilio.Api.Lookups.Net35.Tests/Twilio.Api.Lookups.Net35.Tests.csproj
-  - xbuild /p:Configuration=Release ./Twilio.Api.Lookups.Pcl/Twilio.Api.Lookups.Pcl.csproj
-  - xbuild /p:Configuration=Release ./Twilio.Api.Lookups.Pcl.Tests/Twilio.Api.Lookups.Pcl.Tests.csproj
+#### Base Twilio.Api.Lookups
+  - xbuild /p:Configuration=Release ./Twilio.Api.Lookups/Twilio.Api.Lookups.Net35/Twilio.Api.Lookups.Net35.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Lookups/Twilio.Api.Lookups.Net35.Tests/Twilio.Api.Lookups.Net35.Tests.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Lookups/Twilio.Api.Lookups.Pcl/Twilio.Api.Lookups.Pcl.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Lookups/Twilio.Api.Lookups.Pcl.Tests/Twilio.Api.Lookups.Pcl.Tests.csproj
 
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Lookups.Net35.Tests/bin/Release/Twilio.Api.Lookups.Net35.Tests.dll
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Lookups.Pcl.Tests/bin/Release/Twilio.Api.Lookups
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Lookups/Twilio.Api.Lookups.Net35.Tests/bin/Release/Twilio.Api.Lookups.Net35.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Lookups/Twilio.Api.Lookups.Pcl.Tests/bin/Release/Twilio.Api.Lookups.Pcl.Tests.dll /framework=4.0.30319
+
+  #### Base Twilio.Api.Monitor
+  - xbuild /p:Configuration=Release ./Twilio.Api.Monitor/Twilio.Api.Monitor.Net35/Twilio.Api.Monitor.Net35.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Monitor/Twilio.Api.Monitor.Net35.Tests/Twilio.Api.Monitor.Net35.Tests.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Monitor/Twilio.Api.Monitor.Pcl/Twilio.Api.Monitor.Pcl.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Monitor/Twilio.Api.Monitor.Pcl.Tests/Twilio.Api.Monitor.Pcl.Tests.csproj
+
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Monitor/Twilio.Api.Monitor.Net35.Tests/bin/Release/Twilio.Api.Monitor.Net35.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Monitor/Twilio.Api.Monitor.Pcl.Tests/bin/Release/Twilio.Api.Monitor.Pcl.Tests.dll /framework=4.0.30319

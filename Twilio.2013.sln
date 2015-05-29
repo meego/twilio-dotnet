@@ -10,20 +10,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		SimpleRestClient.runsettings = SimpleRestClient.runsettings
 		Twilio.Api.Pcl.Tests.runsettings = Twilio.Api.Pcl.Tests.runsettings
 		Twilio.Lookups.nuspec = Twilio.Lookups.nuspec
+		Twilio.Monitor.nuspec = Twilio.Monitor.nuspec
 		Twilio.nuspec = Twilio.nuspec
 		Twilio.TaskRouter.nuspec = Twilio.TaskRouter.nuspec
 		version.lookups.txt = version.lookups.txt
+		version.Monitor.txt = version.Monitor.txt
 		version.taskrouter.txt = version.taskrouter.txt
 		version.txt = version.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Net35", "Twilio.Api.Net35\Twilio.Api.Net35.csproj", "{894FF9E8-4DBF-4472-8AE2-1A6A988E105B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Net35", "Twilio.Api\Twilio.Api.Net35\Twilio.Api.Net35.csproj", "{894FF9E8-4DBF-4472-8AE2-1A6A988E105B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Shared", "Twilio.Api.Shared\Twilio.Api.Shared.csproj", "{F9C37D61-2764-42EF-95BF-F17A938E3012}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Shared", "Twilio.Api\Twilio.Api.Shared\Twilio.Api.Shared.csproj", "{F9C37D61-2764-42EF-95BF-F17A938E3012}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Tests.Performance", "Twilio.Api.Tests.Performance\Twilio.Api.Tests.Performance.csproj", "{D724E4CF-C517-4B9D-B5F7-4A4E9ADD1783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Pcl", "Twilio.Api.Pcl\Twilio.Api.Pcl.csproj", "{7D7AE61D-4326-495B-BF94-D54CCC03E127}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Pcl", "Twilio.Api\Twilio.Api.Pcl\Twilio.Api.Pcl.csproj", "{7D7AE61D-4326-495B-BF94-D54CCC03E127}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{2F763F2A-07CD-4981-B5F7-A48CDB926FDA}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,54 +34,64 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{2F763F
 		.build\MSBuild.Community.Tasks.targets = .build\MSBuild.Community.Tasks.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Net35.Tests", "Twilio.Api.Net35.Tests\Twilio.Api.Net35.Tests.csproj", "{91583912-B870-4DA7-8092-3EFD84DF043D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Net35.Tests", "Twilio.Api\Twilio.Api.Net35.Tests\Twilio.Api.Net35.Tests.csproj", "{91583912-B870-4DA7-8092-3EFD84DF043D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Pcl.Tests", "Twilio.Api.Pcl.Tests\Twilio.Api.Pcl.Tests.csproj", "{57E93AE9-A6A8-46B5-B559-9388B57566D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Pcl.Tests", "Twilio.Api\Twilio.Api.Pcl.Tests\Twilio.Api.Pcl.Tests.csproj", "{57E93AE9-A6A8-46B5-B559-9388B57566D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Net35", "SimpleRestClient.Net35\SimpleRestClient.Net35.csproj", "{2B09B37D-4049-4416-BDAB-14008BFA96D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Net35", "SimpleRestClient\SimpleRestClient.Net35\SimpleRestClient.Net35.csproj", "{2B09B37D-4049-4416-BDAB-14008BFA96D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Net35.Tests", "SimpleRestClient.Net35.Tests\SimpleRestClient.Net35.Tests.csproj", "{6F5A09FB-9D5B-492E-80D1-86E3D829039A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Net35.Tests", "SimpleRestClient\SimpleRestClient.Net35.Tests\SimpleRestClient.Net35.Tests.csproj", "{6F5A09FB-9D5B-492E-80D1-86E3D829039A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FX35", "FX35", "{5A5B8E59-A254-4C13-9898-583B9189C420}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PCL", "PCL", "{26B6805B-1570-4BFC-AC57-CDEFCF9E716F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Pcl.Tests", "SimpleRestClient.Pcl.Tests\SimpleRestClient.Pcl.Tests.csproj", "{5FB7A766-E157-4D92-BD68-1331BFF4FB22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Pcl.Tests", "SimpleRestClient\SimpleRestClient.Pcl.Tests\SimpleRestClient.Pcl.Tests.csproj", "{5FB7A766-E157-4D92-BD68-1331BFF4FB22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Shared", "SimpleRestClient.Shared\SimpleRestClient.Shared.csproj", "{A8E412DA-506E-4CEC-BD6F-C16C15B6150D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Shared", "SimpleRestClient\SimpleRestClient.Shared\SimpleRestClient.Shared.csproj", "{A8E412DA-506E-4CEC-BD6F-C16C15B6150D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{78CA8FEC-3EE3-47F1-A552-8E3361D87D26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Pcl", "SimpleRestClient.Pcl\SimpleRestClient.Pcl.csproj", "{4654E7E4-3BF0-4FDA-98F8-4BE16FC3497D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Pcl", "SimpleRestClient\SimpleRestClient.Pcl\SimpleRestClient.Pcl.csproj", "{4654E7E4-3BF0-4FDA-98F8-4BE16FC3497D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Tests.Shared", "SimpleRestClient.Tests.Shared\SimpleRestClient.Tests.Shared.csproj", "{91BDA551-1CF3-4484-87EF-E341807FBCD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleRestClient.Tests.Shared", "SimpleRestClient\SimpleRestClient.Tests.Shared\SimpleRestClient.Tests.Shared.csproj", "{91BDA551-1CF3-4484-87EF-E341807FBCD8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{225A641B-94A6-4CC4-987C-60493F795C8D}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Pcl", "Twilio.Api.TaskRouter.Pcl\Twilio.Api.TaskRouter.Pcl.csproj", "{A7A7BBA1-07E9-413A-A162-333430F299C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Pcl", "Twilio.Api.TaskRouter\Twilio.Api.TaskRouter.Pcl\Twilio.Api.TaskRouter.Pcl.csproj", "{A7A7BBA1-07E9-413A-A162-333430F299C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Shared", "Twilio.Api.TaskRouter.Shared\Twilio.Api.TaskRouter.Shared.csproj", "{1E6190BD-AF7E-411C-B733-DD33C4F2FA56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Shared", "Twilio.Api.TaskRouter\Twilio.Api.TaskRouter.Shared\Twilio.Api.TaskRouter.Shared.csproj", "{1E6190BD-AF7E-411C-B733-DD33C4F2FA56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Net35", "Twilio.Api.TaskRouter.Net35\Twilio.Api.TaskRouter.Net35.csproj", "{2B799386-C484-4F3F-A35D-E2E2752ECAB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Net35", "Twilio.Api.TaskRouter\Twilio.Api.TaskRouter.Net35\Twilio.Api.TaskRouter.Net35.csproj", "{2B799386-C484-4F3F-A35D-E2E2752ECAB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Net35.Tests", "Twilio.Api.TaskRouter.Net35.Tests\Twilio.Api.TaskRouter.Net35.Tests.csproj", "{F7155AF6-26B9-42E7-A714-13768053F7CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Net35.Tests", "Twilio.Api.TaskRouter\Twilio.Api.TaskRouter.Net35.Tests\Twilio.Api.TaskRouter.Net35.Tests.csproj", "{F7155AF6-26B9-42E7-A714-13768053F7CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Pcl.Tests", "Twilio.Api.TaskRouter.Pcl.Tests\Twilio.Api.TaskRouter.Pcl.Tests.csproj", "{6AADA9D2-CDDB-4089-8293-EC278F193713}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Pcl.Tests", "Twilio.Api.TaskRouter\Twilio.Api.TaskRouter.Pcl.Tests\Twilio.Api.TaskRouter.Pcl.Tests.csproj", "{6AADA9D2-CDDB-4089-8293-EC278F193713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Tests.Shared", "Twilio.Api.TaskRouter.Tests.Shared\Twilio.Api.TaskRouter.Tests.Shared.csproj", "{E7FD10A2-BB81-4F98-A199-0F7834093FA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.TaskRouter.Tests.Shared", "Twilio.Api.TaskRouter\Twilio.Api.TaskRouter.Tests.Shared\Twilio.Api.TaskRouter.Tests.Shared.csproj", "{E7FD10A2-BB81-4F98-A199-0F7834093FA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Pcl", "Twilio.Api.Lookups.Pcl\Twilio.Api.Lookups.Pcl.csproj", "{AA3A981A-8BC8-492E-8DBC-6A6AB959B244}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Pcl", "Twilio.Api.Lookups\Twilio.Api.Lookups.Pcl\Twilio.Api.Lookups.Pcl.csproj", "{AA3A981A-8BC8-492E-8DBC-6A6AB959B244}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Pcl.Tests", "Twilio.Api.Lookups.Pcl.Tests\Twilio.Api.Lookups.Pcl.Tests.csproj", "{77503B89-80A9-4773-9221-7B54C1EED684}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Pcl.Tests", "Twilio.Api.Lookups\Twilio.Api.Lookups.Pcl.Tests\Twilio.Api.Lookups.Pcl.Tests.csproj", "{77503B89-80A9-4773-9221-7B54C1EED684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Shared", "Twilio.Api.Lookups.Shared\Twilio.Api.Lookups.Shared.csproj", "{BA22468A-F5FD-4A3A-ADA4-9FFA0FB7B4EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Shared", "Twilio.Api.Lookups\Twilio.Api.Lookups.Shared\Twilio.Api.Lookups.Shared.csproj", "{BA22468A-F5FD-4A3A-ADA4-9FFA0FB7B4EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Net35", "Twilio.Api.Lookups.Net35\Twilio.Api.Lookups.Net35.csproj", "{F2C005DF-90CE-4511-9A91-6B3EAD155AE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Net35", "Twilio.Api.Lookups\Twilio.Api.Lookups.Net35\Twilio.Api.Lookups.Net35.csproj", "{F2C005DF-90CE-4511-9A91-6B3EAD155AE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Net35.Tests", "Twilio.Api.Lookups.Net35.Tests\Twilio.Api.Lookups.Net35.Tests.csproj", "{90CF0D3F-EECB-4141-9F92-C7CD11EC954E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Lookups.Net35.Tests", "Twilio.Api.Lookups\Twilio.Api.Lookups.Net35.Tests\Twilio.Api.Lookups.Net35.Tests.csproj", "{90CF0D3F-EECB-4141-9F92-C7CD11EC954E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Monitor.Shared", "Twilio.Api.Monitor\Twilio.Api.Monitor.Shared\Twilio.Api.Monitor.Shared.csproj", "{44E25F72-C53C-4370-84A6-02A4B307E9C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Monitor.Net35", "Twilio.Api.Monitor\Twilio.Api.Monitor.Net35\Twilio.Api.Monitor.Net35.csproj", "{86DD1C70-F801-4D98-B8D1-059ED3E700B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Monitor.Net35.Tests", "Twilio.Api.Monitor\Twilio.Api.Monitor.Net35.Tests\Twilio.Api.Monitor.Net35.Tests.csproj", "{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Monitor.Pcl", "Twilio.Api.Monitor\Twilio.Api.Monitor.Pcl\Twilio.Api.Monitor.Pcl.csproj", "{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Monitor.Pcl.Tests", "Twilio.Api.Monitor\Twilio.Api.Monitor.Pcl.Tests\Twilio.Api.Monitor.Pcl.Tests.csproj", "{DC7753EB-2069-4761-BF5E-08A0EDD12004}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -343,6 +355,65 @@ Global
 		{90CF0D3F-EECB-4141-9F92-C7CD11EC954E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{90CF0D3F-EECB-4141-9F92-C7CD11EC954E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{90CF0D3F-EECB-4141-9F92-C7CD11EC954E}.Release|x86.ActiveCfg = Release|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Release|ARM.ActiveCfg = Release|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1}.Release|x86.ActiveCfg = Release|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Release|ARM.ActiveCfg = Release|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5}.Release|x86.ActiveCfg = Release|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Release|ARM.ActiveCfg = Release|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4}.Release|x86.ActiveCfg = Release|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Release|ARM.ActiveCfg = Release|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79}.Release|x86.ActiveCfg = Release|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Release|ARM.ActiveCfg = Release|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -370,6 +441,11 @@ Global
 		{BA22468A-F5FD-4A3A-ADA4-9FFA0FB7B4EA} = {78CA8FEC-3EE3-47F1-A552-8E3361D87D26}
 		{F2C005DF-90CE-4511-9A91-6B3EAD155AE8} = {5A5B8E59-A254-4C13-9898-583B9189C420}
 		{90CF0D3F-EECB-4141-9F92-C7CD11EC954E} = {5A5B8E59-A254-4C13-9898-583B9189C420}
+		{44E25F72-C53C-4370-84A6-02A4B307E9C1} = {78CA8FEC-3EE3-47F1-A552-8E3361D87D26}
+		{86DD1C70-F801-4D98-B8D1-059ED3E700B5} = {5A5B8E59-A254-4C13-9898-583B9189C420}
+		{1F5C8491-A579-44A2-8F9F-1B8A4C7FACC4} = {5A5B8E59-A254-4C13-9898-583B9189C420}
+		{4E07F6DC-0A68-41C9-BDB0-5B69E69C7F79} = {26B6805B-1570-4BFC-AC57-CDEFCF9E716F}
+		{DC7753EB-2069-4761-BF5E-08A0EDD12004} = {26B6805B-1570-4BFC-AC57-CDEFCF9E716F}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = SimpleRestClient\SimpleRestClient.csproj
