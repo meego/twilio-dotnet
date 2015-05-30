@@ -56,9 +56,6 @@
     <Compile Include="Properties\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Twilio.Api\Twilio.Api.Net35\Twilio.Api.Net35.csproj">
       <Project>{894ff9e8-4dbf-4472-8ae2-1a6a988e105b}</Project>
       <Name>Twilio.Api.Net35</Name>

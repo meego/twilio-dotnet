@@ -11,11 +11,19 @@ namespace Twilio.Api.Tests.Performance
     {
         static void Main(string[] args)
         {
-            bool tick = true;
-            StringBuilder log = new StringBuilder();
-            Dictionary<string, int> statuscodes = new Dictionary<string, int>();
+            var run = new Runner();
+            run.Run().GetAwaiter().GetResult();
+        }
 
-            DateTime start = DateTime.Now;
+    }
+
+    public class Runner {
+        public async Task Run() {
+            //bool tick = true;
+            //StringBuilder log = new StringBuilder();
+            //Dictionary<string, int> statuscodes = new Dictionary<string, int>();
+
+           // DateTime start = DateTime.Now;
 
             int loopSize = 1000;
 
@@ -41,39 +49,38 @@ namespace Twilio.Api.Tests.Performance
             // Just create one HttpClient
             //var client = new HttpClient();
 
-            var spin = new ConsoleSpinner();
-            Console.Write("Working ");
+            //var spin = new ConsoleSpinner();
+            //Console.Write("Working ");
 
-            Task.Factory.StartNew(() =>
-            {
+            //Task.Factory.StartNew(() =>
+            //{
                 //Start the spinner
-                while (tick)
-                {
-                    spin.Turn();
-                }
-            });
+                //while (tick)
+                //{
+                //    spin.Turn();
+                //}
+            //});
 
 
             // Put the loop into a Task to ensure that it happens on a new thread
-            Task.Factory.StartNew(() =>
-            {
+            //Task.Factory.StartNew(() =>
+            //{
 
                 // Build a collection of tasks.
                 // Preset the List size otherwise there is a chance
                 // the first item will not get added to it (weird!)
-                var tasks = new List<Task>(loopSize);
+                //var tasks = new List<Task>(loopSize);
 
                 TwilioRestClient client = new TwilioRestClient(accountsid, authtoken);
 
-                var result = Parallel.For(0, loopSize, b =>
+                for (int i = 0; i < loopSize; i++)
                 {
-                    client.SendMessage("+15005550006", "+13144586142", ".NET Unit Test Message", msg=> {
-                        if (msg.RestException != null)
-                        {
-                            log.Append("Task Faulted\r\n");
-                            log.Append("\t" + msg.RestException.Message + "\r\n");
-                        }
-                    });
+                    //Console.WriteLine("Send");
+                    var msg = await client.SendMessageAsync("+15005550006", "+13144586142", ".NET Unit Test Message");
+                }
+                //var result = Parallel.For(0, loopSize, async b =>
+                //{
+                //    var msg = await client.SendMessageAsync("+15005550006", "+13144586142", ".NET Unit Test Message");
 
                     // Unfortunately you have to generate both the StringContent and HttpRequestMessage objects
                     // each time because HttpClient immediately disposes of them as soon as it uses them
@@ -122,7 +129,7 @@ namespace Twilio.Api.Tests.Performance
                     //            })
                     //);
 
-                });
+                //});
 
                 // For this sample I'm telling the TPL to wait here
                 // until all of the tasks in the array are done.
@@ -131,41 +138,43 @@ namespace Twilio.Api.Tests.Performance
                 // Also note that if you use this technique, you may need
                 // to specify the tasks Timeout method parameter.  I was getting
                 // task timeouts when I bumped the loopSize up to 10000
-                Task.WaitAll(tasks.ToArray());
+            //    Task.WaitAll(tasks.ToArray());
 
-            }).ContinueWith(t =>
-            {
+            //});
+            
+            //.ContinueWith(t =>
+            //{
 
-                tick = false; //stop ticking please
+            //    tick = false; //stop ticking please
 
-                var ts = DateTime.Now.Subtract(start);
+            //    var ts = DateTime.Now.Subtract(start);
 
-                Console.SetCursorPosition(0, 0);
+            //    Console.SetCursorPosition(0, 0);
 
-                Console.WriteLine("Requests completed in {0}ms", ts.TotalMilliseconds);
+            //    Console.WriteLine("Requests completed in {0}ms", ts.TotalMilliseconds);
 
-                double calc = 1000 / ts.TotalSeconds;
+            //    double calc = 1000 / ts.TotalSeconds;
 
-                Console.WriteLine("Reqs/Sec: {0}", calc);
+            //    Console.WriteLine("Reqs/Sec: {0}", calc);
 
-                Console.WriteLine(" \r\n --- Faults Log ---");
-                if (log.Length > 0)
-                    Console.WriteLine(log.ToString());
-                else
-                    Console.WriteLine("No Tasks Faulted");
+            //    Console.WriteLine(" \r\n --- Faults Log ---");
+            //    if (log.Length > 0)
+            //        Console.WriteLine(log.ToString());
+            //    else
+            //        Console.WriteLine("No Tasks Faulted");
 
-                Console.WriteLine(" \r\n --- HTTP Request Failure Log ---");
+            //    Console.WriteLine(" \r\n --- HTTP Request Failure Log ---");
 
-                foreach (var item in statuscodes)
-                {
-                    Console.WriteLine("{0}: {1}", item.Key, item.Value);
-                }
+            //    foreach (var item in statuscodes)
+            //    {
+            //        Console.WriteLine("{0}: {1}", item.Key, item.Value);
+            //    }
 
-                Console.WriteLine("\r\n\r\nPress any key to close.");
+            //    Console.WriteLine("\r\n\r\nPress any key to close.");
 
-            });
+            //});
 
-            Console.Read();
+            //Console.Read();
         }
     }
 }

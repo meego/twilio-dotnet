@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using JWT;
 
-//using JWT;
-
 namespace Twilio.TaskRouter.Tests
 {
     [TestFixture]

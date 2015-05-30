@@ -61,9 +61,6 @@
       <Name>Twilio.Api.Net35</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <MSBuildCommunityTasksTargetPath>../../.build</MSBuildCommunityTasksTargetPath>
