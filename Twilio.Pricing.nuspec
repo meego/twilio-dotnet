@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Twilio.Pricing</id>
+        <version>1.0.0-beta</version>
+        <authors>Twilio</authors>
+        <licenseUrl>https://github.com/twilio/twilio-dotnet/blob/master/LICENSE.txt</licenseUrl>
+        <projectUrl>http://github.com/twilio/twilio-dotnet</projectUrl>
+        <iconUrl>http://www.twilio.com/packages/company/img/logos_downloadable_round.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>
+          API wrapper for the Twilio Pricing REST API
+          </description>
+        <releaseNotes>
+        </releaseNotes>
+        <language>en-US</language>
+        <tags>REST SMS voice telephony phone twilio twiml ASPNETWEBPAGES</tags>
+        <dependencies>
+          <group targetFramework="portable-net403+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1">
+            <dependency id="Twilio" version="3.8.48-beta" />
+          </group>
+          <group targetFramework=".NETFramework4.0">
+            <dependency id="Twilio" version="3.8.48-beta" />
+          </group>
+          
+          <!-- for things that are not portable and do not support portable dependencies -->
+          <group>
+            <dependency id="Twilio" version="3.8.48-beta" />
+          </group>
+        </dependencies>
+    </metadata>
+</package>

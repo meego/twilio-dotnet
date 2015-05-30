@@ -43,3 +43,12 @@ script:
 
   - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Monitor/Twilio.Api.Monitor.Net35.Tests/bin/Release/Twilio.Api.Monitor.Net35.Tests.dll
   - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Monitor/Twilio.Api.Monitor.Pcl.Tests/bin/Release/Twilio.Api.Monitor.Pcl.Tests.dll -framework=4.0
+
+    #### Base Twilio.Api.Pricing
+  - xbuild /p:Configuration=Release ./Twilio.Api.Pricing/Twilio.Api.Pricing.Net35/Twilio.Api.Pricing.Net35.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Pricing/Twilio.Api.Pricing.Net35.Tests/Twilio.Api.Pricing.Net35.Tests.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Pricing/Twilio.Api.Pricing.Pcl/Twilio.Api.Pricing.Pcl.csproj
+  - xbuild /p:Configuration=Release ./Twilio.Api.Pricing/Twilio.Api.Pricing.Pcl.Tests/Twilio.Api.Pricing.Pcl.Tests.csproj
+
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Pricing/Twilio.Api.Pricing.Net35.Tests/bin/Release/Twilio.Api.Pricing.Net35.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Twilio.Api.Pricing/Twilio.Api.Pricing.Pcl.Tests/bin/Release/Twilio.Api.Pricing.Pcl.Tests.dll -framework=4.0
