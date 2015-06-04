@@ -90,6 +90,7 @@
     <Compile Include="Model\CredentialListMappingResult.cs" />
     <Compile Include="Model\CredentialListResult.cs" />
     <Compile Include="Model\CredentialResult.cs" />
+    <Compile Include="Model\DateRange.cs" />
     <Compile Include="Model\DeleteStatus.cs" />
     <Compile Include="Model\DependentPhoneNumber.cs" />
     <Compile Include="Model\DependentPhoneNumberResult.cs" />

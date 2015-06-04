@@ -13,7 +13,18 @@ namespace Twilio
         /// </summary>
         public virtual async Task<RecordingResult> ListRecordingsAsync()
         {
-            return await ListRecordingsAsync(null, null, null, null);
+            return await ListRecordingsAsync(new { });
+        }
+
+        /// <summary>
+        /// Returns a list of Recordings, each representing a recording generated during the course of a phone call. 
+        /// The list includes paging information.
+        /// Makes a GET request to the Recordings List resource.
+        /// </summary>
+        /// <param name="callsid">Show only recordings made during the call given by this sid</param>
+        public virtual async Task<RecordingResult> ListRecordingsAsync(string callSid)
+        {
+            return await ListRecordingsAsync(new { CallSid = callSid });
         }
 
         /// <summary>
@@ -21,21 +32,46 @@ namespace Twilio
         /// The list includes paging information.
         /// Makes a GET request to the Recordings List resource.
         /// </summary>
-        /// <param name="callSid">(Optional) The CallSid to retrieve recordings for</param>
-        /// <param name="dateCreated">(Optional) The date the recording was created (GMT)</param>
-        /// <param name="pageNumber">The page to start retrieving results from</param>
-        /// <param name="count">How many results to retrieve</param>
-        public virtual async Task<RecordingResult> ListRecordingsAsync(string callSid, DateTime? dateCreated, int? pageNumber, int? count)
+        /// <param name="callSid">Show only recordings made during the call given by this sid</param>
+        /// <param name="dateRange">The date the recordings were created (GMT)</param>
+        public virtual async Task<RecordingResult> ListRecordingsAsync(string callSid, DateTime dateCreated)
         {
+            return await ListRecordingsAsync(new { CallSid = callSid, DateCreated = dateCreated });
+        }
+
+        /// <summary>
+        /// Returns a filtered list of Recordings, each representing a recording generated during the course of a phone call. 
+        /// The list includes paging information.
+        /// Makes a GET request to the Recordings List resource.
+        /// </summary>
+        /// <param name="callSid">Show only recordings made during the call given by this sid</param>
+        /// <param name="dateRange">The date range the recordings were created (GMT)</param>
+        public virtual async Task<RecordingResult> ListRecordingsAsync(string callSid, DateRange dateRange)
+        {
+            return await ListRecordingsAsync(new { CallSid = callSid, DateRange = dateRange });
+        }
+
+
+        /// <summary>
+        /// Returns a filtered list of Recordings, each representing a recording generated during the course of a phone call. 
+        /// The list includes paging information.
+        /// Makes a GET request to the Recordings List resource.
+        /// <param name="parameters">An object that contains Recording list parameters</param>
+        public async Task<RecordingResult> ListRecordingsAsync(object parameters) 
+        {
+            
             var request = new RestRequest();
             request.Resource = "Accounts/{AccountSid}/Recordings.json";
 
-            if (callSid.HasValue()) request.AddParameter("CallSid", callSid);
-            if (dateCreated.HasValue) request.AddParameter("DateCreated", dateCreated.Value.ToString("yyyy-MM-dd"));
-            if (pageNumber.HasValue) request.AddParameter("Page", pageNumber.Value);
-            if (count.HasValue) request.AddParameter("PageSize", count.Value);
+            parameters.HasProperty<string>("CallSid", r => { 
+                if (r.HasValue()) { request.AddParameter("CallSid", r); } 
+            });
 
-            return await Execute<RecordingResult>(request);
+            parameters.HasProperty<int>("PageSize", r => request.AddParameter("PageSize", r) );
+            parameters.HasProperty<DateTime>("DateCreated", r => request.AddParameter("DateCreated", r) );
+            parameters.HasProperty<DateRange>("DateRange", r => request.AddParameter("DateRange", r) );
+
+            return await Execute<RecordingResult>(request);   
         }
 
         /// <summary>
