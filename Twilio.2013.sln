@@ -105,6 +105,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Pricing.Pcl", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Pricing.Pcl.Tests", "Twilio.Api.Pricing\Twilio.Api.Pricing.Pcl.Tests\Twilio.Api.Pricing.Pcl.Tests.csproj", "{BC108AF4-A533-449F-B64D-F7ADA058E79D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Pcl.Iterators", "Twilio.Api.Pcl.Iterators\Twilio.Api.Pcl.Iterators.csproj", "{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twilio.Api.Net35.Iterators", "Twilio.Api.Net35.Iterators\Twilio.Api.Net35.Iterators.csproj", "{2C548A4C-6461-43C1-98AE-5FA236B88675}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -484,6 +488,30 @@ Global
 		{BC108AF4-A533-449F-B64D-F7ADA058E79D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BC108AF4-A533-449F-B64D-F7ADA058E79D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BC108AF4-A533-449F-B64D-F7ADA058E79D}.Release|x86.ActiveCfg = Release|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Release|ARM.ActiveCfg = Release|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2}.Release|x86.ActiveCfg = Release|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Release|ARM.ActiveCfg = Release|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2C548A4C-6461-43C1-98AE-5FA236B88675}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -521,6 +549,8 @@ Global
 		{05F64CC5-77A4-405D-A10E-BD8AAA0E81EF} = {5A5B8E59-A254-4C13-9898-583B9189C420}
 		{ED4BDF08-084C-43A5-AAE8-F2F632B97235} = {26B6805B-1570-4BFC-AC57-CDEFCF9E716F}
 		{BC108AF4-A533-449F-B64D-F7ADA058E79D} = {26B6805B-1570-4BFC-AC57-CDEFCF9E716F}
+		{51465457-7F28-41E6-B7F8-35DC6BF0BDA2} = {26B6805B-1570-4BFC-AC57-CDEFCF9E716F}
+		{2C548A4C-6461-43C1-98AE-5FA236B88675} = {5A5B8E59-A254-4C13-9898-583B9189C420}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = SimpleRestClient\SimpleRestClient.csproj

@@ -24,8 +24,8 @@ namespace Twilio
             if (options.VoiceEnabled.HasValue) request.AddParameter("VoiceEnabled", options.VoiceEnabled.Value);
             if (options.MmsEnabled.HasValue) request.AddParameter("MmsEnabled", options.MmsEnabled.Value);
             if (options.ExcludeAllAddressRequired.HasValue) request.AddParameter("ExcludeAllAddressRequired", options.ExcludeAllAddressRequired.Value);
-			if (options.ExcludeForeignAddressRequired.HasValue) request.AddParameter("ExcludeForeignAddressRequired", options.ExcludeForeignAddressRequired.Value);
-			if (options.ExcludeLocalAddressRequired.HasValue) request.AddParameter("ExcludeLocalAddressRequired", options.ExcludeLocalAddressRequired.Value);
+            if (options.ExcludeForeignAddressRequired.HasValue) request.AddParameter("ExcludeForeignAddressRequired", options.ExcludeForeignAddressRequired.Value);
+            if (options.ExcludeLocalAddressRequired.HasValue) request.AddParameter("ExcludeLocalAddressRequired", options.ExcludeLocalAddressRequired.Value);
         }
 
         private static void AddCallOptions(CallOptions options, RestRequest request)
@@ -139,7 +139,7 @@ namespace Twilio
             if (options.Count.HasValue) request.AddParameter("PageSize", options.Count.Value);
         }
 
-        private void AddMessageListOptions(MessageListRequest options, RestRequest request)
+        public void AddMessageListOptions(MessageListRequest options, RestRequest request)
         {
             if (options.To.HasValue()) request.AddParameter("To", options.To);
             if (options.From.HasValue()) request.AddParameter("From", options.From);

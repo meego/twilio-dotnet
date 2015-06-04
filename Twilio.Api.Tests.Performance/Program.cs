@@ -4,6 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Reactive.Disposables;
+
 
 namespace Twilio.Api.Tests.Performance
 {
@@ -33,8 +37,8 @@ namespace Twilio.Api.Tests.Performance
             // I have increased it to 100
             ServicePointManager.DefaultConnectionLimit = 100;
 
-            string accountsid = "AC322b0bbffa19119e3bece0ca44e206e8";
-            string authtoken = "d17cb195f4a3fed9e5bc66f456b750fe";
+            string accountsid = "";
+            string authtoken = "";
 
             // Build all of the strings manually
             //string uri = string.Format("https://api.twilio.com/2010-04-01/Accounts/{0}/SMS/Messages", accountsid);
@@ -73,11 +77,38 @@ namespace Twilio.Api.Tests.Performance
 
                 TwilioRestClient client = new TwilioRestClient(accountsid, authtoken);
 
-                for (int i = 0; i < loopSize; i++)
+                foreach (var r in client.ListAllMessages(new MessageListRequest()))
                 {
-                    //Console.WriteLine("Send");
-                    var msg = await client.SendMessageAsync("+15005550006", "+13144586142", ".NET Unit Test Message");
+                    foreach (var m in r.Messages)
+                    {
+                        Console.WriteLine("SID: {0}, DateCreated: {1}", m.Sid, m.DateCreated.ToString());
+                    }
                 }
+
+
+                //IObservable<MessageResult> result = client.ListAllMessagesAsync(new MessageListRequest() { Count = 10 });
+                //var observer = Observer.Create<MessageResult>(
+                //    x => {
+                //        foreach (var m in x.Messages)
+                //        {
+                //            Console.WriteLine("SID: {0}, DateCreated: {1}", m.Sid, m.DateCreated.ToString());
+                //        }
+                //    },
+                //    ex => { 
+                //        Console.WriteLine("OnError: {0}", ex);
+                //    },
+                //    () => { 
+                //        Console.WriteLine("OnCompleted"); 
+                //    });
+                //result.Subscribe(observer);
+
+                Console.Read();
+            
+                //for (int i = 0; i < loopSize; i++)
+                //{
+                //    //Console.WriteLine("Send");
+                //    var msg = await client.SendMessageAsync("+15005550006", "+13144586142", ".NET Unit Test Message");
+                //}
                 //var result = Parallel.For(0, loopSize, async b =>
                 //{
                 //    var msg = await client.SendMessageAsync("+15005550006", "+13144586142", ".NET Unit Test Message");
